@@ -38,9 +38,7 @@
             </div>
         </li>
     </ul>
-
-    <h6><i class="fa fa-folder-open"></i> Qovluqlar</h6>
-
+    <h6><i class="fa fa-folder-open"></i> Qovluqlar <a href="#" data-toggle="modal" data-target="#folderModal" onclick="AddNewFolder()" rel="tooltip" title="" data-placement="right" data-original-title="Yeni qovluq" class="pull-right txt-color-darken"><i class="fa fa-plus"></i></a></h6>
     <ul class="inbox-menu-sm">
         <li>
             <a href="#" onclick="loadDocsByOperCode('gnl_duv')"><i class="fa fa-folder-o"></i> Dərkənar</a>
@@ -48,9 +46,30 @@
         <li>
             <a href="#"><i class="fa fa-folder-o"></i> İmzalanacaqlar </a>
         </li>
+        @foreach (var item in ViewBag.Folders)
+        {
+            <li>
+                <a href="#"><i class="fa fa-folder-o"></i> @item.title </a>
+            </li>
+        }
+
     </ul>
 </div>
 
+<div class="modal fade" id="folderModal" tabindex="-1" role="dialog" aria-labelledby="folderLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-color-blue txt-color-white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="folderTitle"></h4>
+            </div>
+            <div class="modal-body" id="folderModalBody">
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $(function () {
@@ -84,5 +103,21 @@
                 operationCode: operationcode
             }, function () { });
     };
+    var AddNewFolder = function () {
+        var mymodal = $('#folderModal');
+        mymodal.find('.modal-title').text("Yeni qovluq əlavə et");
+        var url = "/Document/CreateFolder";
+        $("#folderModalBody").load(url, function () {
+            $("#folderModal").show();
+        });
+    };
 
+    var EditFolder = function (id) {
+        var mymodal = $('#folderModal');
+        mymodal.find('.modal-title').text(selTableTitle);
+        var url = "/Document/EditFolder";
+        $("#folderModalBody").load(url, function () {
+            $("#folderModal").show();
+        });
+    };
 </script>

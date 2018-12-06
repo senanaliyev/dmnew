@@ -21,8 +21,28 @@ namespace IDM.UI.Controllers
         Office_Service nmc = new Office_Service();
         DocOperationService docOpServ = new DocOperationService();
 
+        public ActionResult CreateFolder()
+        {
+            return PartialView("_CreateFolder");
+        }
+        [HttpPost]
+        public ActionResult SaveFolder(DocumentFolder_DTO entity)
+        {
+            if (ModelState.IsValid)
+            {
+                entity.usrID = Convert.ToInt32(Session["userID"]);
+                new Srv_DocumentFolder().Insert(entity);
+                return Json(new { mesaj = "Əlavə olundu" }, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return Json(new { mesaj = "Məlumatları düzgün doldurun!" }, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult Index()
         {
+            ViewBag.Folders = new Srv_DocumentFolder().GetList(Convert.ToInt32(Session["userID"]));
             return View(document.GetList(Convert.ToInt32(Session["userID"])));
         }
 
@@ -45,6 +65,7 @@ namespace IDM.UI.Controllers
             ViewBag.DocContentType = new Srv_DocContentType().GetList();
             ViewBag.DocTypes = new DocTypeService().GetList();
             ViewBag.Users = new EmployeeService().GetList();
+            ViewBag.Folders = new Srv_DocumentFolder().GetList(Convert.ToInt32(Session["userID"]));
             return PartialView("_FilterMenu");
         }
         public ActionResult DocumentListByFolderName(string operationCode)

@@ -76,6 +76,7 @@
     <Compile Include="Custom_CtzDocument_DTO.cs" />
     <Compile Include="Custom_DocServiceDTO.cs" />
     <Compile Include="DocOperationLog_DTO.cs" />
+    <Compile Include="DocumentFolder_DTO.cs" />
     <Compile Include="ExtendedSearch_DTO.cs" />
     <Compile Include="InternalRegFileDoc.cs" />
     <Compile Include="OperationsHistory_DTO.cs" />

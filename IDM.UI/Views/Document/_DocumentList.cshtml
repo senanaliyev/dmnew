@@ -17,6 +17,7 @@
             <th hidden></th>
             <th hidden></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -70,6 +71,9 @@
                 </td>
                 <td>
                     <a href="#" onclick="loadRegDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID)" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                </td>
+                <td>
+                    @Html.CheckBox((item.ID).ToString())
                 </td>
             </tr>
         }

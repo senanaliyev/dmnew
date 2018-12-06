@@ -111,12 +111,20 @@
                                     @Html.Action("FilterMenu", "Document")
                                 </div>
                                 <div class="form-group col-md-10">
-                                    @*<div class="alert alert-info no-margin fade in">
-                                            <code>Göndəriləcək ünvan </code>
-                                        </div>*@
-                                    <!-- widget content -->
-
+                                    <div class="btn-group">
+                                        <a href="#" data-toggle="dropdown" title="" class="btn btn-default dropdown-toggle"><strong><i class="fa fa-folder-open fa-lg"></i></strong> Qovluğa göndər</a>
+                                        <ul class="dropdown-menu">
+                                            @foreach (var item in ViewBag.Folders)
+                                            {
+                                                <li>
+                                                    <a href="#"><i class="fa fa-folder-open-o fa-lg"></i> @item.title </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <hr class="simple" />
                                     <div id="docMainDiv">
+
                                     </div>
 
                                 </div>
