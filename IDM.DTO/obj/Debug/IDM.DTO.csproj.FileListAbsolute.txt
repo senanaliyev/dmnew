@@ -86,3 +86,29 @@ C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.csproj.CoreCompi
 C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.csproj.CopyComplete
 C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.dll
 C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\IDM.DTO.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\IDM.DTO.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Helpers.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Mvc.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Razor.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.WebPages.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Helpers.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Mvc.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.Razor.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.WebPages.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\bin\Debug\en-US\System.Web.Mvc.Extensions.resources.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\obj\Debug\IDM.DTO.csprojAssemblyReference.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\obj\Debug\IDM.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\obj\Debug\IDM.DTO.csproj.CopyComplete
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\obj\Debug\IDM.DTO.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.DTO\obj\Debug\IDM.DTO.pdb

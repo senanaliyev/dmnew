@@ -79,3 +79,30 @@ C:\Users\Integration\Desktop\IDM main\IDM.UI\obj\Debug\IDM.UI.csproj.CoreCompile
 C:\Users\Integration\Desktop\IDM main\IDM.UI\obj\Debug\IDM.UI.csproj.CopyComplete
 C:\Users\Integration\Desktop\IDM main\IDM.UI\obj\Debug\IDM.UI.dll
 C:\Users\Integration\Desktop\IDM main\IDM.UI\obj\Debug\IDM.UI.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.UI.dll.config
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.UI.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.UI.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.DTO.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.Service.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Helpers.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Mvc.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Razor.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Webpages.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Webpages.Razor.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.Repository.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.DTO.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.Service.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Razor.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Webpages.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Webpages.Razor.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Helpers.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\System.Web.Mvc.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\bin\IDM.Repository.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\obj\Debug\IDM.UI.csprojAssemblyReference.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\obj\Debug\IDM.UI.csproj.CoreCompileInputs.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\obj\Debug\IDM.UI.csproj.CopyComplete
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\obj\Debug\IDM.UI.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.UI\obj\Debug\IDM.UI.pdb

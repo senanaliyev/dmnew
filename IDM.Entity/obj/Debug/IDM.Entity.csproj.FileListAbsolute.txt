@@ -54,3 +54,15 @@ C:\Users\Integration\Desktop\IDM main\IDM.Entity\obj\Debug\IDM.Entity.csproj.Cor
 C:\Users\Integration\Desktop\IDM main\IDM.Entity\obj\Debug\IDM.Entity.csproj.CopyComplete
 C:\Users\Integration\Desktop\IDM main\IDM.Entity\obj\Debug\IDM.Entity.dll
 C:\Users\Integration\Desktop\IDM main\IDM.Entity\obj\Debug\IDM.Entity.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Debug\IDM.Entity.dll.config
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Debug\IDM.Entity.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Debug\IDM.Entity.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Debug\EntityFramework.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Debug\EntityFramework.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Debug\IDM.Entity.csprojAssemblyReference.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Debug\IDM.Entity.csproj.CoreCompileInputs.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Debug\IDM.Entity.csproj.CopyComplete
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Debug\IDM.Entity.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Debug\IDM.Entity.pdb
