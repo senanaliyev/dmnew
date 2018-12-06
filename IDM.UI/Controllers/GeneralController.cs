@@ -12,7 +12,6 @@ namespace IDM.UI.Controllers
 
     [Authorize]
     [MyActionFilter]
-    //klkl
     public class PopUpParams
     {
         public long DocID { get; set; }
