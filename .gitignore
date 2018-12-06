@@ -2,5 +2,5 @@
 .UsedInProject
 .packages
 .IDM.Entity
-Debug/
-Release/
+Solution/*/bin/Debug
+Solution/*/bin/Release

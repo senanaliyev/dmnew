@@ -30,6 +30,7 @@ namespace IDM.DTO
         public string Surname { get; set; }
         public string Middlename { get; set; }
         public string Fullname { get; set; }
+
         //public long ID { get; set; }
         //public long doID { get; set; }
         //public string DocRegNo { get; set; }
