@@ -1,0 +1,52 @@
+﻿@model IDM.DTO.ExtendedSearch_DTO
+<div class="row">
+    <div class="form-group col-md-6">
+        <label class="company">İcra növü</label>
+        @Html.DropDownListFor(m => m.actionTypeID, new SelectList(ViewBag.ActionType, "id", "title"), "Seçin", new { @class = "form-control search" })
+    </div>
+    <div class="form-group col-md-6">
+        <label class="company">Əlaqə növü</label>
+        @Html.DropDownListFor(m => m.conTypeID, new SelectList(ViewBag.ContactType, "id", "title"), "Seçin", new { @class = "form-control search" })
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        <label class="company">Daxil olan sənədin nömrəsi</label>
+        @Html.TextBoxFor(m => m.relatedDocNo, "", new { @class = "form-control search" })
+    </div>
+</div>
+<script>
+    $(".search").on("change keyup", function () {
+        $.ajax({
+            type: 'GET',
+            url: '/Search/SearchDocument',
+            data: $("#myform").serialize(),
+            dataType: 'json',
+            success: function (json) {
+
+                $('#searchResultTable').DataTable({
+                    destroy: true,
+                    data: json,
+                    searching: true,
+                    "columns": [
+                        {
+                            "data": "docRegNo"
+                        },
+                        {
+                            "data": "docRegDate"
+                        },
+                        {
+                            "data": "docFinishDate"
+                        },
+                        {
+                            "data": "dcontypeTitle"
+                        },
+                        {
+                            "data": "doctypeTitle"
+                        }
+                    ]
+                });
+            }
+        });
+    });
+</script>

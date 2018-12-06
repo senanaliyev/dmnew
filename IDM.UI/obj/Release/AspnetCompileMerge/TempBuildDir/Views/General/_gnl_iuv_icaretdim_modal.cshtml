@@ -1,0 +1,109 @@
+﻿<ul id="myTab1" class="nav nav-tabs bordered">
+    <li class="active" id="iuvTab1">
+        <a href="#iuv1" data-toggle="tab" id="iuv1taba"><i class="fa fa-fw fa-lg fa-arrow-circle-right"></i> Əməliyyatlar</a>
+    </li>
+    <li id="iuvTab3">
+        <a href="#iuv3" data-toggle="tab" id="iuv3taba"><i class="fa fa-fw fa-lg fa-calendar"></i> Tarixçə</a>
+    </li>
+    <li id="iuvTab2">
+        <a data-toggle="tab" href="#iuv2" id="iuv2taba">  </a>
+    </li>
+    <li class="dropdown">
+        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-plus-circle"></i><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="#" onclick='attachNewDoc("/InternalDoc/CreateAttachedDoc")'> <i class="fa fa-circle-thin"> </i> Daxili sənəd</a></li>
+            @*<li><a href="#" onclick='attachNewDoc("/OutDoc/Create")'> <i class="fa fa-circle-thin"> </i> Xaric olan sənəd</a></li>*@
+        </ul>
+    </li>
+</ul>
+<div id="myTabContent1" class="tab-content padding-10">
+    <div class="tab-pane fade in active" id="iuv1">
+        <form id="operationForm" method="post">
+            <fieldset>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="company">Əməkdaşı seç</label>
+                        @Html.DropDownList("userID", new SelectList(ViewBag.Users, "usrID", "empFullName"), new { @class = "form-control" })
+                        @Html.Hidden("docID", "", new { @class = "form-control", Value = @Model.DocID })
+                        @Html.Hidden("fromDoID", "", new { @class = "form-control", Value = @Model.DoID })
+                        @Html.Hidden("docContentType", "", new { @class = "form-control", Value = @Model.DocTypeID })
+                    </div>
+                    @*<div class="form-group col-md-6">
+                        <label for="company">Yeni sənəd</label>
+                        @Html.DropDownList("attachNewDoc", new List<SelectListItem>{
+                       new SelectListItem {Text = "Sənəd növünü seçin", Value="0"  },
+                       new SelectListItem {Text = "Daxili sənəd", Value="/InternalDoc/Create"  },
+                       new SelectListItem {Text = "Xaric olan sənəd", Value="/OutDoc/Create"}}, new { @class = "form-control" })
+                    </div>*@
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.TextArea("doNote", new { @class = "form-control", rows = 5 })
+                    </div>
+                </div>
+                <div class="tab-pane" id="attachNewDocDiv">
+                </div>
+            </fieldset>
+        </form>
+        <footer>
+            <div class="form-actions">
+                <button class="btn btn-danger btn-md" id="btnIcraniTesdiqle">
+                    Təsdiqə göndər
+                </button>
+                <button class="btn btn-default btn-md" data-dismiss="modal">
+                    Ləğv et
+                </button>
+            </div>
+        </footer>
+    </div>
+    <div class="tab-pane" id="iuv3">
+        @Html.Action("History", "Response", new { docid = @Model.DocID })
+    </div>
+    <div class="tab-pane" id="iuv2">
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //$("#userID").empty();
+        //$.get("/Document/FillUserDDL", function (data) {
+        //    $.each(data, function (index, row) {
+        //        $("#userID").append("<option value='" + row.usrID + "'>" + row.empName + " " + row.empSurname + "</option>");
+        //    });
+        //});
+        $("#userID").val(@Model.FromUser);
+
+        $('#doNote').summernote({
+            placeholder: 'Əlavə qeydlər',
+            tabsize: 2,
+            height: 100
+        });
+    });
+    //$("#attachNewDoc").on("change", function () {
+    //    $("#attachNewDocDiv").load($("#attachNewDoc").val(), function () { });
+    //});
+    var attachNewDoc = function (page) {
+        $("#iuvTab1").removeClass("active");
+        $("#iuvTab3").removeClass("active");
+        $("#iuvTab2").addClass("active");
+        $("#iuv1").removeClass("active");
+        $("#iuv3").removeClass("active");
+        $("#iuv2").addClass("active");
+        $("#iuv2taba").empty();
+        $("#iuv2taba").append(' <i class="fa fa-lg fa-external-link-square"></i> <span class="hidden-mobile hidden-tablet"> Yeni sənəd </span> ');
+        $('#iuv2').load(page, {docid:@Model.DocID}, function () {
+        });
+    };
+    $("#btnIcraniTesdiqle").click(function () {
+        var data = $("#operationForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/General/IcraEtdimSorgu",
+            data: data, //{ doid: @Model.DoID, donote: $('#doNote').summernote().val() },
+            success: function (response) {
+                window.location.href = response;
+                //$("#myModal").modal('hide');
+                //operationsTable($("#docID").val());
+            }
+        });
+    });
+</script>

@@ -1,0 +1,251 @@
+﻿@model IEnumerable<IDM.DTO.Custom_DocGetList_DTO>
+<table id="dt_basic" class="table  table-hover">
+    <thead>
+        <tr>
+            <th>Sənədin nömrəsi</th>
+            <th>Sənədin növü</th>
+            <th>Sənədin tipi</th>
+            <th>Kimdən</th>
+            <th>Əməliyyat növü</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', '@item.ID', '@item.doID', '@item.operationID')">@item.DocRegNo</a>
+                </td>
+                <td>
+                    @item.DocContentTypeTitle
+                </td>
+                <td>
+                    @item.DocTypeTitle
+                </td>
+                <td>
+                    @item.fromEmployee
+                </td>
+                <td>
+                    @item.operationTitle
+                </td>
+                <td class="drop">
+                    <a class="link" data-toggle="modal" data-target="#myModal" onclick="AddOperation(@item.DocContentTypeID, @item.ID)"><i class="fa fa-lg fa-tasks"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-light">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="myModalBody">
+
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="well well-light">
+                            <div class="row">
+                                <form id="operationForm" method="post">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="company">İstifadəçi adı</label>
+                                                @Html.DropDownList("userID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="company">Əməliyyat</label>
+                                                @Html.DropDownList("conTypeID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                                                @Html.Hidden("docID", "", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="company">Qeyd</label>
+                                                @Html.TextArea("doNote", new { @class = "form-control", rows = 5 })
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <footer>
+                                <div class="form-actions">
+                                    <button class="btn btn-info btn-md" id="btnAddNewOperation">
+                                        <i class="fa fa-plus"></i>
+                                        Əlavə et
+                                    </button>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="well well-light">
+                            <div class="row">
+                                <table class="table" id="opTable">
+                                    <thead>
+                                        <tr>
+                                            <th width="20%">İstifadəçi adı</th>
+                                            <th width="20%">Əməliyyat</th>
+                                            <th>Qeyd</th>
+                                            <th width="5%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-danger" id="btnLockDocument">İcra et</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">Ləğv et</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var loadEditDoc = function (d1, d2, d3, d4) {
+        $("#hr1tab").toggleClass("active");
+        $("#hr2tab").toggleClass("active");
+        $("#hr1").toggleClass("active");
+        $("#hr2").toggleClass("active");
+        $("#hr2taba").empty();
+        $("#hr2taba").append(' <i class="fa fa-lg fa-external-link-square"></i> <span class="hidden-mobile hidden-tablet"> Redaktə </span> ');
+        $('#hr2').load("/" + d1 + "/Edit/" + d2 + "?doid=" + d3 + "&opid=" + d4, function () {
+        });
+    };
+</script>
+<script>
+    var operationsTable = function (id) {
+        $("#opTable").DataTable({
+            destroy: true,
+            searching: false,
+            paging: false,
+            "ajax": {
+                "url": "/Document/GetAssignedOperations?id=" + id,
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "NameSurname" },
+                { "data": "conTypeTitle" },
+                { "data": "doNote" },
+                {
+                    "data": "doID", "width": "50px", "render": function (data) {
+                        return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                    }
+                }
+            ]
+        });
+    };
+
+    var AddOperation = function (doctypeID, docID) {
+        var mymodal = $('#myModal');
+        mymodal.find('.modal-title').text('Yeni əməliyyat əlavə et');
+        $("#myModal").show();
+        $("#docID").val(docID);
+        $("#conTypeID").empty();
+        $.get("/Document/FillOperationDDL", { id: doctypeID }, function (data) {
+            $.each(data, function (index, row) {
+                $("#conTypeID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+            });
+        });
+
+        $("#userID").empty();
+        $.get("/Document/FillUserDDL", function (data) {
+            $.each(data, function (index, row) {
+                $("#userID").append("<option value='" + row.usrID + "'>" + row.empName + " " + row.empSurname + "</option>");
+            });
+        });
+
+
+        operationsTable(docID);
+
+    };
+
+    $("#btnLockDocument").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Document/LockDocument",
+            data: { docid: $("#docID").val() },
+            success: function (response) {
+                window.location.href = response;
+                //$("#myModal").modal('hide');
+                //operationsTable($("#docID").val());
+            }
+        });
+    });
+
+
+    $("#btnAddNewOperation").click(function () {
+        var data = $("#operationForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/Document/SaveOperation",
+            data: data,
+            success: function (response) {
+                // $("#myModal").modal('hide');
+                operationsTable($("#docID").val());
+
+            }
+        });
+    });
+
+    $('#opTable tbody').on('click', 'tr a.delete', function () {
+
+        $.ajax({
+            type: "POST",
+            url: "/Document/Delete",
+            data: { doid: $(this).attr('id') },
+            success: function (success) {
+                operationsTable($("#docID").val());
+            }
+        });
+    });
+
+
+    //$(document).ready(function () {
+    //    $('#dt_basic tbody tr').each(function () {
+    //        var selectlistID = $(this).find('select').attr('id');
+    //        var oID = $(this).find('select').attr('value');
+    //        $.get("/Document/FillOperationDDL", { id: oID }, function (data) {
+    //            $.each(data, function (index, row) {
+    //                $("#" + selectlistID).append("<option value='" + row.id + "'>" + row.title + "</option>");
+    //            });
+    //        });
+    //    });
+
+    //});
+</script>
+
+@*<script>
+        function GetDropDownData(docType) {
+            $.ajax({
+                type: "POST",
+                url: "test.aspx/GetDropDownDataWM",
+                data: {id: docType },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response)
+                    {
+                        $.each(data.d, function (){
+                            $(".operationDDL").append($("<option     />").val(this.KeyName).text(this.ValueName));
+                        });
+                    },
+                    failure: function () {
+                        alert("Failed!");
+                    }
+                });
+        }
+    </script>*@

@@ -1,0 +1,12 @@
+C:\Projects\IDM\IDM.Entity\bin\Release\IDM.Entity.dll.config
+C:\Projects\IDM\IDM.Entity\bin\Release\IDM.Entity.dll
+C:\Projects\IDM\IDM.Entity\bin\Release\IDM.Entity.pdb
+C:\Projects\IDM\IDM.Entity\bin\Release\EntityFramework.dll
+C:\Projects\IDM\IDM.Entity\bin\Release\EntityFramework.SqlServer.dll
+C:\Projects\IDM\IDM.Entity\bin\Release\EntityFramework.xml
+C:\Projects\IDM\IDM.Entity\bin\Release\EntityFramework.SqlServer.xml
+C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.csprojAssemblyReference.cache
+C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.csproj.CoreCompileInputs.cache
+C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.csproj.CopyComplete
+C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.dll
+C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.pdb

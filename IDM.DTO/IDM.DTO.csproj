@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F23CE0C6-9EBC-46D0-990F-DADBCB96F239}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IDM.DTO</RootNamespace>
+    <AssemblyName>IDM.DTO</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdeaTech.System.Web.Mvc.Extensions.1.0.1\lib\net46\System.Web.Mvc.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Archive_DTO.cs" />
+    <Compile Include="AssignmentDTO.cs" />
+    <Compile Include="Calendar_DTO.cs" />
+    <Compile Include="CitizenDoc_DTO.cs" />
+    <Compile Include="CtzRegFileDocument.cs" />
+    <Compile Include="Custom_CtzDocument_DTO.cs" />
+    <Compile Include="Custom_DocServiceDTO.cs" />
+    <Compile Include="DocOperationLog_DTO.cs" />
+    <Compile Include="ExtendedSearch_DTO.cs" />
+    <Compile Include="InternalRegFileDoc.cs" />
+    <Compile Include="OperationsHistory_DTO.cs" />
+    <Compile Include="OperationToDoc_DTO.cs" />
+    <Compile Include="OutDocToOrgan_DTO.cs" />
+    <Compile Include="OutDoc_DTO.cs" />
+    <Compile Include="OpResponseDTO.cs" />
+    <Compile Include="Custom_OutDoc_DTO.cs" />
+    <Compile Include="OutRegFileDoc.cs" />
+    <Compile Include="Permission_DTO.cs" />
+    <Compile Include="PositionDTO.cs" />
+    <Compile Include="PositionToUserDTO.cs" />
+    <Compile Include="Region_DTO.cs" />
+    <Compile Include="Report\rpt_ctzreports_DTO.cs" />
+    <Compile Include="Report\rpt_daxilolansened_DTO.cs" />
+    <Compile Include="Report\rpt_icraolunmush_DTO.cs" />
+    <Compile Include="Report\rpt_shikayet_DTO.cs" />
+    <Compile Include="Report\rpt_strukturuzre_DTO.cs" />
+    <Compile Include="Report\rpt_tapshiriqvegosterish_DTO.cs" />
+    <Compile Include="Report\rpt_xaricolansened_DTO.cs" />
+    <Compile Include="RoleDTO.cs" />
+    <Compile Include="Custom_DocGetList_DTO.cs" />
+    <Compile Include="Custom_DocOperationDTO.cs" />
+    <Compile Include="Custom_UserDTO.cs" />
+    <Compile Include="DocContentTypeDTO.cs" />
+    <Compile Include="DocMainTypeDTO.cs" />
+    <Compile Include="DocSubTypeDTO.cs" />
+    <Compile Include="Custom_DocInternalDTO.cs" />
+    <Compile Include="DocumentDTO.cs" />
+    <Compile Include="Custom_DocumentFilesDTO.cs" />
+    <Compile Include="DocumentFilesDTO.cs" />
+    <Compile Include="DocumentOperationDTO.cs" />
+    <Compile Include="EmployeeDTO.cs" />
+    <Compile Include="InternalDocDTO.cs" />
+    <Compile Include="Report\rpt_icraolunmamish_DTO.cs" />
+    <Compile Include="ServDocAddress_DTO.cs" />
+    <Compile Include="ServDocSender_DTO.cs" />
+    <Compile Include="ServiceRegFileDocument.cs" />
+    <Compile Include="StructureDTO.cs" />
+    <Compile Include="ServiceDocumentDTO.cs" />
+    <Compile Include="Organization_DTO.cs" />
+    <Compile Include="CommonDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System_DTO.cs" />
+    <Compile Include="UserDTO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

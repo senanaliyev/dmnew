@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Sənəd arxivi";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">
+    <article class="col-sm-12 col-md-12 col-lg-12">
+        <div class="jarviswidget" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+            <header>
+                <ul class="nav nav-tabs pull-left in">
+                    <li class="active" id="hr1tab">
+                        <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-folder-open-o"></i> <span class="hidden-mobile hidden-tablet"> @ViewBag.Title </span> </a>
+                    </li>
+                </ul>
+            </header>
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="hr1">
+                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    @*<div class="alert alert-info no-margin fade in">
+                                            <code>Göndəriləcək ünvan </code>
+                                        </div>*@
+                                    <!-- widget content -->
+                                    @Html.Action("FilterArchive", "Archive")
+                                </div>
+                                <div class="form-group col-md-10">
+                                    @*<div class="alert alert-info no-margin fade in">
+                                            <code>Göndəriləcək ünvan </code>
+                                        </div>*@
+                                    <!-- widget content -->
+
+                                    <div id="docMainDiv">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<script>
+    $("#docMainDiv").load(
+            '@Url.Action("UnArchivedDocumentList", "Archive")',
+            {
+                //docContentType: $("#docContentType").val(),
+                //docType: $("#docType").val(),
+                //fromUserID: $("#fromUserID").val()
+            }, function () { });
+</script>
+@*<script>
+        function GetDropDownData(docType) {
+            $.ajax({
+                type: "POST",
+                url: "test.aspx/GetDropDownDataWM",
+                data: {id: docType },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response)
+                    {
+                        $.each(data.d, function (){
+                            $(".operationDDL").append($("<option     />").val(this.KeyName).text(this.ValueName));
+                        });
+                    },
+                    failure: function () {
+                        alert("Failed!");
+                    }
+                });
+        }
+    </script>*@

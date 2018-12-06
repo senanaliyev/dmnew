@@ -1,0 +1,95 @@
+﻿<ul id="myTab1" class="nav nav-tabs bordered">
+    <li class="active">
+        <a href="#role1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-user"></i> İstifadəçinin rolları</a>
+    </li>
+</ul>
+<div id="myTabContent1" class="tab-content padding-10">
+    <div class="tab-pane fade in active" id="role1">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="company">Rolu seçin</label>
+                @Html.Hidden("usrID", "", new { @class = "form-control", Value = @Model.usrID })
+                <div class="input-group input-group-md">
+                    <div class="addon-md">
+                        @Html.DropDownList("roleID", new SelectList(ViewBag.Roles, "id", "title"), "Seçin", new { @class = "form-control" })
+                    </div>
+                    <span class="input-group-btn">
+                        <a href="#" class="btn btn-sm btn-primary pull-right" id="assignroleBtn"> <i class="fa fa-plus"></i></a>
+                    </span>
+                </div>
+                @*<p class="note" id="responseDocRegDate1"></p>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <table class="table" id="assignedRolesTable">
+                    <thead>
+                        <tr>
+                            <th>Təyin edilmiş rollar</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var rolesTable = $("#assignedRolesTable").DataTable({
+            destroy: true,
+            searching: false,
+            paging: false,
+            "ajax": {
+                "url": "/Employee/GetAssignedRoles?usrID=" + $("#usrID").val(),
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                {
+                    "data": "title"
+                },
+                {
+                    "data": "id", "width": "50px", "render": function (data) {
+                        return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                    }
+                }
+            ]
+        });
+
+        $('#assignedRolesTable tbody').on('click', 'tr a.delete', function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/Employee/Delete",
+                data: { id: $(this).attr('id') },
+                success: function (success) {
+                    rolesTable.ajax.reload();
+
+                }
+            });
+        });
+
+        $("#assignroleBtn").click(function () {
+            var data = new FormData();
+            data.append("usrID", $("#usrID").val());
+            data.append("roleID", $("#roleID").val());
+            $.ajax({
+                type: "POST",
+                url: "/Employee/AssignRoleToUser",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (response) {
+                    $("#myModalAttachFile").modal('hide');
+                    rolesTable.ajax.reload();
+                }
+            });
+        });
+
+    });
+
+</script>
+

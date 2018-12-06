@@ -1,0 +1,56 @@
+﻿@model IDM.DTO.ExtendedSearch_DTO
+<div class="row">
+    <div class="form-group col-md-6">
+        <label for="company">Müraciətin xarakteri</label>
+        @Html.DropDownList("appealCharID", new SelectList(ViewBag.AppealCharacter, "id", "title"), "Seçin", new { @class = "form-control search" })
+    </div>
+    <div class="form-group col-md-6">
+        <label for="company">Müraciət forması</label>
+        @Html.DropDownList("appealTypeID", new SelectList(ViewBag.AppealType, "id", "title"), "Seçin", new { @class = "form-control search" })
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        <label for="company">Təkrar/ilkin (təkrardırsa əvvəlkə sənədin nömrəsi)</label>
+        @Html.DropDownListFor(m => m.docApplyTypeID, new List<SelectListItem>{
+       new SelectListItem {Selected=true, Text = "Seçin", Value=""  },
+       new SelectListItem {Text = "İlkin", Value="1"  },
+       new SelectListItem {Text = "Təkrar", Value="2"}}, new { @class = "form-control search" })
+    </div>
+</div>
+<script>
+      $(".search").on("change keyup", function () {
+        $.ajax({
+            type: 'GET',
+            url: '/Search/SearchDocument',
+            data: $("#myform").serialize(),
+            dataType: 'json',
+            success: function (json) {
+
+                $('#searchResultTable').DataTable({
+                    destroy: true,
+                    data: json,
+                    searching: true,
+                    "columns": [
+                        {
+                            "data": "docRegNo"
+                        },
+                        {
+                            "data": "docRegDate"
+                        },
+                        {
+                            "data": "docFinishDate"
+                        },
+                        {
+                            "data": "dcontypeTitle"
+                        },
+                        {
+                            "data": "doctypeTitle"
+                        }
+                    ]
+                });
+            }
+        });
+    });
+
+</script>

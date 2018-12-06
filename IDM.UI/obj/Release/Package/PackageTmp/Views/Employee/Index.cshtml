@@ -1,0 +1,173 @@
+﻿@model IEnumerable<IDM.DTO.Custom_UserDTO>
+
+@{
+    ViewBag.Title = "Əməkdaşlar";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="jarviswidget" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+            <header>
+                <ul class="nav nav-tabs pull-left in">
+                    <li class="active">
+                        <a data-toggle="tab" href="#hr1"> <i class="fa fa-fw fa-lg fa-users"></i> <span class="hidden-mobile hidden-tablet"> @ViewBag.Title </span> </a>
+                    </li>
+                </ul>
+            </header>
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="hr1">
+                            <ul class="nav nav-tabs bordered">
+                                <li class="dropdown pull-right">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-gear"></i> Əməliyyatlar <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#" class="link" data-toggle="modal" data-target="#myModal" onclick="NewEmployee()"> <i class="fa fa-plus"></i> Yeni əməkdaş</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active">
+                                    <hr />
+                                    <div class="table-responsive">
+                                        <table id="dt_basic" class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>İstifadəçi adı</th>
+                                                    <th>Adı</th>
+                                                    <th>Soyadı</th>
+                                                    <th>Şöbə</th>
+                                                    <th>Pozisiya</th>
+                                                    <th width="20%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @item.usrName
+                                                            @*<a href="#" data-toggle="modal" data-target="#myModal" onclick="ShowProfile(@item.empID)">@item.usrName</a>*@
+                                                        </td>
+                                                        <td>
+                                                            @item.empName
+                                                        </td>
+                                                        <td>
+                                                            @item.empSurname
+                                                        </td>
+                                                        <td>
+                                                            @item.structureTitle
+                                                        </td>
+                                                        <td>
+                                                            @item.positionTitle
+                                                        </td>
+                                                        <td align="center">
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-info dropdown-toggle btn-xs" data-toggle="dropdown">
+                                                                    <i class="fa fa-fw fa-lg fa-gear"></i> Əməliyyat <span class="caret"></span>
+                                                                </button>
+                                                                <ul class="dropdown-menu">
+                                                                    <li>
+                                                                        <a href="#" data-toggle="modal" data-target="#myModal" onclick="EditEmployee(@item.usrID)"><i class="fa fa-fw fa-lg fa-user"></i> Redaktə</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" data-toggle="modal" data-target="#myModal" onclick="Role(@item.usrID)"><i class="fa fa-fw fa-lg fa-filter"></i> Rollar</a>
+                                                                    </li>
+                                                                    <li class="divider"></li>
+                                                                    <li>
+                                                                        <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-lg fa-key"></i> Şifrəni dəyiş</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-color-blue txt-color-white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="modalTitle"></h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#dt_basic').dataTable({
+            stateSave: true
+        });
+    });
+</script>
+<script>
+    var NewEmployee = function () {
+
+        var url = "/Employee/Create";
+        var mymodal = $('#myModal');
+        mymodal.find('.modal-title').text('Yeni əməkdaş');
+        $("#myModalBody").load(url, function () {
+            $("#myModal").show();
+            $('#usrName').trigger('focus')
+        });
+    };
+    var ShowProfile = function (employeeId) {
+        var mymodal = $('#myModal');
+        mymodal.find('.modal-title').text('Əməkdaşın profili');
+        var url = "/Employee/Profile?id=" + employeeId;
+        $("#myModalBody").load(url, function () {
+            $("#myModal").show();
+        });
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/Employee/Profile",
+        //    data: { id: employeeId },
+        //    success: function (response) {
+        //        $("#myModalBody").html(response);
+        //        $("#myModal").show();
+        //    }
+        //});
+    };
+
+    var EditEmployee = function (id) {
+        var mymodal = $('#myModal');
+        mymodal.find('.modal-title').text('Əməkdaşın məlumatları');
+        var url = "/Employee/Edit?id=" + id;
+        $("#myModalBody").load(url, function () {
+            $("#myModal").show();
+        });
+    };
+
+    var Role = function (id) {
+        var mymodal = $('#myModal');
+        mymodal.find('.modal-title').text('Rollar');
+        var url = "/Employee/Role?id=" + id;
+        $("#myModalBody").load(url, function () {
+            $("#myModal").show();
+        });
+    };
+</script>

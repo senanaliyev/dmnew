@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IUMDB.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_ActionType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_AttachFileType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ContactType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_DocContentType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_DocConTypeOperation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_DocToOperation">
+          <Key>
+            <PropertyRef Name="dtoID" />
+          </Key>
+          <Property Name="dtoID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docTypeID" Type="tinyint" />
+          <Property Name="opTypeID" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="tbl_DocType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Document">
+          <Key>
+            <PropertyRef Name="docID" />
+          </Key>
+          <Property Name="docID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docContentType" Type="tinyint" />
+          <Property Name="docType" Type="tinyint" />
+          <Property Name="docRegNo" Type="varchar" MaxLength="50" />
+          <Property Name="docRegDate" Type="datetime" />
+          <Property Name="docContent" Type="nvarchar(max)" />
+          <Property Name="docNote" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_DocumentFiles">
+          <Key>
+            <PropertyRef Name="dfID" />
+          </Key>
+          <Property Name="dfID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docID" Type="bigint" />
+          <Property Name="attFileTypeID" Type="tinyint" />
+          <Property Name="dfTitle" Type="nvarchar" MaxLength="250" />
+          <Property Name="dfPageCount" Type="nvarchar" MaxLength="20" />
+          <Property Name="dfName" Type="nvarchar" MaxLength="250" />
+          <Property Name="dfContent" Type="nvarchar(max)" />
+          <Property Name="dfGUID" Type="varchar" MaxLength="250" />
+          <Property Name="dfStatus" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_DocumentOperation">
+          <Key>
+            <PropertyRef Name="doID" />
+          </Key>
+          <Property Name="doID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docID" Type="bigint" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="conTypeID" Type="tinyint" />
+          <Property Name="fromUserID" Type="int" />
+          <Property Name="doDate" Type="datetime" />
+          <Property Name="doStatus" Type="tinyint" />
+          <Property Name="doLock" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="tbl_Employee">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usrID" Type="int" />
+          <Property Name="empName" Type="nvarchar" MaxLength="50" />
+          <Property Name="empSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="empMiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="empMail" Type="varchar" MaxLength="100" />
+          <Property Name="empPhone" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_InternalDocument">
+          <Key>
+            <PropertyRef Name="intdocID" />
+          </Key>
+          <Property Name="intdocID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docID" Type="bigint" Nullable="false" />
+          <Property Name="nmcID" Type="tinyint" />
+          <Property Name="nmcSubID" Type="tinyint" />
+          <Property Name="actionTypeID" Type="tinyint" />
+          <Property Name="responseDocNo" Type="varchar" MaxLength="50" />
+          <Property Name="conTypeID" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="tbl_Nomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="parentid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ServiceDocument">
+          <Key>
+            <PropertyRef Name="sdID" />
+          </Key>
+          <Property Name="sdID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docID" Type="bigint" Nullable="false" />
+          <Property Name="sdEntryNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="sdEntryDate" Type="datetime" />
+          <Property Name="nmcID" Type="tinyint" />
+          <Property Name="nmcSubID" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="tbl_SubNomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="nmc_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="usrID" />
+          </Key>
+          <Property Name="usrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usrName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usrPassword" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="isActive" Type="tinyint" />
+        </EntityType>
+        <EntityContainer Name="IUMDBModelStoreContainer">
+          <EntitySet Name="tbl_ActionType" EntityType="Self.tbl_ActionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AttachFileType" EntityType="Self.tbl_AttachFileType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ContactType" EntityType="Self.tbl_ContactType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DocContentType" EntityType="Self.tbl_DocContentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DocConTypeOperation" EntityType="Self.tbl_DocConTypeOperation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DocToOperation" EntityType="Self.tbl_DocToOperation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DocType" EntityType="Self.tbl_DocType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Document" EntityType="Self.tbl_Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DocumentFiles" EntityType="Self.tbl_DocumentFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_DocumentOperation" EntityType="Self.tbl_DocumentOperation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Employee" EntityType="Self.tbl_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_InternalDocument" EntityType="Self.tbl_InternalDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Nomenclature" EntityType="Self.tbl_Nomenclature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Position" EntityType="Self.tbl_Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ServiceDocument" EntityType="Self.tbl_ServiceDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SubNomenclature" EntityType="Self.tbl_SubNomenclature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IUMDB.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IUMDBEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_ActionType" EntityType="IUMDB.Model.tbl_ActionType" />
+          <EntitySet Name="tbl_AttachFileType" EntityType="IUMDB.Model.tbl_AttachFileType" />
+          <EntitySet Name="tbl_ContactType" EntityType="IUMDB.Model.tbl_ContactType" />
+          <EntitySet Name="tbl_DocContentType" EntityType="IUMDB.Model.tbl_DocContentType" />
+          <EntitySet Name="tbl_DocConTypeOperation" EntityType="IUMDB.Model.tbl_DocConTypeOperation" />
+          <EntitySet Name="tbl_DocToOperation" EntityType="IUMDB.Model.tbl_DocToOperation" />
+          <EntitySet Name="tbl_DocType" EntityType="IUMDB.Model.tbl_DocType" />
+          <EntitySet Name="tbl_Document" EntityType="IUMDB.Model.tbl_Document" />
+          <EntitySet Name="tbl_DocumentFiles" EntityType="IUMDB.Model.tbl_DocumentFiles" />
+          <EntitySet Name="tbl_DocumentOperation" EntityType="IUMDB.Model.tbl_DocumentOperation" />
+          <EntitySet Name="tbl_Employee" EntityType="IUMDB.Model.tbl_Employee" />
+          <EntitySet Name="tbl_InternalDocument" EntityType="IUMDB.Model.tbl_InternalDocument" />
+          <EntitySet Name="tbl_Nomenclature" EntityType="IUMDB.Model.tbl_Nomenclature" />
+          <EntitySet Name="tbl_Position" EntityType="IUMDB.Model.tbl_Position" />
+          <EntitySet Name="tbl_ServiceDocument" EntityType="IUMDB.Model.tbl_ServiceDocument" />
+          <EntitySet Name="tbl_SubNomenclature" EntityType="IUMDB.Model.tbl_SubNomenclature" />
+          <EntitySet Name="tbl_User" EntityType="IUMDB.Model.tbl_User" />
+        </EntityContainer>
+        <EntityType Name="tbl_ActionType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_AttachFileType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ContactType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_DocContentType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_DocConTypeOperation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_DocToOperation">
+          <Key>
+            <PropertyRef Name="dtoID" />
+          </Key>
+          <Property Name="dtoID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docTypeID" Type="Byte" />
+          <Property Name="opTypeID" Type="Byte" />
+        </EntityType>
+        <EntityType Name="tbl_DocType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Document">
+          <Key>
+            <PropertyRef Name="docID" />
+          </Key>
+          <Property Name="docID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docContentType" Type="Byte" />
+          <Property Name="docType" Type="Byte" />
+          <Property Name="docRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docRegDate" Type="DateTime" Precision="3" />
+          <Property Name="docContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="docNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_DocumentFiles">
+          <Key>
+            <PropertyRef Name="dfID" />
+          </Key>
+          <Property Name="dfID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docID" Type="Int64" />
+          <Property Name="attFileTypeID" Type="Byte" />
+          <Property Name="dfTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="dfPageCount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dfName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="dfContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dfGUID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="dfStatus" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_DocumentOperation">
+          <Key>
+            <PropertyRef Name="doID" />
+          </Key>
+          <Property Name="doID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docID" Type="Int64" Nullable="false" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="conTypeID" Type="Byte" />
+          <Property Name="fromUserID" Type="Int32" />
+          <Property Name="doDate" Type="DateTime" Precision="3" />
+          <Property Name="doStatus" Type="Byte" />
+          <Property Name="doLock" Type="Byte" />
+        </EntityType>
+        <EntityType Name="tbl_Employee">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usrID" Type="Int32" />
+          <Property Name="empName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="empSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="empMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="empMail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="empPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_InternalDocument">
+          <Key>
+            <PropertyRef Name="intdocID" />
+          </Key>
+          <Property Name="intdocID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docID" Type="Int64" Nullable="false" />
+          <Property Name="nmcID" Type="Byte" />
+          <Property Name="nmcSubID" Type="Byte" />
+          <Property Name="actionTypeID" Type="Byte" />
+          <Property Name="responseDocNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conTypeID" Type="Byte" />
+        </EntityType>
+        <EntityType Name="tbl_Nomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="parentid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ServiceDocument">
+          <Key>
+            <PropertyRef Name="sdID" />
+          </Key>
+          <Property Name="sdID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docID" Type="Int64" Nullable="false" />
+          <Property Name="sdEntryNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sdEntryDate" Type="DateTime" Precision="3" />
+          <Property Name="nmcID" Type="Byte" />
+          <Property Name="nmcSubID" Type="Byte" />
+        </EntityType>
+        <EntityType Name="tbl_SubNomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="nmc_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="usrID" />
+          </Key>
+          <Property Name="usrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usrName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usrPassword" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Byte" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IUMDBModelStoreContainer" CdmEntityContainer="IUMDBEntity">
+          <EntitySetMapping Name="tbl_ActionType">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_ActionType">
+              <MappingFragment StoreEntitySet="tbl_ActionType">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AttachFileType">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_AttachFileType">
+              <MappingFragment StoreEntitySet="tbl_AttachFileType">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ContactType">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_ContactType">
+              <MappingFragment StoreEntitySet="tbl_ContactType">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DocContentType">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_DocContentType">
+              <MappingFragment StoreEntitySet="tbl_DocContentType">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DocConTypeOperation">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_DocConTypeOperation">
+              <MappingFragment StoreEntitySet="tbl_DocConTypeOperation">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DocToOperation">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_DocToOperation">
+              <MappingFragment StoreEntitySet="tbl_DocToOperation">
+                <ScalarProperty Name="opTypeID" ColumnName="opTypeID" />
+                <ScalarProperty Name="docTypeID" ColumnName="docTypeID" />
+                <ScalarProperty Name="dtoID" ColumnName="dtoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DocType">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_DocType">
+              <MappingFragment StoreEntitySet="tbl_DocType">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Document">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_Document">
+              <MappingFragment StoreEntitySet="tbl_Document">
+                <ScalarProperty Name="docNote" ColumnName="docNote" />
+                <ScalarProperty Name="docContent" ColumnName="docContent" />
+                <ScalarProperty Name="docRegDate" ColumnName="docRegDate" />
+                <ScalarProperty Name="docRegNo" ColumnName="docRegNo" />
+                <ScalarProperty Name="docType" ColumnName="docType" />
+                <ScalarProperty Name="docContentType" ColumnName="docContentType" />
+                <ScalarProperty Name="docID" ColumnName="docID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DocumentFiles">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_DocumentFiles">
+              <MappingFragment StoreEntitySet="tbl_DocumentFiles">
+                <ScalarProperty Name="dfStatus" ColumnName="dfStatus" />
+                <ScalarProperty Name="dfGUID" ColumnName="dfGUID" />
+                <ScalarProperty Name="dfContent" ColumnName="dfContent" />
+                <ScalarProperty Name="dfName" ColumnName="dfName" />
+                <ScalarProperty Name="dfPageCount" ColumnName="dfPageCount" />
+                <ScalarProperty Name="dfTitle" ColumnName="dfTitle" />
+                <ScalarProperty Name="attFileTypeID" ColumnName="attFileTypeID" />
+                <ScalarProperty Name="docID" ColumnName="docID" />
+                <ScalarProperty Name="dfID" ColumnName="dfID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DocumentOperation">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_DocumentOperation">
+              <MappingFragment StoreEntitySet="tbl_DocumentOperation">
+                <ScalarProperty Name="doLock" ColumnName="doLock" />
+                <ScalarProperty Name="doStatus" ColumnName="doStatus" />
+                <ScalarProperty Name="doDate" ColumnName="doDate" />
+                <ScalarProperty Name="fromUserID" ColumnName="fromUserID" />
+                <ScalarProperty Name="conTypeID" ColumnName="conTypeID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="docID" ColumnName="docID" />
+                <ScalarProperty Name="doID" ColumnName="doID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Employee">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_Employee">
+              <MappingFragment StoreEntitySet="tbl_Employee">
+                <ScalarProperty Name="empPhone" ColumnName="empPhone" />
+                <ScalarProperty Name="empMail" ColumnName="empMail" />
+                <ScalarProperty Name="empMiddleName" ColumnName="empMiddleName" />
+                <ScalarProperty Name="empSurname" ColumnName="empSurname" />
+                <ScalarProperty Name="empName" ColumnName="empName" />
+                <ScalarProperty Name="usrID" ColumnName="usrID" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_InternalDocument">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_InternalDocument">
+              <MappingFragment StoreEntitySet="tbl_InternalDocument">
+                <ScalarProperty Name="conTypeID" ColumnName="conTypeID" />
+                <ScalarProperty Name="responseDocNo" ColumnName="responseDocNo" />
+                <ScalarProperty Name="actionTypeID" ColumnName="actionTypeID" />
+                <ScalarProperty Name="nmcSubID" ColumnName="nmcSubID" />
+                <ScalarProperty Name="nmcID" ColumnName="nmcID" />
+                <ScalarProperty Name="docID" ColumnName="docID" />
+                <ScalarProperty Name="intdocID" ColumnName="intdocID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Nomenclature">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_Nomenclature">
+              <MappingFragment StoreEntitySet="tbl_Nomenclature">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Position">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_Position">
+              <MappingFragment StoreEntitySet="tbl_Position">
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ServiceDocument">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_ServiceDocument">
+              <MappingFragment StoreEntitySet="tbl_ServiceDocument">
+                <ScalarProperty Name="nmcSubID" ColumnName="nmcSubID" />
+                <ScalarProperty Name="nmcID" ColumnName="nmcID" />
+                <ScalarProperty Name="sdEntryDate" ColumnName="sdEntryDate" />
+                <ScalarProperty Name="sdEntryNo" ColumnName="sdEntryNo" />
+                <ScalarProperty Name="docID" ColumnName="docID" />
+                <ScalarProperty Name="sdID" ColumnName="sdID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SubNomenclature">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_SubNomenclature">
+              <MappingFragment StoreEntitySet="tbl_SubNomenclature">
+                <ScalarProperty Name="nmc_id" ColumnName="nmc_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="IUMDB.Model.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="usrPassword" ColumnName="usrPassword" />
+                <ScalarProperty Name="usrName" ColumnName="usrName" />
+                <ScalarProperty Name="usrID" ColumnName="usrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

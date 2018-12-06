@@ -1,0 +1,43 @@
+﻿@model IEnumerable<IDM.DTO.Report.rpt_shikayet_DTO>
+<div class="table-responsive">
+    <table id="dt_basic" class="table table-bordered table-striped table-condensed table-hover smart-form">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Sənəd nömrəsi</th>
+                <th>Sənəd açıqlaması</th>
+                <th>Şikayət tarixi</th>
+                <th>Təsnifat</th>
+                <th>Haradan</th>
+                <th>Aidiyyatı organ</th>
+                <th>Şikayət məktubunu göndərən</th>
+                <th>Mövzu</th>
+                <th>Səbəb</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 0;
+            }
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>@item.docRegNo</td>
+                    <td>@Html.Raw(item.docNote)</td>
+                    <td>@item.docRegDate</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@item.DocCreatedBy</td>
+                    <td>@Html.Raw(item.docContent)</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $("#dt_basic").DataTable();
+</script>

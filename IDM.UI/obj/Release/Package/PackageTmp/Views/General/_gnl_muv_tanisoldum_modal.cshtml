@@ -1,0 +1,66 @@
+﻿<ul id="myTab1" class="nav nav-tabs bordered">
+    <li class="active">
+        <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-arrow-circle-right"></i> Əməliyyatlar</a>
+    </li>
+</ul>
+<div id="myTabContent1" class="tab-content padding-10">
+    <div class="tab-pane fade in active" id="s1">
+        <form id="operationForm" method="post">
+            <fieldset>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="company">Əməkdaş</label>
+                        @Html.DropDownList("userID", new SelectList(ViewBag.Users, "usrID", "empFullName"), new { @class = "form-control" })
+                        @Html.Hidden("docID", "", new { @class = "form-control", Value = @Model.DocID })
+                        @Html.Hidden("fromDoID", "", new { @class = "form-control", Value = @Model.DoID })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.TextArea("doNote", new { @class = "form-control", rows = 5 })
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <footer>
+            <div class="form-actions">
+                <button class="btn btn-danger btn-md" id="btnTaniwOldum">
+                    Tanış oldum
+                </button>
+                <button class="btn btn-default btn-md" data-dismiss="modal">
+                    Ləğv et
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //$("#userID").empty();
+        //$.get("/Document/FillUserDDL", function (data) {
+        //    $.each(data, function (index, row) {
+        //        $("#userID").append("<option value='" + row.usrID + "'>" + row.empName + " " + row.empSurname + "</option>");
+        //    });
+        //});
+        $("#userID").val(@Model.FromUser);
+
+        $('#doNote').summernote({
+            placeholder: 'Əlavə qeydlər',
+            tabsize: 2,
+            height: 100
+        });
+    });
+
+    $("#btnTaniwOldum").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/General/CompleteOperation",
+            data: { doid: @Model.DoID, donote: $('#doNote').summernote().val() },
+            success: function (response) {
+                window.location.href = response;
+                //$("#myModal").modal('hide');
+                //operationsTable($("#docID").val());
+            }
+        });
+    });
+</script>

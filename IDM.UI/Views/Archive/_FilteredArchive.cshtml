@@ -1,0 +1,42 @@
+﻿@model IEnumerable<IDM.DTO.Custom_DocGetList_DTO>
+<table id="dt_basic" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Nömrə</th>
+            <th>Qeydiyyat tarixi</th>
+            <th>İcra tarixi</th>
+            <th>Sənədin növü</th>
+            <th>Kimdən</th>
+            <th>Sənədin tipi</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.DocRegNo
+            </td>
+            <td>
+                @item.DocRegDate
+            </td>
+            <td>
+                @item.DocFinishDate
+            </td>
+            <td>
+                @item.DocContentTypeTitle
+            </td>
+            <td>
+                @item.fromEmployee
+            </td>
+            <td>
+                @item.DocTypeTitle
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

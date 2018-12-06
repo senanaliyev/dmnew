@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/font-awesome.min.css">
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production-plugins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-skins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-rtl.min.css">
+    <!-- GOOGLE FONT -->
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+</head>
+<body class="fixed-navigation fixed-header menu-on-top smart-style-4">
+    @Html.Action("TopMenu", "Home")
+    <div id="main" role="main">
+        <!-- MAIN CONTENT -->
+        <div id="content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <article class="col-sm-12">
+                            <div class="navbar navbar-default">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse">
+                                    <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+                                        <li class="">
+                                            <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+                                                <img src="~/Content/img/avatars/sunny.png" alt="@Session["userFullName"]" class="online" />  @Session["userFullName"] <i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <a href="/Employee/MyProfile"> <i class="fa fa-user"></i> Profilim</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="/Login/LogOut" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong>Sistemdən çıxış</strong></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="#"><i class="fa fa-hand-o-right"></i> @ViewBag.Title</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="javascript:void(0);" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Tam ekran</a>
+                                        </li>
+                                        @*<li class="dropdown dropdown-large">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Large Dropdown <b class="caret"></b></a>
+
+            <ul class="dropdown-menu dropdown-menu-large row">
+                <li class="col-sm-3">
+                    <ul>
+                        <li class="dropdown-header">
+                            Glyphicons
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Available glyphs</a>
+                        </li>
+                        <li class="disabled">
+                            <a href="javascript:void(0);">How to use</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Examples</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">
+                            Dropdowns
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Example</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Aligninment options</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Headers</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Disabled menu items</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="col-sm-3">
+                    <ul>
+                        <li class="dropdown-header">
+                            Button groups
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Basic example</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Button toolbar</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Sizing</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Nesting</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Vertical variation</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">
+                            Button dropdowns
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Single button dropdowns</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="col-sm-3">
+                    <ul>
+                        <li class="dropdown-header">
+                            Input groups
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Basic example</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Sizing</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Checkboxes and radio addons</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">
+                            Navs
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Tabs</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Pills</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Justified</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="col-sm-3">
+                    <ul>
+                        <li class="dropdown-header">
+                            Navbar
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Default navbar</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Buttons</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Text</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Non-nav links</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Component alignment</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Fixed to top</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Fixed to bottom</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Static top</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Inverted navbar</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </li>*@
+                                    </ul>
+
+
+                                    <ul class="nav navbar-nav navbar-right">
+                                        @*<li>
+                                                <a href="#"><i class="fa fa-user"></i> @Session["userFullName"]</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="#">Action</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Another action</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Something else here</a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                            <a href="#">Separated link</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>*@
+                                    </ul>
+                                </div><!-- /.navbar-collapse -->
+
+                            </div>
+                        </article>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            @*<section id="widget-grid" class="">*@
+            @RenderBody()
+            @*</section>*@
+        </div>
+    </div>
+    <div class="page-footer">
+        <div class="row">
+            @*<div class="col-xs-12 col-sm-6">
+                    <span class="txt-color-white">SmartAdmin 1.7.0 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span>
+                </div>*@
+
+            @*<div class="col-xs-6 col-sm-6 text-right hidden-xs">
+                    <div class="txt-color-white inline-block">
+                        <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/Content/js/app.config.js"></script>
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+    <script src="~/Content/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="~/Content/js/bootstrap/bootstrap.min.js"></script>
+    <!-- CUSTOM NOTIFICATION -->
+    <script src="~/Content/js/notification/SmartNotification.min.js"></script>
+    <!-- JARVIS WIDGETS -->
+    <script src="~/Content/js/smartwidgets/jarvis.widget.min.js"></script>
+    <!-- EASY PIE CHARTS -->
+    <script src="~/Content/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+    <!-- SPARKLINES -->
+    <script src="~/Content/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+    <!-- JQUERY VALIDATE -->
+    <script src="~/Content/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+    <!-- JQUERY SELECT2 INPUT -->
+    <script src="~/Content/js/plugin/select2/select2.min.js"></script>
+    <!-- JQUERY UI + Bootstrap Slider -->
+    <script src="~/Content/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+    <!-- browser msie issue fix -->
+    <script src="~/Content/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+    <!-- FastClick: For mobile devices -->
+    <script src="~/Content/js/plugin/fastclick/fastclick.min.js"></script>
+    <!--[if IE 8]>
+    <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+    <![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <script src="~/Content/js/app.min.js"></script>
+    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+    <!-- Voice command : plugin -->
+    <script src="~/Content/js/speech/voicecommand.min.js"></script>
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <script src="~/Content/js/plugin/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/js/plugin/datatables/dataTables.colVis.min.js"></script>
+    <script src="~/Content/js/plugin/datatables/dataTables.tableTools.min.js"></script>
+    <script src="~/Content/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+    <script src="~/Scripts/jquery.maskedinput.js"></script>
+    <link href="~/Scripts/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <link href="~/Content/summernote/summernote.css" rel="stylesheet">
+    <script src="~/Content/summernote/summernote.js"></script>
+</body>
+</html>

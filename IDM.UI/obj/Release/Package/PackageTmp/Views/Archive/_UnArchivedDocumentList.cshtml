@@ -1,0 +1,149 @@
+﻿@model IDM.DTO.Archive_DTO
+<form id="archiveform">
+    <table id="dt_archive" class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Nömrə</th>
+                <th>Qeydiyyat tarixi</th>
+                <th>İcra tarixi</th>
+                <th>Sənədin növü</th>
+                <th>Kimdən</th>
+                <th>Sənədin tipi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="modal fade" id="archiveDoc" tabindex="-1" role="dialog" aria-labelledby="archiveDocLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-color-blue txt-color-white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalTitle"></h4>
+                </div>
+                <div class="modal-body smart-form client-form" id="archiveDocBody">
+                    <ul id="myTab1" class="nav nav-tabs bordered">
+                        <li class="active">
+                            <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-user"></i>Arxiv məlumatları</a>
+                        </li>
+                    </ul>
+
+                    <div id="myTabContent1" class="tab-content padding-10">
+                        <div class="tab-pane fade in active" id="s1">
+                            <fieldset>
+                                <section>
+                                    <label class="label">Zal No</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-tasks"></i>
+                                        @Html.HiddenFor(m => m.docID)
+                                        @Html.TextBoxFor(m => m.zalNO, "", new { @placeholder = "Zal No", autocomplete = "off" })
+                                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                                    </label>
+                                </section>
+                                <section>
+                                    <label class="label">Sıra No</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-tasks"></i>
+                                        @Html.TextBoxFor(m => m.siraNO, "", new { @placeholder = "Sıra No", autocomplete = "off" })
+                                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                                    </label>
+                                </section>
+                                <section>
+                                    <label class="label">Şkaf No</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-tasks"></i>
+                                        @Html.TextBoxFor(m => m.shkafNO, "", new { @placeholder = "Şkaf No", autocomplete = "off" })
+                                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                                    </label>
+                                </section>
+                                <section>
+                                    <label class="label">Raf No</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-tasks"></i>
+                                        @Html.TextBoxFor(m => m.rafNO, "", new { @placeholder = "Raf No", autocomplete = "off" })
+                                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                                    </label>
+                                </section>
+                                <section>
+                                    <label class="label">Ərizə No</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-tasks"></i>
+                                        @Html.TextBoxFor(m => m.erizeNO, "", new { @placeholder = "Ərizə No", autocomplete = "off" })
+                                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                                    </label>
+                                </section>
+                            </fieldset>
+                        </div>
+
+                    </div>
+
+                    <footer>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+                        <button type="submit" class="btn btn-primary" id="btnAddToArchive">Arxivə göndər</button>
+                    </footer>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+
+    $(document).ready(function () {
+        var oTable = $("#dt_archive").DataTable({
+            destroy: true,
+            searching: false,
+            paging: false,
+            "ajax": {
+                "url": "/Archive/GetUnArchivedDocs",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "DocRegNo" },
+                { "data": "DocRegDate" },
+                { "data": "DocFinishDate" },
+                { "data": "DocContentTypeTitle" },
+                { "data": "fromEmployee" },
+                { "data": "DocTypeTitle" },
+                {
+                    "data": "ID", "width": "50px", "render": function (data) {
+                        return '<a href="#" id="' + data + '" class="archive"><i class="fa fa-archive"></i></a>';
+                    }
+                },
+            ]
+        });
+
+        $('#dt_archive tbody').on('click', 'tr a.archive', function () {
+            $("#archiveDoc").find('.modal-title').text('Sənədi arxivə əlavə et');
+            $("#archiveDoc").modal('show');
+            $("#docID").val($(this).attr('id').trim());
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/InternalDoc/Delete",
+            //    data: { docid: $(this).attr('id') },
+            //    success: function (success) {
+            //        oTable.ajax.reload();
+
+            //    }
+            //});
+        });
+
+        $("#btnAddToArchive").click(function () {
+           var data = $("#archiveform").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/Archive/AddToArchive",
+                data: data,
+                success: function (response) {
+                    $("#archiveDoc").modal('hide');
+                    oTable.ajax.reload();
+                }
+            });
+        });
+
+    });
+</script>

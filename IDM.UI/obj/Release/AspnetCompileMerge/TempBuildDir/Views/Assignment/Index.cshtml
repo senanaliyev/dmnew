@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "Təyin etmələr";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="jarviswidget" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+            <header>
+                <ul class="nav nav-tabs pull-left in">
+                    <li class="active">
+                        <a data-toggle="tab" href="#hr1"> <i class="fa fa-fw fa-lg fa-exchange"></i> <span class="hidden-mobile hidden-tablet"> @ViewBag.Title </span> </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-list-ul"></i> Cədvəllər<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" onclick='selectTables("tbl_DocContentType", "tbl_OperationToDoc", "tbl_DocConTypeOperation", "Sənədlər və əməliyyatlar")' class="link"> <i class="fa fa-angle-right"></i> Sənədlər və əməliyyatlar</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick='selectTables("tbl_DocConTypeOperation", "tbl_RespToOper", "tbl_OperationResponse", "Əməliyyatlar və cavabları")' class="link"> <i class="fa fa-angle-right"></i> Əməliyyatlar və cavabları</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick='selectTables("tbl_Office", "tbl_OrganizationToOffice", "tbl_Organization", "İdarə və təşkilatlar")' class="link"> <i class="fa fa-angle-right"></i> İdarə və təşkilatlar</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick='selectTables("tbl_Structure", "tbl_PositionToStructure", "tbl_Position", "Struktur və pozisiyalar")' class="link"> <i class="fa fa-angle-right"></i> Struktur və pozisiyalar</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick='selectTables("tbl_Role", "tbl_ComponentToRole", "tbl_Component", "Rollar və komponentlər")' class="link"> <i class="fa fa-angle-right"></i> Rollar və komponentlər</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </header>
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="hr1">
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li>
+                                    <a href="#s1" data-toggle="tab" id="s1tab"></a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent1" class="tab-content">
+                                <div class="tab-pane fade in active" id="s1">
+                                    <hr />
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <div class="form-group col-md-12">
+                                                @Html.DropDownList("toid", Enumerable.Empty<SelectListItem>(), new { @class = "form-control", size = 17 })
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <div class="form-group col-md-12">
+                                                <a href="#" onclick="DeleteAssigned()" class="btn btn-danger form-control"><i class="fa fa-lg fa-trash-o"></i></a>
+                                                @Html.DropDownList("assignid", Enumerable.Empty<SelectListItem>(), new { @class = "form-control", size = 15 })
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <div class="form-group col-md-12">
+                                                <a href="#" onclick="AddToAssigned()" class="btn btn-danger form-control"><i class="fa fa-lg fa-mail-reply"></i></a>
+                                                @Html.DropDownList("fromid", Enumerable.Empty<SelectListItem>(), new { @class = "form-control", size = 15 })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<script>
+    var toTable;
+    var assignTable;
+    var fromTable;
+    var selectTables = function (totable, assigntable, fromtable, linktitle) {
+        toTable = totable;
+        assignTable = assigntable;
+        fromTable = fromtable;
+        $("#s1tab").empty();
+        $("#assignid").empty();
+        $("#s1tab").append(linktitle);
+        fillComponents();
+    };
+
+    var fillComponents = function () {
+        $.get("/Assignment/FillToTables", { table: toTable }, function (data) {
+            //   $("#strID").empty();
+            $("#toid").empty();
+            $.each(data, function (index, row) {
+                $("#toid").append("<option value='" + row.id + "'>" + row.title + "</option>");
+            });
+        });
+
+        $.get("/Assignment/FillFromTables", { table: fromTable }, function (data) {
+            //   $("#strID").empty();
+            $("#fromid").empty();
+            $.each(data, function (index, row) {
+                $("#fromid").append("<option value='" + row.id + "'>" + row.title + "</option>");
+            });
+        });
+    };
+    //--- Delete Assigned ----
+    var DeleteAssigned = function () {
+        $.confirm({
+            title: 'Diqqət!',
+            content: 'Silmək istədiyinizdən əminsinizmi?',
+            type: 'dark',
+            typeAnimated: true,
+            buttons: {
+                btnYes: {
+                    text: 'BƏLİ',
+                    btnClass: 'btn-red',
+                    action: function () {
+                        var data = {
+                            'id': $("#assignid").val(),
+                            'assignTable': assignTable
+                        };
+                        $.ajax({
+                            type: "POST",
+                            url: "/Assignment/DeleteRecord",
+                            data: data,
+                            success: function (response) {
+                                $.alert({
+                                    title: 'Diqqət!',
+                                    content: response.mesaj,
+                                });
+                                loadAssigned();
+                            }
+                        });
+                    }
+                },
+                close: {
+                    text: 'XEYR',
+                    function () {
+                    }
+                }
+            }
+        });
+    }
+    //--- END Delete Assigned ----
+    //--- Assign ----
+    var AddToAssigned = function () {
+        $.confirm({
+            title: 'Diqqət!',
+            content: 'Əlavə edilsin?',
+            type: 'dark',
+            typeAnimated: true,
+            buttons: {
+                btnYes: {
+                    text: 'BƏLİ',
+                    btnClass: 'btn-red',
+                    action: function () {
+                        var data = {
+                            'toid': $("#toid").val(),
+                            'fromid': $("#fromid").val(),
+                            'assignTable': assignTable
+                        };
+                        $.ajax({
+                            type: "POST",
+                            url: "/Assignment/SaveRecord",
+                            data: data,
+                            success: function (response) {
+                                $.alert({
+                                    title: 'Diqqət!',
+                                    content: response.mesaj,
+                                });
+                                loadAssigned();
+                            }
+                        });
+                    }
+                },
+                close: {
+                    text: 'XEYR',
+                    function () {
+                    }
+                }
+            }
+        });
+    }
+    //--- END Assign ----
+    //--- Load Assigned ----
+    $('#toid').on('click', function () {
+        loadAssigned();
+    });
+    //--- END Load Assigned ----
+    var loadAssigned = function () {
+        $.get("/Assignment/FillAssignedTables", { toid: $("#toid").val(), assignTable: assignTable, fromTable: fromTable }, function (data) {
+            //   $("#strID").empty();
+            $("#assignid").empty();
+            $.each(data, function (index, row) {
+                $("#assignid").append("<option value='" + row.id + "'>" + row.title + "</option>");
+            });
+        });
+    };
+</script>

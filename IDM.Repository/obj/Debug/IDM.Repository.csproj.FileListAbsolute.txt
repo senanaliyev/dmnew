@@ -1,0 +1,58 @@
+C:\Projects\IUM\IUM.Repository\bin\Debug\IUM.Repository.dll
+C:\Projects\IUM\IUM.Repository\bin\Debug\IUM.Repository.pdb
+C:\Projects\IUM\IUM.Repository\bin\Debug\IUM.Entity.dll
+C:\Projects\IUM\IUM.Repository\bin\Debug\EntityFramework.dll
+C:\Projects\IUM\IUM.Repository\bin\Debug\IUM.Entity.pdb
+C:\Projects\IUM\IUM.Repository\bin\Debug\IUM.Entity.dll.config
+C:\Projects\IUM\IUM.Repository\bin\Debug\EntityFramework.xml
+C:\Projects\IUM\IUM.Repository\obj\Debug\IDM.Repository.csprojResolveAssemblyReference.cache
+C:\Projects\IUM\IUM.Repository\obj\Debug\IDM.Repository.csproj.CoreCompileInputs.cache
+C:\Projects\IUM\IUM.Repository\obj\Debug\IUM.Repository.dll
+C:\Projects\IUM\IUM.Repository\obj\Debug\IUM.Repository.pdb
+C:\Projects\IUM\IDM.Repository\bin\Debug\IUM.Repository.dll
+C:\Projects\IUM\IDM.Repository\bin\Debug\IUM.Repository.pdb
+C:\Projects\IUM\IDM.Repository\obj\Debug\IDM.Repository.csproj.CoreCompileInputs.cache
+C:\Projects\IUM\IDM.Repository\obj\Debug\IUM.Repository.dll
+C:\Projects\IUM\IDM.Repository\obj\Debug\IUM.Repository.pdb
+C:\Projects\IUM\IDM.Repository\bin\Debug\IUM.Entity.dll
+C:\Projects\IUM\IDM.Repository\bin\Debug\EntityFramework.dll
+C:\Projects\IUM\IDM.Repository\bin\Debug\IUM.Entity.pdb
+C:\Projects\IUM\IDM.Repository\bin\Debug\IUM.Entity.dll.config
+C:\Projects\IUM\IDM.Repository\bin\Debug\EntityFramework.xml
+C:\Projects\IUM\IDM.Repository\obj\Debug\IDM.Repository.csprojResolveAssemblyReference.cache
+C:\Projects\IDM\IDM.Repository\bin\Debug\EntityFramework.dll
+C:\Projects\IDM\IDM.Repository\bin\Debug\EntityFramework.xml
+C:\Projects\IDM\IDM.Repository\obj\Debug\IDM.Repository.csproj.CoreCompileInputs.cache
+C:\Projects\IDM\IDM.Repository\bin\Debug\IDM.Repository.dll
+C:\Projects\IDM\IDM.Repository\bin\Debug\IDM.Repository.pdb
+C:\Projects\IDM\IDM.Repository\bin\Debug\IDM.Entity.dll
+C:\Projects\IDM\IDM.Repository\bin\Debug\IDM.Entity.pdb
+C:\Projects\IDM\IDM.Repository\bin\Debug\IDM.Entity.dll.config
+C:\Projects\IDM\IDM.Repository\obj\Debug\IDM.Repository.dll
+C:\Projects\IDM\IDM.Repository\obj\Debug\IDM.Repository.pdb
+C:\Projects\IDM\IDM.Repository\obj\Debug\IDM.Repository.csprojAssemblyReference.cache
+C:\Projects\IDM\IDM.Repository\obj\Debug\IDM.Repository.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM\IDM.Repository\bin\Debug\IDM.Repository.dll
+C:\Users\Integration\Desktop\IDM\IDM.Repository\bin\Debug\IDM.Repository.pdb
+C:\Users\Integration\Desktop\IDM\IDM.Repository\bin\Debug\IDM.Entity.dll
+C:\Users\Integration\Desktop\IDM\IDM.Repository\bin\Debug\EntityFramework.dll
+C:\Users\Integration\Desktop\IDM\IDM.Repository\bin\Debug\IDM.Entity.pdb
+C:\Users\Integration\Desktop\IDM\IDM.Repository\bin\Debug\IDM.Entity.dll.config
+C:\Users\Integration\Desktop\IDM\IDM.Repository\bin\Debug\EntityFramework.xml
+C:\Users\Integration\Desktop\IDM\IDM.Repository\obj\Debug\IDM.Repository.csprojAssemblyReference.cache
+C:\Users\Integration\Desktop\IDM\IDM.Repository\obj\Debug\IDM.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Integration\Desktop\IDM\IDM.Repository\obj\Debug\IDM.Repository.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM\IDM.Repository\obj\Debug\IDM.Repository.dll
+C:\Users\Integration\Desktop\IDM\IDM.Repository\obj\Debug\IDM.Repository.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\bin\Debug\IDM.Repository.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\bin\Debug\IDM.Repository.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\bin\Debug\IDM.Entity.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\bin\Debug\EntityFramework.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\bin\Debug\IDM.Entity.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\bin\Debug\IDM.Entity.dll.config
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\bin\Debug\EntityFramework.xml
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\obj\Debug\IDM.Repository.csprojAssemblyReference.cache
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\obj\Debug\IDM.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\obj\Debug\IDM.Repository.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\obj\Debug\IDM.Repository.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Repository\obj\Debug\IDM.Repository.pdb

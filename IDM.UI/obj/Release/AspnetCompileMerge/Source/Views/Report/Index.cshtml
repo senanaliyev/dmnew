@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Hesabatlar";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="jarviswidget" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+            <header>
+                <ul class="nav nav-tabs pull-left in">
+                    <li class="active">
+                        <a data-toggle="tab" href="#hr1"> <i class="fa fa-fw fa-lg fa-keyboard-o"></i> <span class="hidden-mobile hidden-tablet"> @ViewBag.Title </span> </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-list-ul"></i> Hesabatı seçin<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" onclick='selectReport("icraolunmamish", "İcra olunmamış sənədlər")' class="link"> <i class="fa fa-angle-right"></i> İcra olunmamış sənədlər</a>
+                                <a href="#" onclick='selectReport("pammnk", "P.A/M.M/N.K daxil olan sənədlərin icrasına nəzarət")' class="link"> <i class="fa fa-angle-right"></i> P.A/M.M/N.K daxil olan sənədlərin icrasına nəzarət</a>
+                                <a href="#" onclick='selectReport("strkuzresened", "Struktur üzrə sənədlər")' class="link"> <i class="fa fa-angle-right"></i> Struktur üzrə sənədlər</a>
+                                <a href="#" onclick='selectReport("vaxtikecmissened", "Vaxtı keçmiş sənədlər")' class="link"> <i class="fa fa-angle-right"></i> Vaxtı keçmiş sənədlər</a>
+                                <a href="#" onclick='selectReport("tapgosmektub", "Tapşırıqların və göstəriş məktublarının icrasına nəzarət")' class="link"> <i class="fa fa-angle-right"></i> Tapşırıqların və Göstəriş məktublarının icrasına nəzarət</a>
+                                <a href="#" onclick='selectReport("vtnqebulhesab", "Vətəndaş qəbulu üzrə hesabat")' class="link"> <i class="fa fa-angle-right"></i> Vətəndaş qəbulu üzrə hesabat</a>
+                                <a href="#" onclick='selectReport("dxlolansenedler", "Daxil olan sənədlər (siyahı)")' class="link"> <i class="fa fa-angle-right"></i> Daxil olan sənədlər (siyahı)</a>
+                                @*<a href="#" onclick='selectReport("dxlolansenednzrt", "Daxil olan sənədlərin icrasına nəzarət")' class="link"> <i class="fa fa-angle-right"></i> Daxil olan sənədlərin icrasına nəzarət</a>*@
+                                <a href="#" onclick='selectReport("icrasenedhesab", "İcra olunmuş sənədlərin hesabatı")' class="link"> <i class="fa fa-angle-right"></i> İcra olunmuş sənədlərin hesabatı</a>
+                                @*<a href="#" onclick='selectReport("snddovrhesab", "Sənədlərin dövriyyəsi barədə struktur bölmələri üzrə hesabat")' class="link"> <i class="fa fa-angle-right"></i> Sənədlərin dövriyyəsi barədə struktur bölmələri üzrə hesabat</a>*@
+                                <a href="#" onclick='selectReport("shikayet", "Şikayətlər")' class="link"> <i class="fa fa-angle-right"></i> Şikayətlər</a>
+                                @*<a href="#" onclick='selectReport("shikayetsayi", "Şikayətlərin sayı")' class="link"> <i class="fa fa-angle-right"></i> Şikayətlərin sayı</a>*@
+                                <a href="#" onclick='selectReport("xrcsndhesab", "Xaric olan sənədlər hesabatı")' class="link"> <i class="fa fa-angle-right"></i> Xaric olan sənədlər hesabatı</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </header>
+            <div>
+                <div class="widget-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li>
+                                    <a href="#openreport" data-toggle="tab" id="reporttitleTab"></a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent1" class="tab-content">
+                                <div class="tab-pane fade in active" id="openreportDiv">
+                                    <hr />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<script>
+    var selectReport = function (link, title) {
+        $("#reporttitleTab").empty();
+        $("#reporttitleTab").append(title);
+        var url = "/Report/" + link;
+        $("#openreportDiv").load(url);
+    };
+</script>

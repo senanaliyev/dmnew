@@ -1,0 +1,32 @@
+﻿@model IDM.DTO.RoleDTO
+@using (Html.BeginForm("Edit", "Role", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data", @class = "smart-form client-form" }))
+{
+    <div class="alert alert-warning fade in">
+        <i class="fa-fw fa fa-warning"></i>
+        <strong></strong> Məlumatların düzgünlüyünə diqqət edin!
+    </div>
+    <ul id="myTab1" class="nav nav-tabs bordered">
+        <li class="active">
+            <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tasks"></i> Rol məlumatları</a>
+        </li>
+    </ul>
+    <div id="myTabContent1" class="tab-content padding-10">
+        <div class="tab-pane fade in active" id="s1">
+            <fieldset>
+                <section>
+                    <label class="label">Rolun adı</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-tasks"></i>
+                        @Html.Hidden("id")
+                        @Html.TextBoxFor(m => m.title, "", new { @placeholder = "Rolun adını daxil edin" })
+                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                    </label>
+                </section>
+            </fieldset>
+        </div>
+    </div>
+    <footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+        <button type="submit" class="btn btn-primary">Yaddaşa ver</button>
+    </footer>
+}

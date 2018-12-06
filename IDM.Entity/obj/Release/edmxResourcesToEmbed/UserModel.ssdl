@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IUMDB.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_ActionType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_AttachFileType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_ContactType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_DocContentType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_DocConTypeOperation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_DocToOperation">
+    <Key>
+      <PropertyRef Name="dtoID" />
+    </Key>
+    <Property Name="dtoID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="docTypeID" Type="tinyint" />
+    <Property Name="opTypeID" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="tbl_DocType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Document">
+    <Key>
+      <PropertyRef Name="docID" />
+    </Key>
+    <Property Name="docID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="docContentType" Type="tinyint" />
+    <Property Name="docType" Type="tinyint" />
+    <Property Name="docRegNo" Type="varchar" MaxLength="50" />
+    <Property Name="docRegDate" Type="datetime" />
+    <Property Name="docContent" Type="nvarchar(max)" />
+    <Property Name="docNote" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_DocumentFiles">
+    <Key>
+      <PropertyRef Name="dfID" />
+    </Key>
+    <Property Name="dfID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="docID" Type="bigint" />
+    <Property Name="attFileTypeID" Type="tinyint" />
+    <Property Name="dfTitle" Type="nvarchar" MaxLength="250" />
+    <Property Name="dfPageCount" Type="nvarchar" MaxLength="20" />
+    <Property Name="dfName" Type="nvarchar" MaxLength="250" />
+    <Property Name="dfContent" Type="nvarchar(max)" />
+    <Property Name="dfGUID" Type="varchar" MaxLength="250" />
+    <Property Name="dfStatus" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_DocumentOperation">
+    <Key>
+      <PropertyRef Name="doID" />
+    </Key>
+    <Property Name="doID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="docID" Type="bigint" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="conTypeID" Type="tinyint" />
+    <Property Name="fromUserID" Type="int" />
+    <Property Name="doDate" Type="datetime" />
+    <Property Name="doStatus" Type="tinyint" />
+    <Property Name="doLock" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="tbl_Employee">
+    <Key>
+      <PropertyRef Name="empID" />
+    </Key>
+    <Property Name="empID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usrID" Type="int" />
+    <Property Name="empName" Type="nvarchar" MaxLength="50" />
+    <Property Name="empSurname" Type="nvarchar" MaxLength="50" />
+    <Property Name="empMiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="empMail" Type="varchar" MaxLength="100" />
+    <Property Name="empPhone" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_InternalDocument">
+    <Key>
+      <PropertyRef Name="intdocID" />
+    </Key>
+    <Property Name="intdocID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="docID" Type="bigint" Nullable="false" />
+    <Property Name="nmcID" Type="tinyint" />
+    <Property Name="nmcSubID" Type="tinyint" />
+    <Property Name="actionTypeID" Type="tinyint" />
+    <Property Name="responseDocNo" Type="varchar" MaxLength="50" />
+    <Property Name="conTypeID" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="tbl_Nomenclature">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Position">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="parentid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ServiceDocument">
+    <Key>
+      <PropertyRef Name="sdID" />
+    </Key>
+    <Property Name="sdID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="docID" Type="bigint" Nullable="false" />
+    <Property Name="sdEntryNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="sdEntryDate" Type="datetime" />
+    <Property Name="nmcID" Type="tinyint" />
+    <Property Name="nmcSubID" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="tbl_SubNomenclature">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="nmc_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="usrID" />
+    </Key>
+    <Property Name="usrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usrName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="usrPassword" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="isActive" Type="tinyint" />
+  </EntityType>
+  <EntityContainer Name="IUMDBModelStoreContainer">
+    <EntitySet Name="tbl_ActionType" EntityType="Self.tbl_ActionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AttachFileType" EntityType="Self.tbl_AttachFileType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ContactType" EntityType="Self.tbl_ContactType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DocContentType" EntityType="Self.tbl_DocContentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DocConTypeOperation" EntityType="Self.tbl_DocConTypeOperation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DocToOperation" EntityType="Self.tbl_DocToOperation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DocType" EntityType="Self.tbl_DocType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Document" EntityType="Self.tbl_Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DocumentFiles" EntityType="Self.tbl_DocumentFiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_DocumentOperation" EntityType="Self.tbl_DocumentOperation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Employee" EntityType="Self.tbl_Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_InternalDocument" EntityType="Self.tbl_InternalDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Nomenclature" EntityType="Self.tbl_Nomenclature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Position" EntityType="Self.tbl_Position" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ServiceDocument" EntityType="Self.tbl_ServiceDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SubNomenclature" EntityType="Self.tbl_SubNomenclature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

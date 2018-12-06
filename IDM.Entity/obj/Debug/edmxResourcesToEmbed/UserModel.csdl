@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IUMDB.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="IUMDBEntity" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_ActionType" EntityType="IUMDB.Model.tbl_ActionType" />
+    <EntitySet Name="tbl_AttachFileType" EntityType="IUMDB.Model.tbl_AttachFileType" />
+    <EntitySet Name="tbl_ContactType" EntityType="IUMDB.Model.tbl_ContactType" />
+    <EntitySet Name="tbl_DocContentType" EntityType="IUMDB.Model.tbl_DocContentType" />
+    <EntitySet Name="tbl_DocConTypeOperation" EntityType="IUMDB.Model.tbl_DocConTypeOperation" />
+    <EntitySet Name="tbl_DocToOperation" EntityType="IUMDB.Model.tbl_DocToOperation" />
+    <EntitySet Name="tbl_DocType" EntityType="IUMDB.Model.tbl_DocType" />
+    <EntitySet Name="tbl_Document" EntityType="IUMDB.Model.tbl_Document" />
+    <EntitySet Name="tbl_DocumentFiles" EntityType="IUMDB.Model.tbl_DocumentFiles" />
+    <EntitySet Name="tbl_DocumentOperation" EntityType="IUMDB.Model.tbl_DocumentOperation" />
+    <EntitySet Name="tbl_Employee" EntityType="IUMDB.Model.tbl_Employee" />
+    <EntitySet Name="tbl_InternalDocument" EntityType="IUMDB.Model.tbl_InternalDocument" />
+    <EntitySet Name="tbl_Nomenclature" EntityType="IUMDB.Model.tbl_Nomenclature" />
+    <EntitySet Name="tbl_Position" EntityType="IUMDB.Model.tbl_Position" />
+    <EntitySet Name="tbl_ServiceDocument" EntityType="IUMDB.Model.tbl_ServiceDocument" />
+    <EntitySet Name="tbl_SubNomenclature" EntityType="IUMDB.Model.tbl_SubNomenclature" />
+    <EntitySet Name="tbl_User" EntityType="IUMDB.Model.tbl_User" />
+  </EntityContainer>
+  <EntityType Name="tbl_ActionType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_AttachFileType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_ContactType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_DocContentType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_DocConTypeOperation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_DocToOperation">
+    <Key>
+      <PropertyRef Name="dtoID" />
+    </Key>
+    <Property Name="dtoID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="docTypeID" Type="Byte" />
+    <Property Name="opTypeID" Type="Byte" />
+  </EntityType>
+  <EntityType Name="tbl_DocType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_Document">
+    <Key>
+      <PropertyRef Name="docID" />
+    </Key>
+    <Property Name="docID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="docContentType" Type="Byte" />
+    <Property Name="docType" Type="Byte" />
+    <Property Name="docRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="docRegDate" Type="DateTime" Precision="3" />
+    <Property Name="docContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="docNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_DocumentFiles">
+    <Key>
+      <PropertyRef Name="dfID" />
+    </Key>
+    <Property Name="dfID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="docID" Type="Int64" />
+    <Property Name="attFileTypeID" Type="Byte" />
+    <Property Name="dfTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="dfPageCount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="dfName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="dfContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="dfGUID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="dfStatus" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_DocumentOperation">
+    <Key>
+      <PropertyRef Name="doID" />
+    </Key>
+    <Property Name="doID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="docID" Type="Int64" Nullable="false" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="conTypeID" Type="Byte" />
+    <Property Name="fromUserID" Type="Int32" />
+    <Property Name="doDate" Type="DateTime" Precision="3" />
+    <Property Name="doStatus" Type="Byte" />
+    <Property Name="doLock" Type="Byte" />
+  </EntityType>
+  <EntityType Name="tbl_Employee">
+    <Key>
+      <PropertyRef Name="empID" />
+    </Key>
+    <Property Name="empID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usrID" Type="Int32" />
+    <Property Name="empName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="empSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="empMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="empMail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="empPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_InternalDocument">
+    <Key>
+      <PropertyRef Name="intdocID" />
+    </Key>
+    <Property Name="intdocID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="docID" Type="Int64" Nullable="false" />
+    <Property Name="nmcID" Type="Byte" />
+    <Property Name="nmcSubID" Type="Byte" />
+    <Property Name="actionTypeID" Type="Byte" />
+    <Property Name="responseDocNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="conTypeID" Type="Byte" />
+  </EntityType>
+  <EntityType Name="tbl_Nomenclature">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_Position">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="parentid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ServiceDocument">
+    <Key>
+      <PropertyRef Name="sdID" />
+    </Key>
+    <Property Name="sdID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="docID" Type="Int64" Nullable="false" />
+    <Property Name="sdEntryNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sdEntryDate" Type="DateTime" Precision="3" />
+    <Property Name="nmcID" Type="Byte" />
+    <Property Name="nmcSubID" Type="Byte" />
+  </EntityType>
+  <EntityType Name="tbl_SubNomenclature">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="nmc_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="usrID" />
+    </Key>
+    <Property Name="usrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usrName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usrPassword" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Byte" />
+  </EntityType>
+</Schema>

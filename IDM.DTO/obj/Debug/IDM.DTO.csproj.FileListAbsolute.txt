@@ -1,0 +1,88 @@
+C:\Projects\IUM\IUM.DTO\bin\Debug\IUM.DTO.dll
+C:\Projects\IUM\IUM.DTO\bin\Debug\IUM.DTO.pdb
+C:\Projects\IUM\IUM.DTO\obj\Debug\IDM.DTO.csproj.CoreCompileInputs.cache
+C:\Projects\IUM\IUM.DTO\obj\Debug\IUM.DTO.dll
+C:\Projects\IUM\IUM.DTO\obj\Debug\IUM.DTO.pdb
+C:\Projects\IUM\IDM.DTO\bin\Debug\IUM.DTO.dll
+C:\Projects\IUM\IDM.DTO\bin\Debug\IUM.DTO.pdb
+C:\Projects\IUM\IDM.DTO\obj\Debug\IDM.DTO.csproj.CoreCompileInputs.cache
+C:\Projects\IUM\IDM.DTO\obj\Debug\IUM.DTO.dll
+C:\Projects\IUM\IDM.DTO\obj\Debug\IUM.DTO.pdb
+C:\Projects\IDM\IDM.DTO\obj\Debug\IDM.DTO.csproj.CoreCompileInputs.cache
+C:\Projects\IDM\IDM.DTO\bin\Debug\IDM.DTO.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\IDM.DTO.pdb
+C:\Projects\IDM\IDM.DTO\obj\Debug\IDM.DTO.dll
+C:\Projects\IDM\IDM.DTO\obj\Debug\IDM.DTO.pdb
+C:\Projects\IDM\IDM.DTO\obj\Debug\IDM.DTO.csprojAssemblyReference.cache
+C:\Projects\IDM\IDM.DTO\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Helpers.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Razor.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Projects\IDM\IDM.DTO\bin\Debug\Newtonsoft.Json.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Helpers.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.pdb
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.Razor.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Projects\IDM\IDM.DTO\bin\Debug\en-US\System.Web.Mvc.Extensions.resources.dll
+C:\Projects\IDM\IDM.DTO\obj\Debug\IDM.DTO.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\IDM.DTO.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\IDM.DTO.pdb
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Helpers.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Razor.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Helpers.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.pdb
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.Razor.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Integration\Desktop\IDM\IDM.DTO\bin\Debug\en-US\System.Web.Mvc.Extensions.resources.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\obj\Debug\IDM.DTO.csprojAssemblyReference.cache
+C:\Users\Integration\Desktop\IDM\IDM.DTO\obj\Debug\IDM.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Integration\Desktop\IDM\IDM.DTO\obj\Debug\IDM.DTO.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM\IDM.DTO\obj\Debug\IDM.DTO.dll
+C:\Users\Integration\Desktop\IDM\IDM.DTO\obj\Debug\IDM.DTO.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\IDM.DTO.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\IDM.DTO.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Helpers.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Mvc.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Razor.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.WebPages.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Helpers.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Mvc.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Mvc.Extensions.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.Razor.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.WebPages.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\bin\Debug\en-US\System.Web.Mvc.Extensions.resources.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.csprojAssemblyReference.cache
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.dll
+C:\Users\Integration\Desktop\IDM main\IDM.DTO\obj\Debug\IDM.DTO.pdb

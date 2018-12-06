@@ -1,0 +1,125 @@
+﻿@model IDM.DTO.UserDTO
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>e-Sənəd Dövriyyəsi</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- #CSS Links -->
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/font-awesome.min.css">
+
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production-plugins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-skins.min.css">
+
+    <!-- SmartAdmin RTL Support -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/smartadmin-rtl.min.css">
+</head>
+<body class="animated fadeInDown">
+    <div id="main" role="main">
+
+        <!-- MAIN CONTENT -->
+        <div id="content" class="container">
+
+            <div class="row">
+                <div class="col-md-4 col-md-offset-3">
+                    <div class="well no-padding">
+                        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data", @class = "smart-form client-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <header>
+                                İstifadəçi paneli
+                            </header>
+
+                            <fieldset>
+
+                                <section>
+                                    <label class="label">İstifadəçi adı</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-user"></i>
+                                        @Html.TextBoxFor(m => m.usrName, "")
+                                        @Html.ValidationMessageFor(m => m.usrName)
+                                    </label>
+                                </section>
+
+                                <section>
+                                    <label class="label">Şifrə</label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-lock"></i>
+                                        @Html.PasswordFor(m => m.usrPassword, "")
+                                        @Html.ValidationMessageFor(m => m.usrPassword)
+                                    </label>
+                                </section>
+                                <section>
+                                    @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+                                    {
+                                    <div class="alert alert-danger fade in">
+                                        <i class="fa-fw fa fa-warning"></i>
+                                        <strong>Diqqət!</strong>
+                                        <div style="margin-left:20px">
+                                            @Html.ValidationSummary(true)
+                                        </div>
+                                    </div>
+                                    }
+                                </section>
+                            </fieldset>
+                            <footer>
+                                <button type="submit" class="btn btn-primary">
+                                    Daxil ol
+                                </button>
+                            </footer>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--================================================== -->
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+    <script src="~/Content/js/plugin/pace/pace.min.js"></script>
+
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>if (!window.jQuery) { document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>'); }</script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>if (!window.jQuery.ui) { document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>'); }</script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/Content/js/app.config.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events
+    <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+    <!-- BOOTSTRAP JS -->
+    <script src="~/Content/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- JQUERY VALIDATE -->
+    <script src="~/Content/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="~/Content/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+    <!--[if IE 8]>
+
+        <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+    <![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <script src="~/Content/js/app.min.js"></script>
+
+
+</body>
+</html>

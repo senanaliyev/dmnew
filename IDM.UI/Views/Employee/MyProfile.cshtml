@@ -1,0 +1,162 @@
+﻿@model IDM.DTO.Custom_UserDTO
+
+@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+
+        <div class="well well-sm">
+
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <div class="well well-light well-sm no-margin no-padding">
+
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <div id="myCarousel" class="carousel fade profile-carousel">
+                                    <div class="carousel-inner">
+                                        <!-- Slide 2 -->
+                                        <div class="item active">
+                                            <img src="~/Content/img/demo/s2.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+
+                                <div class="row">
+
+                                    <div class="col-sm-3 profile-pic">
+                                        <img src="~/Content/img/avatars/sunny-big.png" alt="demo user">
+                                        <div class="padding-10">
+                                            <h4 class="font-md">
+                                                <strong>1,543</strong>
+                                                <br>
+                                                <small>Əməliyyatlar</small>
+                                            </h4>
+                                            <br>
+                                            <h4 class="font-md">
+                                                <strong>419</strong>
+                                                <br>
+                                                <small>Sənədlər</small>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h1>
+                                            @Model.empName <span class="semi-bold">@Model.empSurname</span>
+                                            <br>
+                                            <small> @Model.positionTitle</small>
+                                        </h1>
+
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <hr class="simple"/>
+                                            </li>
+                                            <li>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-user"></i>&nbsp;&nbsp;<span class="txt-color-darken">@Model.usrName</span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">@Model.empPhone</span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:@Model.empMail">@Model.empMail</a>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                        <br>
+                                        @*<p class="font-md">
+                                            <i>A little about me...</i>
+                                        </p>
+                                        <p>
+
+                                            Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+                                            cumque nihil impedit quo minus id quod maxime placeat facere
+
+                                        </p>
+                                        <br>
+                                        <a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>*@
+                                        <br>
+                                        <br>
+
+                                    </div>
+                                    @*<div class="col-sm-3">
+                                            <h1><small>Connections</small></h1>
+                                            <ul class="list-inline friends-list">
+                                                <li>
+                                                    <img src="img/avatars/1.png" alt="friend-1">
+                                                </li>
+                                                <li>
+                                                    <img src="img/avatars/2.png" alt="friend-2">
+                                                </li>
+                                                <li>
+                                                    <img src="img/avatars/3.png" alt="friend-3">
+                                                </li>
+                                                <li>
+                                                    <img src="img/avatars/4.png" alt="friend-4">
+                                                </li>
+                                                <li>
+                                                    <img src="img/avatars/5.png" alt="friend-5">
+                                                </li>
+                                                <li>
+                                                    <img src="img/avatars/male.png" alt="friend-6">
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);">413 more</a>
+                                                </li>
+                                            </ul>
+
+                                            <h1><small>Recent visitors</small></h1>
+                                            <ul class="list-inline friends-list">
+                                                <li>
+                                                    <img src="img/avatars/male.png" alt="friend-1">
+                                                </li>
+                                                <li>
+                                                    <img src="img/avatars/female.png" alt="friend-2">
+                                                </li>
+                                                <li>
+                                                    <img src="img/avatars/female.png" alt="friend-3">
+                                                </li>
+                                            </ul>
+
+                                        </div>*@
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6">
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+

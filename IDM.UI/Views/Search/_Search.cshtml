@@ -1,0 +1,166 @@
+﻿@model IDM.DTO.ExtendedSearch_DTO
+@using (Html.BeginForm("", "", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data", autocomplete = "off" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="company">Sənədin nömrəsi</label>
+                        @Html.TextBoxFor(m => m.docRegNo, "", new { @class = "form-control input-sm search" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="company">Sənədin növü</label>
+                        @Html.DropDownListFor(m => m.docContentType, new SelectList(ViewBag.DocContentType, "id", "title"), "Seçin", new { @class = "form-control input-sm search" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="company">Sənədin tipi</label>
+                        @Html.DropDownListFor(m => m.docType, new SelectList(ViewBag.DocTypes, "id", "title"), "Seçin", new { @class = "form-control input-sm search" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="company">Tematika</label>
+                        @Html.DropDownListFor(m => m.tematikaID, new SelectList(ViewBag.Tematika, "id", "title"), "Seçin", new { @class = "form-control input-sm search" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="company">Sənədin məzmunu</label>
+                        @Html.TextAreaFor(m => m.docContent, new { @class = "form-control search" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="company">Sənəd haqqında qeydlər</label>
+                        @Html.TextAreaFor(m => m.docNote, new { @class = "form-control search" })
+                    </div>
+                </div>
+                <hr class="simple" />
+                <div id="searchPartialDiv">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-hover table-striped" id="searchResultTable">
+                            <thead>
+                                <tr>
+                                    <th>Sənəd NO</th>
+                                    <th>Qeydiyyat tarixi</th>
+                                    <th>Bitmə tarixi</th>
+                                    <th>Növü</th>
+                                    <th>Tipi</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $("#docContentType").on("change", function () {
+        $("#searchPartialDiv").load(
+            '@Url.Action("SearchPartial", "Search")',
+            {
+                id: $("#docContentType").val(),
+            }, function () { });
+    });
+
+    $(".search").on("change keyup", function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Search/SearchDocument',
+                data: $("#myform").serialize(),
+                dataType: 'json',
+                success: function (json) {
+
+                    $('#searchResultTable').DataTable({
+                        destroy: true,
+                        data: json,
+                        searching: true,
+                        "columns": [
+                            {
+                                "data": "docRegNo"
+                            },
+                            {
+                                "data": "docRegDate"
+                            },
+                            {
+                                "data": "docFinishDate"
+                            },
+                            {
+                                "data": "dcontypeTitle"
+                            },
+                            {
+                                "data": "doctypeTitle"
+                            }
+                        ]
+                    });
+                }
+            });
+    });
+
+        //$("#searchResultTable").DataTable({
+        //    "ajax": {
+        //        "url": "/Search/SearchDocument",
+        //        "type": "POST",
+        //        "datatype": "json"
+        //    },
+
+        //    //"data": response.data,
+        //    "columns": [
+        //        {
+        //            "data": "DocRegNo", "width": "50px", "render": function (data, type, row, meta) {
+        //                return '<a href="#" regNo="' + row.DocRegNo + '" regDate="' + row.DocRegDate + '"  class="sel">' + row.DocRegNo + '</a>';
+        //            }
+        //        },
+        //        {
+        //            "data": "DocRegDate", "width": "50px", "render": function (data) {
+        //                return '<a href="#" id="' + data + '" class="sel">' + data + '</a>';
+        //            }
+        //        }
+        //    ]
+        //});
+
+
+        //var data = new FormData();
+        //var file = $("#file").get(0).files;
+        //data.append("Files", file[0]);
+        //data.append("dfGUID", $("#dfGUID").val());
+        //data.append("dfTitle", $("#dfTitle").val());
+        //data.append("attFileTypeID", $("#attFileTypeID").val());
+        //data.append("dfPageCount", $("#dfPageCount").val());
+        //data.append("dfContent", $("#dfContent").val());
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/Search/SearchDocument",
+        //    data: $("#myform").serialize(),
+        //    success: function (response) {
+        //        alert(response.data);
+        //       // $("#myModalAttachFile").modal('hide');
+        //        //oTable.ajax.reload();
+
+        //    }
+        //});
+    //});
+    //$("#DocRegNo").on('input', function () {
+    //    if ($("#DocRegNo").val()) {
+
+    //    }
+    //});
+
+    //$('#searchResultTable tbody').on('click', 'tr a.sel', function () {
+    //    $("#relatedDocNo").val($(this).attr('regNo'));
+    //    $("#relatedDocNospan").text($(this).attr('regNo'));
+    //    $("#relatedDocRegDate").val($(this).attr('regDate'));
+    //    $("#relatedDocRegDatespan").text($(this).attr('regDate'));
+    //    $("#myModalSearch").modal("hide");
+    //});
+</script>

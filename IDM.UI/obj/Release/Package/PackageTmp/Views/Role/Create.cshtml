@@ -1,0 +1,63 @@
+﻿@model IDM.DTO.RoleDTO
+@using (Html.BeginForm("Create", "Role", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data", @class = "smart-form client-form" }))
+{
+    <div class="alert alert-warning fade in">
+        <i class="fa-fw fa fa-warning"></i>
+        <strong></strong> Məlumatların düzgünlüyünə diqqət edin!
+    </div>
+    <ul id="myTab1" class="nav nav-tabs bordered">
+        <li class="active">
+            <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tasks"></i> Rol məlumatları</a>
+        </li>
+    </ul>
+    <div id="myTabContent1" class="tab-content padding-10">
+        <div class="tab-pane fade in active" id="s1">
+            <fieldset>
+                <section>
+                    <label class="label">Rolun adı</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-tasks"></i>
+                        @Html.TextBoxFor(m => m.title, "", new { @placeholder = "Rolun adını daxil edin" })
+                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                    </label>
+                </section>
+            </fieldset>
+        </div>
+    </div>
+    <footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+        <button type="submit" class="btn btn-primary">Yaddaşa ver</button>
+    </footer>
+}
+<script>
+    $(document).ready(function () {
+
+        $("#subposition").empty();
+        $("#subposition").prop("disabled", true);
+
+        $("#position").change(function () {
+            if ($("#position").val() > 0) {
+                $("#subposition").prop("disabled", false);
+                $.get("/Employee/FillSubPositions", { id: $("#position").val() }, function (data) {
+                    $("#subposition").empty();
+                    $.each(data, function (index, row) {
+                        $("#subposition").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    });
+                });
+            }
+            else {
+                $("#nmcSubID").empty();
+                $("#nmcSubID").prop("disabled", true);
+            }
+        });
+
+        $("#subposition").dblclick(function () {
+            $.get("/Employee/FillSubPositions", { id: $("#subposition").val() }, function (data) {
+                $("#subposition").empty();
+                $.each(data, function (index, row) {
+                    $("#subposition").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                });
+            });
+        });
+    });
+</script>

@@ -1,0 +1,52 @@
+﻿@model IDM.DTO.System_DTO
+@*<div class="alert alert-warning fade in">
+        <i class="fa-fw fa fa-warning"></i>
+        <strong></strong> @Html.ValidationMessageFor(m => m.title)
+    </div>*@
+<form autocomplete="off">
+    <div class="smart-form client-form">
+        <fieldset>
+            <section>
+                <label class="input">
+                    <i class="icon-append fa fa-tasks"></i>
+                    @Html.HiddenFor(m => m.id)
+                    @Html.HiddenFor(m => m.table)
+                    @Html.TextBoxFor(m => m.code, "", new { @placeholder = "Kodu daxil edin" })
+                    @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                </label>
+            </section>
+            <section>
+                <label class="input">
+                    <i class="icon-append fa fa-tasks"></i>
+                    @Html.TextBoxFor(m => m.title, "", new { @placeholder = "Başlığı daxil edin" })
+                    @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                </label>
+            </section>
+        </fieldset>
+        <footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+            <button type="submit" id="btnSaveRecord" class="btn btn-primary">Yaddaşa ver</button>
+        </footer>
+    </div>
+</form>
+<script>
+    $("#btnSaveRecord").click(function () {
+        var data = new FormData();
+        data.append("id", $("#id").val());
+        data.append("title", $("#title").val());
+        data.append("code", $("#code").val());
+        data.append("tableName", selTableName);
+        $.ajax({
+            type: "POST",
+            url: "/System/SaveChanges",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                loadTable();
+                $("#myTableModal").modal('hide');
+                alert(response.mesaj);
+            }
+        });
+    });
+</script>

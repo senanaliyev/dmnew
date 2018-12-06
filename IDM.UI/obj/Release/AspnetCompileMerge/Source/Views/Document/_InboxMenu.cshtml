@@ -1,0 +1,40 @@
+﻿@*<h6><i class="fa fa-folder-open"></i> Sənədlərim </h6>*@
+@*<ul class="inbox-menu-lg">
+    <li>
+        <a href="/Document"><i class="fa fa-folder-open-o"></i> Bütün sənədlər</a>
+    </li>
+    <li>
+        <a href="#" onclick='loadInboxPage(@Convert.ToByte(IDM.Service.Enums.ContentTypes.InternalDoc))'><i class="fa fa-folder-open-o"></i> Daxili sənəd</a>
+    </li>
+    <li>
+        <a href="#" onclick='loadInboxPage(@Convert.ToByte(IDM.Service.Enums.ContentTypes.ServDoc))'><i class="fa fa-folder-open-o"></i> Xidməti sənəd</a>
+    </li>
+    <li>
+        <a href="#" onclick='loadInboxPage(@Convert.ToByte(IDM.Service.Enums.ContentTypes.CtzApp))'><i class="fa fa-folder-open-o"></i> Vətəndaş müraciəti</a>
+    </li>
+    <li>
+        <a href="#" onclick='loadInboxPage(@Convert.ToByte(IDM.Service.Enums.ContentTypes.OutDoc))'><i class="fa fa-folder-open-o"></i> Xaric olan sənəd</a>
+    </li>
+</ul>*@
+
+@*<h6> Əməliyyatlar</h6>
+
+<ul class="inbox-menu-sm">
+    @foreach (var item in ViewBag.OperationsMenu)
+    {
+        <li>
+            <a href="#" onclick='loadOperationPage(@item.id)'>@item.title</a>
+        </li>
+    }
+</ul>
+
+<script>
+    var loadInboxPage = function (data) {
+        $('#docMainDiv').load("/Document/Inbox/" + data, function () {
+        });
+    };
+    var loadOperationPage = function (data) {
+        $('#docMainDiv').load("/Document/OperationInbox/" + data, function () {
+        });
+    };
+</script>*@

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<IDM.DTO.Report.rpt_icraolunmush_DTO>
+    <div class="table-responsive">
+        <table id="dt_basic" class="table table-bordered table-striped table-condensed table-hover smart-form">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Sənəd nömrəsi</th>
+                    <th>Sənəd açıqlaması</th>
+                    <th>Sənəd növü</th>
+                    <th>Sənədin qeydiyyat tarixi</th>
+                    <th>Sənəd sahibi</th>
+                    <th>İcranın nəticəsi</th>
+                    <th>Baxılma yeri</th>
+                    <th>İcra tarixi</th>
+                    <th>Strukturda gecikdirilmiş günlər</th>
+                    <th>Gecikmə günü</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.docRegNo</td>
+                        <td>@Html.Raw(item.docNote)</td>
+                        <td>@item.DocContentTypeTitle</td>
+                        <td>@item.docRegDate</td>
+                        <td>@item.DocCreatedBy</td>
+                        <td></td>
+                        <td></td>
+                        <td>@item.docCompletedOn</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script>
+    $("#dt_basic").DataTable();
+    </script>

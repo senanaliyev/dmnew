@@ -1,0 +1,435 @@
+﻿@model IDM.DTO.Custom_CtzDocument_DTO
+@{
+    ViewBag.Title = "Vətəndaş müraciəti [" + Model.docRegNo + "]";
+}
+<div class="alert alert-info alert-block">
+    <h4 class="alert-heading"><i class="fa-fw fa fa-edit"></i> @ViewBag.Title</h4>
+</div>
+@using (Html.BeginForm("Edit", "CtzApp", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="company">Sənədin nömrəsi</label>
+                        @Html.HiddenFor(m => m.docID)
+                        @Html.TextBoxFor(m => m.docRegNo, "", new { @class = "form-control", autocomplete = "off" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="company">Sənədin növü</label>
+                        @Html.DropDownListFor(m => m.docType, new SelectList(ViewBag.DocTypes, "id", "title"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin tarixi</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.docRegDate, "", new { @class = "form-control dateChange", autocomplete = "off" })
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin icra müddəti (iş günü)</label>
+                        @Html.TextBoxFor(m => m.docDayCount, "", new { @class = "form-control dateChange", autocomplete = "off" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin icrasının bitmə tarixi</label>
+                        @Html.HiddenFor(m => m.docFinishDate, new { @class = "form-control" })
+                        <div class="input-group">
+                            <span class="form-control" id="docFinishDatespan">@Model.docFinishDate</span>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Sənədin məzmunu</p>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.TextAreaFor(m => m.docContent, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Sənəd haqqında qeydlər</p>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.TextAreaFor(m => m.docNote, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="company">Tematika</label>
+                        @Html.DropDownListFor(m => m.tematikaID, new SelectList(ViewBag.Tematika, "id", "title"), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="company">Müraciətin xarakteri</label>
+                        @Html.DropDownListFor(m => m.appealCharID, new SelectList(ViewBag.AppealCharacter, "id", "title"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="company">Müraciət forması</label>
+                        @Html.DropDownListFor(m => m.appealTypeID, new SelectList(ViewBag.AppealType, "id", "title"), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Daxil olan sənədin nömrəsi</label>
+                        <div class="input-group input-group-md">
+                            <div class="addon-md">
+                                @Html.HiddenFor(m => m.relatedDocNo, new { @class = "form-control" })
+                                <span class="form-control" id="relatedDocNospan">@Model.relatedDocNo</span>
+                            </div>
+                            <span class="input-group-btn">
+                                <a href="#" class="btn btn-sm btn-primary pull-right"> <i class="fa fa-paperclip"></i></a>
+                            </span>
+                        </div>
+                        @*<p class="note" id="responseDocRegDate1"></p>*@
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Daxil olan sənədin tarixi</label>
+                        @Html.HiddenFor(m => m.relatedDocRegDate, new { @class = "form-control" })
+                        <div class="input-group">
+                            <span class="form-control" id="relatedDocRegDatespan">@Model.relatedDocRegDate</span>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Müraciət edən şəxsin</p>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="company">Soyadı</label>
+                        @Html.TextBoxFor(m => m.surname, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="company">Adı</label>
+                        @Html.TextBoxFor(m => m.name, "", new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="company">Ata adı</label>
+                        @Html.TextBoxFor(m => m.middlename, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="company">Təkrar/ilkin</label>
+                        @Html.DropDownListFor(m => m.docApplyTypeID, new List<SelectListItem>{
+                       new SelectListItem {Text = "İlkin", Value="1"  },
+                       new SelectListItem {Text = "Təkrar", Value="2"}}, new { @class = "form-control" })
+                        <p class="note">Təkrardırsa əvvəlki sənədin nömrəsi</p>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label for="company">Vətəndaşlıq</label>
+                        @Html.DropDownListFor(m => m.citizenshipID, new SelectList(ViewBag.Region, "id", "title"), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="company">Milliyyəti</label>
+                        @Html.DropDownListFor(m => m.nationID, new SelectList(ViewBag.Region, "id", "title"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="company">Ölkə</label>
+                        @Html.DropDownListFor(m => m.countryID, new SelectList(ViewBag.Region, "id", "title"), "Ölkəni seçin", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="company">Şəhər/rayon</label>
+                        @Html.DropDownListFor(m => m.cityID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="company">Kənd/qəsəbə</label>
+                        @Html.DropDownListFor(m => m.townID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="company">Tam ünvan</label>
+                        @Html.TextBoxFor(m => m.fulladdress, "", new { @class = "form-control" })
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Elektron sənədlər</p>
+                <div class="col-md-12 text-align-right">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModalServAttachFile" onclick="AddFile()"> <i class="fa fa-plus"></i> Yeni sənəd </a>
+                    </div>
+                </div>
+                <table class="table" id="attachTable">
+                    <thead>
+                        <tr>
+                            <th>Sənədin adı</th>
+                            <th>Növü</th>
+                            <th>Vərəq sayı</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="form-actions">
+            <button class="btn btn-danger btn-md">
+                <i class="fa fa-save"></i>
+                Yaddaşa ver
+            </button>
+        </div>
+    </footer>
+    <div class="modal fade" id="myModalServAttachFile" tabindex="-1" role="dialog" aria-labelledby="myModalServAttachFileLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-color-blue txt-color-white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalTitle"></h4>
+                </div>
+                <div class="modal-body" id="myModalBody">
+                    <div class="widget-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="company">Sənədin adı</label>
+                                @Html.Hidden("dfGUID", (string)ViewBag.UnID, new { @class = "form-control" })
+                                @Html.TextBox("dfTitle", "", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="company">Sənədin növü</label>
+                                @Html.DropDownList("attFileTypeID", new SelectList(ViewBag.AttachFileTypes, "id", "title"), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="company">Vərəq sayı</label>
+                                @Html.TextBox("dfPageCount", "", new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="company">Sənədi seç </label>
+                                @Html.TextBox("file", "", new { type = "file" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="company">Sənədin məzmunu</label>
+                                @Html.TextArea("dfContent", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" id="btnAttachFile">Daxil et</a>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Ləğv et</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalSearchLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-color-blue txt-color-white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalSearchTitle"></h4>
+                </div>
+                <div class="modal-body" id="myModalSearchBody">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        $("#docRegNo").mask("99-99-99-999");
+        $("#dfPageCount").mask("999");
+        $("#docRegDate").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#docFinishDate").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    //$('#docDayCount').keyup(function () {
+    $('.dateChange').on("change keyup", function () {
+        if (( $('#docDayCount').val().length > 0) || $('#docDayCount').val()=="") {
+            $("#docFinishDate").val("");
+            $("#docFinishDatespan").text("");
+        }
+        $.ajax({
+            type: 'GET',
+            url: "/Document/CalculateEndDate",
+            datatype: JSON,
+            data: { 'date': $("#docRegDate").val(), 'daycount': $("#docDayCount").val() },
+            success: function (data) {
+                $("#docFinishDate").val(data.enddate);
+                $("#docFinishDatespan").text(data.enddate);
+            }
+        });
+    });
+
+    var AddFile = function () {
+        //var url = "/InternalDoc/Attachment";
+        var mymodal = $('#myModalServAttachFile');
+        mymodal.find('.modal-title').text('Yeni sənəd əlavə et');
+        //$("#myModalBody").load(url, function () {
+        $("#myModalServAttachFile").show();
+        //});
+    };
+
+    $(document).ready(function () {
+
+        $('#docApplyTypeID').on("change", function () {
+            if ($('#docApplyTypeID').val() == '2') {
+                var url = "/CtzApp/Search";
+                $("#myModalSearchBody").load(url, function () {
+                    $("#myModalSearch").modal('show');
+                });
+            }
+        });
+
+        $('#docContent').summernote({
+            placeholder: 'Sənədin məzmununu daxil edin',
+            tabsize: 2,
+            height: 100
+        });
+        $('#docNote').summernote({
+            placeholder: 'Sənəd haqqında qeydlərinizi daxil edin',
+            tabsize: 2,
+            height: 100
+        });
+
+        $.get("/CtzApp/FillCities", { id: @Model.countryID }, function (data) {
+            $("#cityID").append("<option value='0'>Seçin</option>");
+            $.each(data, function (index, row) {
+                $("#cityID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                $("#cityID").val(@Model.cityID);
+            });
+        });
+
+        $.get("/CtzApp/FillCities", { id: @Model.cityID }, function (data) {
+            $("#townID").append("<option value='0'>Seçin</option>");
+            $.each(data, function (index, row) {
+                $("#townID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                $("#townID").val(@Model.townID);
+            });
+        });
+
+        //--------begin new selection------------------
+        $("#countryID").change(function () {
+            if ($("#countryID").val() > 0) {
+                $("#cityID").prop("disabled", false);
+                $.get("/CtzApp/FillCities", { id: $("#countryID").val() }, function (data) {
+                    $("#cityID").empty();
+                    $("#townID").empty();
+                    $("#cityID").append("<option value='0'>Seçin</option>");
+                    $.each(data, function (index, row) {
+                        $("#cityID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    });
+                });
+            }
+            else {
+                $("#cityID").empty();
+                $("#townID").empty();
+                $("#cityID").prop("disabled", true);
+                $("#townID").prop("disabled", true);
+            }
+        });
+
+        $("#cityID").change(function () {
+            if ($("#cityID").val() > 0) {
+                $("#townID").prop("disabled", false);
+                $.get("/CtzApp/FillCities", { id: $("#cityID").val() }, function (data) {
+                    $("#townID").empty();
+                    $("#townID").append("<option value='0'>Seçin</option>");
+                    $.each(data, function (index, row) {
+                        $("#townID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    });
+                });
+            }
+            else {
+                $("#townID").empty();
+                $("#townID").prop("disabled", true);
+            }
+        });
+        //--------end new selection------------------
+
+        var oTable = $("#attachTable").DataTable({
+            destroy: true,
+            searching: false,
+            paging: false,
+            "ajax": {
+                "url": "/CtzApp/GetAttachedFilesByDocID?id=" + @Model.docID,
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                {
+                    "data": "dfTitle", "render": function (data, type, row, meta) {
+                        return '<a href="/DocumentFiles/' + row.dfName + '" target="_blank">' + row.dfTitle + '</a>';
+                    }
+                },
+                { "data": "attFileTypeTitle" },
+                { "data": "dfPageCount" },
+                {
+                    "data": "dfID", "width": "50px", "render": function (data) {
+                        return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                    }
+                }
+            ]
+        });
+
+        $('#attachTable tbody').on('click', 'tr a.delete', function () {
+            $.ajax({
+                type: "POST",
+                url: "/CtzApp/Delete",
+                data: { docid: $(this).attr('id') },
+                success: function (success) {
+                    oTable.ajax.reload();
+
+                }
+            });
+        });
+
+        $("#btnAttachFile").click(function () {
+            var data = new FormData();
+            var file = $("#file").get(0).files;
+            data.append("Files", file[0]);
+            data.append("docID", @Model.docID);
+            data.append("dfTitle", $("#dfTitle").val());
+            data.append("attFileTypeID", $("#attFileTypeID").val());
+            data.append("dfPageCount", $("#dfPageCount").val());
+            data.append("dfContent", $("#dfContent").val());
+            $.ajax({
+                type: "POST",
+                url: "/CtzApp/SaveAttachmentByID",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (response) {
+                    $("#myModalServAttachFile").modal('hide');
+                    oTable.ajax.reload();
+                }
+            });
+        });
+
+    });
+</script>

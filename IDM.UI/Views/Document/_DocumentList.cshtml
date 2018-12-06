@@ -1,0 +1,285 @@
+﻿@model IEnumerable<IDM.DTO.Custom_DocGetList_DTO>
+<table id="dt_basic" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Nömrə</th>
+            <th>Qeydiyyat tarixi</th>
+            <th>İcra tarixi</th>
+            <th>Sənədin növü</th>
+            <th>Kimdən</th>
+            <th>Sənədin tipi</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+            <th hidden></th>
+            <th hidden></th>
+            <th hidden></th>
+            <th hidden></th>
+            <th hidden></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID, '@item.EditRead')">@item.DocRegNo</a>
+                </td>
+                <td id="docRegdate" class="docRegdate">
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID, '@item.EditRead')">@item.DocRegDate</a>
+                </td>
+                <td>
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID, '@item.EditRead')">@item.DocFinishDate</a>
+                </td>
+                <td>
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID, '@item.EditRead')">@item.DocContentTypeTitle</a>
+                </td>
+                <td>
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID, '@item.EditRead')">@item.fromEmployee</a>
+                </td>
+                <td>
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID, '@item.EditRead')">@item.DocTypeTitle</a>
+                </td>
+                <td>
+                    <a href="#" onclick="loadEditDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID, '@item.EditRead')">@item.operationTitle</a>
+                </td>
+                <td>
+                    @Html.DropDownList("operID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control input-sm" })
+                </td>
+
+                <td class="slc2">
+                    @*<td class="drop">*@
+                    @Html.DropDownList("respID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control input-sm" })
+                    @*<a class="link" data-toggle="modal" data-target="#myModalBodySetOperation" onclick="AddOperation(@item.DocContentTypeID, @item.ID)"><i class="fa fa-lg fa-tasks"></i></a>*@
+                </td>
+                <td hidden>
+                    @item.DocContentTypeID
+                </td>
+                <td class="docid" hidden>
+                    @item.ID
+                </td>
+                <td class="operationPos" hidden>
+                    @item.operationPos
+                </td>
+                <td class="dologid" hidden>
+                    @item.doID
+                </td>
+                <td hidden>
+                    @item.fromUserID
+                </td>
+                <td>
+                    <a href="#" onclick="loadRegDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID)" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    //var operationsTable = function (id) {
+    //    $("#opTable").DataTable({
+    //        destroy: true,
+    //        searching: false,
+    //        paging: false,
+    //        "ajax": {
+    //            "url": "/Document/GetAssignedOperations?id=" + id,
+    //            "type": "GET",
+    //            "datatype": "json"
+    //        },
+    //        "columns": [
+    //            { "data": "NameSurname" },
+    //            { "data": "conTypeTitle" },
+    //            { "data": "doNote" },
+    //            {
+    //                "data": "doID", "width": "50px", "render": function (data) {
+    //                    return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+    //                }
+    //            }
+    //        ]
+    //    });
+    //};
+
+    //var AddOperation = function (doctypeID, docID) {
+    //    var mymodal = $('#myModalBodySetOperation');
+    //    mymodal.find('.modal-title').text('Yeni əməliyyat əlavə et');
+    //    $("#myModalBodySetOperation").show();
+    //    $("#docID").val(docID);
+    //    $("#conTypeID").empty();
+    //    $.get("/Document/FillOperationDDL", { id: doctypeID }, function (data) {
+    //        $.each(data, function (index, row) {
+    //            $("#conTypeID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+    //        });
+    //    });
+
+    //    $("#userID").empty();
+    //    $.get("/Document/FillUserDDL", function (data) {
+    //        $.each(data, function (index, row) {
+    //            $("#userID").append("<option value='" + row.usrID + "'>" + row.empName + " " + row.empSurname + "</option>");
+    //        });
+    //    });
+
+
+    //    operationsTable(docID);
+
+    //};
+
+    //$("#btnLockDocument").click(function () {
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/Document/LockDocument",
+    //        data: { docid: $("#docID").val() },
+    //        success: function (response) {
+    //            window.location.href = response;
+    //            //$("#myModal").modal('hide');
+    //            //operationsTable($("#docID").val());
+    //        }
+    //    });
+    //});
+
+
+    //$("#btnAddNewOperation").click(function () {
+    //    var data = $("#operationForm").serialize();
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/Document/SaveOperation",
+    //        data: data,
+    //        success: function (response) {
+    //            // $("#myModal").modal('hide');
+    //            operationsTable($("#docID").val());
+    //        }
+    //    });
+    //});
+
+    //$('#opTable tbody').on('click', 'tr a.delete', function () {
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/Document/Delete",
+    //        data: { doid: $(this).attr('id') },
+    //        success: function (success) {
+    //            operationsTable($("#docID").val());
+    //        }
+    //    });
+    //});
+
+    $(document).ready(function () {
+        //---begin load operation types of documents
+        $("#dt_basic tr:gt(0)").each(function () {
+            var this_row = $(this);
+            var dtypeid = $.trim(this_row.find('td:eq(9)').text());//td:eq(0) means first td of this row
+            var curoperpos = parseInt($.trim(this_row.find('td.operationPos').text()));//td:eq(0) means first td of this row
+            $.get("/Document/FillOperationDDL", { id: dtypeid, operposid: curoperpos }, function (data) {
+                this_row.find("#operID").append("<option value='0'>Əməliyyatı seçin</option>");
+                $.each(data, function (index, row) {
+                    this_row.find("#operID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                });
+            });
+
+
+        });
+        //---end load operation types of documents
+
+
+        //-- begin -- load selected operation responces
+        $("#dt_basic").on('change', 'tr', function (e) {
+            e.preventDefault();
+            var this_row = $(this);
+            var oprid = this_row.find("#operID").val();
+            if (oprid > 0) {
+                this_row.find("#respID").prop("disabled", false);
+                $.get("/Document/GetOperationResponces", { id: oprid }, function (data) {
+                    this_row.find("#respID").empty();
+                    this_row.find("#respID").append("<option value='null'>Seçin</option>");
+                    $.each(data, function (index, row) {
+                        this_row.find('#respID').append("<option value='" + row.action + "'>" + row.title + "</option>");
+                    });
+                });
+            }
+            else {
+                this_row.find("#respID").empty();
+                this_row.find("#respID").prop("disabled", true);
+            }
+        });
+        //-- end -- load selected operation responces
+
+        //altdaki kodun funksiyasini icra edir.daha yigcamdir.
+        //$('#dt_basic').on('change', 'tr', function () {
+        //    alert($('td', this).eq(10).text());
+        //});
+
+        //-- begin -- load selected operation responces
+        $("#dt_basic").on('change', 'tr td.slc2', function (e) {
+            e.preventDefault();
+            var this_row = $(this);
+            var finishDate = $("td:eq(2)").text();
+            var fromUser = $("td:eq(13)").text();
+            //alert($(this).closest('td').find('docRegdate').text());
+            var action = this_row.find("#respID").val();
+            var getDocTypeID = $(this).closest('td').next('td').text();
+            var getDocID = $(this).closest('td').next('td').next('td').text();
+            var getOperaionPos = $(this).closest('td').next('td').next('td').next('td').text();
+            var getDoID = $(this).closest('td').next('td').next('td').next('td').next('td').text();
+            if (action.length) {
+                if (getOperaionPos == 5)
+                {
+                    $.ajax({
+                        type: "POST",
+                        url: "/General/CheckOperation",
+                        data: { docid: getDocID },
+                        success: function (response) {
+                            if (response.success == true) {
+                                alert(response.mesaj);
+                            }
+                            else {
+                                var url = "/General/" + action;
+                                $('#documentAbout').load("/Document/GetAboutDocument/" + getDocID);
+                                $("#").load()
+                                $("#myModalActionBody").load(url, { documid: getDocID, documtypeid: getDocTypeID, doid: getDoID, finishdate: finishDate, fromuser: fromUser }, function () {
+                                    $("#myModalAction").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
+                                    $("#myModalAction").modal('show');
+                                });
+                            }
+                            //window.location.href = response;
+                            //$("#myModal").modal('hide');
+                            //operationsTable($("#docID").val());
+                        }
+                    });
+                }
+                else
+                {
+                    var url = "/General/" + action;
+                    $('#documentAbout').load("/Document/GetAboutDocument/", { docID: getDocID });
+                    $("#myModalActionBody").load(url, { documid: getDocID, documtypeid: getDocTypeID, doid: getDoID, finishdate: finishDate, fromuser: fromUser }, function () {
+                        $("#myModalAction").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
+                        $("#myModalAction").modal('show');
+                    });
+                }
+            }
+            else {
+                alert("cədvəl hazırlıq mərhələsindədir.");
+            }
+        });
+        //-- end -- load selected operation responces
+
+        //$('#dt_basic tr').click( function() {
+        //    alert($(this).find("#operID").val());
+        //});
+
+        //    $('#dt_basic tbody tr').each(function () {
+        //        var selectlistID = $(this).find('select').attr('id');
+        //        var oID = $(this).find('select').attr('value');
+        //        $.get("/Document/FillOperationDDL", { id: oID }, function (data) {
+        //            $.each(data, function (index, row) {
+        //                $("#" + selectlistID).append("<option value='" + row.id + "'>" + row.title + "</option>");
+        //            });
+        //        });
+        //    });
+
+    });
+
+    var loadRegDoc = function(d1, d2) {
+        $('#myModalActionBodyLook').load("/" + d1 + "/RegViewDocument/" + d2);
+        $("#myModalActionLook").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
+        $("#myModalActionLook").modal('show');
+    }
+</script>

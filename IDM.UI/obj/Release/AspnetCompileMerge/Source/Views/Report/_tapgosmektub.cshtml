@@ -1,0 +1,31 @@
+﻿@model IEnumerable<IDM.DTO.Report.rpt_tapshiriqvegosterish_DTO>
+    <div class="table-responsive">
+        <table id="dt_basic" class="table table-bordered table-striped table-condensed table-hover smart-form">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Əmrin nömrəsi</th>
+                    <th>İmzalanma tarixi</th>
+                    <th>Tapşırığın məzmunu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.docRegNo</td>
+                        <td>@item.docRegDate</td>
+                        <td>@Html.Raw(item.docContent)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script>
+    $("#dt_basic").DataTable();
+    </script>

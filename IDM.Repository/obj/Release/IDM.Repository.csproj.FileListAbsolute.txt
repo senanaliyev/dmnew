@@ -1,0 +1,12 @@
+C:\Projects\IDM\IDM.Repository\bin\Release\IDM.Repository.dll
+C:\Projects\IDM\IDM.Repository\bin\Release\IDM.Repository.pdb
+C:\Projects\IDM\IDM.Repository\bin\Release\IDM.Entity.dll
+C:\Projects\IDM\IDM.Repository\bin\Release\EntityFramework.dll
+C:\Projects\IDM\IDM.Repository\bin\Release\IDM.Entity.pdb
+C:\Projects\IDM\IDM.Repository\bin\Release\IDM.Entity.dll.config
+C:\Projects\IDM\IDM.Repository\bin\Release\EntityFramework.xml
+C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.csprojAssemblyReference.cache
+C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.csproj.CoreCompileInputs.cache
+C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.csproj.CopyComplete
+C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.dll
+C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.pdb

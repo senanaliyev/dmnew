@@ -1,0 +1,173 @@
+﻿@model IDM.DTO.Custom_UserDTO
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data", @class = "smart-form client-form", autocomplete = "off" }))
+{
+    @*<div class="alert alert-warning fade in">
+        <i class="fa-fw fa fa-warning"></i>
+        <strong></strong> İstifadəçi məlumatlarının düzgünlüyünə diqqət edin!
+    </div>*@
+    <ul id="myTab1" class="nav nav-tabs bordered">
+        <li class="active">
+            <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-user"></i> İstifadəçi məlumatları</a>
+        </li>
+        <li>
+            <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-male"></i> Şəxsi məlumatları</a>
+        </li>
+        <li>
+            <a href="#s3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-tasks"></i> Vəzifəsi</a>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-plus-circle"></i><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#s4" data-toggle="tab">Pozisiya əlavə et</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div id="myTabContent1" class="tab-content padding-10">
+        <div class="tab-pane fade in active" id="s1">
+            <fieldset>
+                <section>
+                    <label class="label">İstifadəçi adı</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-user"></i>
+                        @Html.HiddenFor(m => m.usrID)
+                        @Html.TextBoxFor(m => m.usrName, "", new { @placeholder = "İstifadəçi adı", disabled = "disabled" })
+                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                    </label>
+                </section>
+                <section>
+                    <label class="label">Email</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-envelope"></i>
+                        @Html.TextBoxFor(m => m.empMail, "", new { @placeholder = "Email" })
+                    </label>
+                </section>
+            </fieldset>
+        </div>
+        <div class="tab-pane fade" id="s2">
+            <fieldset>
+                <section>
+                    <label class="label">Adı</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-align-left"></i>
+                        @Html.TextBoxFor(m => m.empName, "", new { @placeholder = "Adı" })
+                    </label>
+                </section>
+                <section>
+                    <label class="label">Soyadı</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-align-left"></i>
+                        @Html.TextBoxFor(m => m.empSurname, "", new { @placeholder = "Soyadı" })
+                    </label>
+                </section>
+                <section>
+                    <label class="label">Ata adı</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-align-left"></i>
+                        @Html.TextBoxFor(m => m.empMiddleName, "", new { @placeholder = "Ata adı" })
+                    </label>
+                </section>
+            </fieldset>
+        </div>
+        <div class="tab-pane fade" id="s3">
+            <table id="dt_basic" class="table table-bordered table-striped table-condensed table-hover smart-form">
+                <thead>
+                    <tr>
+                        <th>Şöbə</th>
+                        <th>Pozisiya</th>
+                        <th width="20%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Positions)
+                    {
+                        <tr>
+                            <td>
+                                <a href="#">@item.structureTitle</a>
+                            </td>
+                            <td>
+                                <a href="#">@item.positionTitle</a>
+                            </td>
+                            <td align="center"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="s4">
+            <fieldset>
+                <section>
+                    <label class="company">Pozisiya</label>
+                    <label class="input">
+                        @Html.DropDownList("structure", new SelectList(ViewBag.Structure, "id", "title"), "Seçin", new { @class = "form-control" })
+                    </label>
+                </section>
+                <section>
+                    <label class="input">
+                        @Html.DropDownList("strID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control", size = 6 })
+                    </label>
+                </section>
+                <section>
+                    <label class="input">
+                        @Html.DropDownList("posID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </label>
+                </section>
+            </fieldset>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+        <button type="submit" class="btn btn-primary">Yaddaşa ver</button>
+    </footer>
+}
+<script>
+    $(document).ready(function () {
+
+        $("#strID").empty();
+        $("#strID").prop("disabled", true);
+
+        $("#structure").change(function () {
+            if ($("#structure").val() > 0) {
+                $("#strID").prop("disabled", false);
+                $.get("/Employee/FillSubStructures", { id: $("#structure").val() }, function (data) {
+                    $("#strID").empty();
+                    $.each(data, function (index, row) {
+                        $("#strID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    });
+                });
+                $("#structure").prop("selectedIndex", 0);
+            }
+            else {
+                $("#strID").empty();
+                $("#strID").prop("disabled", true);
+            }
+        });
+
+        $("#strID").dblclick(function () {
+            $.get("/Employee/FillSubStructures", { id: $("#strID").val() }, function (data) {
+                $("#strID").empty();
+                $("#posID").empty();
+                $.each(data, function (index, row) {
+                    $("#strID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                });
+            });
+        });
+
+        $("#strID").click(function () {
+            $.get("/Employee/FillPositions", { id: $("#strID").val() }, function (data) {
+                $("#posID").empty();
+                $.each(data, function (index, row) {
+                    $("#posID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                });
+            });
+        });
+    });
+</script>

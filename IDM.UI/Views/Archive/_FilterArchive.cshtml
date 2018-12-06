@@ -1,0 +1,28 @@
+﻿<div class="form-group col-md-12">
+    @Html.TextBox("zalNO", "", new { @class = "form-control input-sm filter", autocomplete = "off", placeholder = "Zal NO" })
+</div>
+<div class="form-group col-md-12">
+    @Html.TextBox("siraNO", "", new { @class = "form-control input-sm filter", autocomplete = "off", placeholder = "Sıra NO" })
+</div>
+<div class="form-group col-md-12">
+    @Html.TextBox("shkafNO", "", new { @class = "form-control input-sm filter", autocomplete = "off", placeholder = "Şkaf NO" })
+</div>
+<div class="form-group col-md-12">
+    @Html.TextBox("rafNO", "", new { @class = "form-control input-sm filter", autocomplete = "off", placeholder = "Raf NO" })
+</div>
+<div class="form-group col-md-12">
+    @Html.TextBox("erizeNO", "", new { @class = "form-control input-sm filter", autocomplete = "off", placeholder = "Ərizə NO" })
+</div>
+<script>
+    $(".filter").on("change keyup", function () {
+        $("#docMainDiv").load(
+            '@Url.Action("FilteredArchive", "Archive")',
+            {
+                zalNO: $("#zalNO").val(),
+                siraNO: $("#siraNO").val(),
+                shkafNO: $("#shkafNO").val(),
+                rafNO: $("#rafNO").val(),
+                erizeNO: $("#erizeNO").val(),
+            }, function () { });
+    });
+</script>

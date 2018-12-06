@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="262e3cd3ea9a4029a1a69264f3dded6f" Name="Diagram1">
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_ActionType" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_AttachFileType" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_ContactType" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_DocContentType" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_DocConTypeOperation" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_DocToOperation" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_DocType" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_Document" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_DocumentFiles" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_DocumentOperation" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_Employee" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_InternalDocument" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_Nomenclature" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_Position" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_ServiceDocument" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_SubNomenclature" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="IUMDB.Model.tbl_User" Width="1.5" PointX="10.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

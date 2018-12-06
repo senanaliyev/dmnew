@@ -1,0 +1,88 @@
+﻿<div class="form-group col-md-12">
+    <h6><i class="fa fa-search"></i> Filter <a href="/Document" rel="tooltip" title="" data-placement="right" data-original-title="Refresh" class="pull-right txt-color-darken"><i class="fa fa-refresh"></i></a></h6>
+    <ul class="inbox-menu-lg">
+        <li>
+            <div class="form-group col-md-12">
+                @Html.TextBox("docRegNo", "", new { @class = "form-control input-sm filter", placeholder = "Sənədin nömrəsini daxil edin", autocomplete = "off" })
+            </div>
+        </li>
+        <li>
+            <div class="form-group col-md-12">
+                @Html.DropDownList("docContentType", new SelectList(ViewBag.DocContentType, "id", "title"), "Sənədin növünü seçin", new { @class = "form-control input-sm filter", autocomplete = "off" })
+            </div>
+        </li>
+        <li>
+            <div class="form-group col-md-12">
+                @Html.DropDownList("docType", new SelectList(ViewBag.DocTypes, "id", "title"), "Sənədin tipini seçin", new { @class = "form-control input-sm filter", autocomplete = "off" })
+            </div>
+        </li>
+        <li>
+            <div class="form-group col-md-12">
+                @Html.DropDownList("fromUserID", new SelectList(ViewBag.Users, "usrID", "empFullName"), "Kimdən", new { @class = "form-control input-sm filter", autocomplete = "off" })
+            </div>
+        </li>
+        <li>
+            <div class="form-group col-md-12">
+                <div class="input-group">
+                    @Html.TextBox("docRegDateFrom", "", new { @class = "form-control input-sm filter", placeholder = "tarixdən", autocomplete = "off" })
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group col-md-12">
+                <div class="input-group">
+                    @Html.TextBox("docRegDateTo", "", new { @class = "form-control input-sm filter", placeholder = "tarixədək", autocomplete = "off" })
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <h6><i class="fa fa-folder-open"></i> Qovluqlar</h6>
+
+    <ul class="inbox-menu-sm">
+        <li>
+            <a href="#" onclick="loadDocsByOperCode('gnl_duv')"><i class="fa fa-folder-o"></i> Dərkənar</a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-folder-o"></i> İmzalanacaqlar </a>
+        </li>
+    </ul>
+</div>
+
+
+<script>
+    $(function () {
+        //$("#docRegNo").mask("99-99-99-999");
+        //$("#dfPageCount").mask("999");
+        $("#docRegDateFrom").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#docRegDateTo").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    $(".filter").on("change keyup", function () {
+        $("#docMainDiv").load(
+            '@Url.Action("DocumentList","Document")',
+            {
+                docRegNo: $("#docRegNo").val(),
+                docContentType: $("#docContentType").val(),
+                docType: $("#docType").val(),
+                fromUserID: $("#fromUserID").val(),
+                docRegDateFrom: $("#docRegDateFrom").val(),
+                docRegDateTo: $("#docRegDateTo").val()
+            }, function () { });
+    });
+
+    var loadDocsByOperCode = function (operationcode) {
+        $("#docMainDiv").load(
+            '@Url.Action("DocumentListByFolderName","Document")',
+            {
+                operationCode: operationcode
+            }, function () { });
+    };
+
+</script>

@@ -1,0 +1,348 @@
+﻿@model IDM.DTO.ServiceRegFileDocument
+
+<style>
+    .show-grid [class^="col-"] {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        /*background-color: rgba(61, 106, 124, 0.15);*/
+        border: 1px solid rgb(81, 100, 100);
+        min-height: 34px;
+    }
+
+    .grid-description {
+        background-color: rgba(61, 106, 124, 0.15);
+        font-weight: 600;
+    }
+
+    .show-grid {
+        margin-bottom: 10px;
+    }
+
+    th small {
+        font-size: 12px;
+        display: block;
+        color: #8D8D8D;
+        font-weight: normal;
+    }
+
+    /* Responsive tests */
+    .responsive-utilities-test {
+        margin-top: 5px;
+    }
+
+        .responsive-utilities-test .col-xs-6 {
+            margin-bottom: 10px;
+        }
+
+        .responsive-utilities-test span {
+            padding: 15px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.1;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+    .visible-on .col-xs-6 .hidden-xs,
+    .visible-on .col-xs-6 .hidden-sm,
+    .visible-on .col-xs-6 .hidden-md,
+    .visible-on .col-xs-6 .hidden-lg,
+    .hidden-on .col-xs-6 .visible-xs,
+    .hidden-on .col-xs-6 .visible-sm,
+    .hidden-on .col-xs-6 .visible-md,
+    .hidden-on .col-xs-6 .visible-lg {
+        color: #999;
+        border: 1px solid #ddd;
+    }
+
+    .visible-on .col-xs-6 .visible-xs,
+    .visible-on .col-xs-6 .visible-sm,
+    .visible-on .col-xs-6 .visible-md,
+    .visible-on .col-xs-6 .visible-lg,
+    .hidden-on .col-xs-6 .hidden-xs,
+    .hidden-on .col-xs-6 .hidden-sm,
+    .hidden-on .col-xs-6 .hidden-md,
+    .hidden-on .col-xs-6 .hidden-lg {
+        color: #468847;
+        background-color: #dff0d8;
+        border: 1px solid #d6e9c6;
+    }
+</style>
+<div class="well" style="width: 90%; margin: auto; padding:40px!important">
+    <div class="row show-grid">
+        <div class="col-md-12 text-center">
+            <h6 style="width:50%; margin:auto">
+                (Proqramin qurulduğu qurumun adı) Qazax rayon icra hakimiyyəti başçısının aparatıSənədlərlə və vətəndaşların müraciətləri ilə iş şöbəsi
+            </h6>
+        </div>
+        <div class="col-md-3">
+            @Model.docRegNo
+        </div>
+        <div class="col-md-6 grid-description text-center">
+            QEYDİYYAT-NƏZARƏT VƏRƏQƏSİ
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-5 grid-description">
+            Müraciət edən:
+        </div>
+        <div class="col-md-7">
+            @Model.surname @Model.name @Model.middlename
+        </div>
+        <div class="col-md-5 grid-description">
+            Ünvan və ya işlədiyi yer,vəzifəsi, telefonu:
+        </div>
+        <div class="col-md-7">
+            @Model.city, @Model.town
+        </div>
+        <div class="col-md-2 grid-description">
+            Daxilolma tarixi:
+        </div>
+        <div class="col-md-2">
+            @Model.docRegDate
+        </div>
+        <div class="col-md-3 grid-description">
+            Qeydiyyat nömrəsi:
+        </div>
+        <div class="col-md-3">
+            @Model.docRegNo
+        </div>
+        <div class="col-md-1 grid-description">
+            Vərəq:
+        </div>
+        <div class="col-md-1">
+            @Model.pageCount
+        </div>
+        <div class="col-md-2 grid-description">
+            Müraciətin forması:
+        </div>
+        <div class="col-md-2">
+            @Model.appealType
+        </div>
+        <div class="col-md-3 grid-description text-danger">
+            Daxilolma yolları:
+        </div>
+        <div class="col-md-3 text-danger">
+        </div>
+        <div class="col-md-1 grid-description">
+            Növü:
+        </div>
+        <div class="col-md-1">
+            @Model.docType
+        </div>
+        <div class="col-md-2 grid-description text-danger">
+            Kimə ünvanlanıb:
+        </div>
+        <div class="col-md-10 text-danger">
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-2 grid-description text-danger">
+            Cinsi:
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3 grid-description text-danger">
+            Sosial vəziyyəti:
+        </div>
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2 grid-description text-danger">
+            Milliyyəti:
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3 grid-description text-danger">
+            Kateqoriya:
+        </div>
+        <div class="col-md-5">
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12 grid-description text-center">
+            ƏVVƏLKİ MÜRACİƏTLƏR
+        </div>
+        <div class="col-md-2 grid-description">
+            Daxilolma tarixi
+        </div>
+        <div class="col-md-2 grid-description">
+            Qeydiyyat nömrəsi
+        </div>
+        <div class="col-md-2 grid-description">
+            Nəzarətlə baxılmışdır
+        </div>
+        <div class="col-md-6 grid-description">
+            Məzmun
+        </div>
+
+        @*@foreach (var item in collection)
+            {
+                <div class="col-md-2">
+                    __
+                </div>
+                <div class="col-md-2">
+                    __
+                </div>
+                <div class="col-md-2">
+                    __
+                </div>
+                <div class="col-md-6">
+                    __
+                </div>
+            }*@
+
+    </div>
+    <div class="row show-grid text-danger">
+        <div class="col-md-12 grid-description text-center">
+            MÜŞAYİƏT MƏKTUBU
+        </div>
+
+        <div class="col-md-2 grid-description">
+            Təşkilat:
+        </div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-2 grid-description">
+            Tarix:
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2 grid-description">
+            Nömrəsi:
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-2 grid-description">
+            Müəllifi:
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-2 grid-description">
+        </div>
+    </div>
+    <div class="row show-grid">
+        <div class="col-md-12 grid-description text-center">
+            QISA MƏZMUNU
+        </div>
+        <div class="col-md-12">
+            @Html.Raw(Model.docContent)
+        </div>
+        <div class="col-md-2 grid-description">
+            Tematika:
+        </div>
+        <div class="col-md-10">
+            @Model.tematika
+        </div>
+    </div>
+    <div class="row show-grid text-danger">
+        <div class="col-md-12 grid-description">
+            KİMƏ GÖNDƏRİLİB
+        </div>
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2 grid-description">
+        </div>
+    </div>
+    <div class="row show-grid text-danger">
+        <div class="col-md-12 grid-description text-center">
+            DƏRKƏNAR
+        </div>
+        @*@foreach (var item in collection)
+            {
+                <div class="col-md-2">
+                    __
+                </div>
+                <div class="col-md-3">
+                    __
+                </div>
+                <div class="col-md-2">
+                    __
+                </div>
+                <div class="col-md-3">
+                    __
+                </div>
+                <div class="col-md-2 grid-description">
+                    __
+                </div>
+            }*@
+    </div>
+    <div class="row show-grid text-danger">
+        <div class="col-md-12 grid-description text-center">
+            CAVAB VƏ YA XİDMƏTİ QEYDLƏR
+        </div>
+        <div class="col-md-2 grid-description">
+            Daxilolma tarixi
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-3 grid-description">
+            Qeydiyyat №
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-2 grid-description">
+            Arayışın mətni
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-3 grid-description">
+            Arayış verən orqan
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-2 grid-description">
+            İcra olunub
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-3 grid-description">
+            İcraçı
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row show-grid text-danger">
+        <div class="col-md-12 grid-description text-center">
+            Arxiv
+        </div>
+        <div class="col-md-1 grid-description">
+            İş:
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-1 grid-description">
+            Qovluq:
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-1 grid-description">
+            Vərəq:
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-1 grid-description">
+            Kim tikib:
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-2 grid-description">
+            Tikilmə tarixi:
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+    <ol class="list-group">
+        @if (ViewBag.AttachFileList != null)
+        {
+            foreach (var attachfile in ViewBag.AttachFileList)
+            {
+                <li><a href="#">@attachfile.dfTitleDesc</a></li>
+            }
+        }
+
+    </ol>
+</div>

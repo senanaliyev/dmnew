@@ -1,0 +1,71 @@
+﻿@model IDM.DTO.DocumentFilesDTO
+<div class="widget-body">
+    <fieldset>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="company">Sənədin adı</label>
+                @Html.Hidden("dfGUID", (string)ViewBag.UnID, new { @class = "form-control" })
+                @Html.TextBox("dfTitle", "", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-3">
+                <label for="company">Sənədin növü</label>
+                @Html.DropDownList("attFileTypeID", new SelectList(ViewBag.AttachFileTypes, "id", "title"), new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-3">
+                <label for="company">Vərəq sayı</label>
+                @Html.TextBox("dfPageCount", "", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-3">
+                <label for="company">Sənədi seç </label>
+                <input type="file" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="company">Sənədin məzmunu</label>
+                @Html.TextArea("dfContent", new { @class = "form-control" })
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="btnAttachFile">
+            <i class="fa fa-paperclip"></i>
+            Sənədi yüklə
+        </button>
+    </fieldset>
+</div>
+<script>
+    $(document).ready(function () {
+
+
+        var oTable = $("#attachTable").DataTable({
+            destroy: true,
+            searching: false,
+            paging: false,
+            "ajax": {
+                "url": "/InternalDoc/GetAttachedFiles?str=" + $("#dfGUID").val(),
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "dfTitle", "autoWidth": true },
+                { "data": "dfGUID", "autoWidth": true },
+                {
+                    "data": "dfID", "width": "50px", "render": function (data) {
+                        return '<a href="/InternalDoc/Delete/' + data + '"><i class="fa fa-trash-o"></i></a>';
+                    }
+                }
+            ]
+        });
+
+        $("#btnAttachFile").click(function () {
+            var data = $("#myform").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/InternalDoc/SaveAttachment",
+                data: data,
+                success: function (response) {
+                    oTable.ajax.reload();
+                }
+            });
+        });
+    });
+</script>

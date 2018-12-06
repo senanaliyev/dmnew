@@ -1,0 +1,74 @@
+﻿@model IDM.DTO.Custom_DocGetList_DTO
+@using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data", @class = "smart-form client-form", autocomplete = "off" }))
+{
+    <ul id="myTab1" class="nav nav-tabs bordered">
+        <li class="active">
+            <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-search"></i> Axtar</a>
+        </li>
+    </ul>
+
+    <div id="myTabContent1" class="tab-content padding-10">
+        <div class="tab-pane fade in active" id="s1">
+            <fieldset>
+                <section>
+                    <label class="label">Sənəd nömrəsi</label>
+                    <label class="input">
+                        <i class="icon-append fa fa-search"></i>
+                        @Html.TextBoxFor(m => m.DocRegNo, "", new { @placeholder = "Sənədin nömrəsini daxil edin" })
+                        @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+                    </label>
+                </section>
+                <section>
+                    <table class="table" id="searchResultTable">
+                        <thead>
+                            <tr>
+                                <th>Sənəd NO</th>
+                                <th>Tarix</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </section>
+            </fieldset>
+        </div>
+
+    </div>
+    <footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+    </footer>
+}
+<script>
+    $("#DocRegNo").on('input', function () {
+        if ($("#DocRegNo").val()) {
+            var oTable = $("#searchResultTable").DataTable({
+                destroy: true,
+                searching: false,
+                "ajax": {
+                    "url": "/InternalDoc/SearchDocument?docregno=" + $("#DocRegNo").val(),
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": "DocRegNo", "width": "50px", "render": function (data, type, row, meta) {
+                            return '<a href="#" regNo="' + row.DocRegNo + '" regDate="' + row.DocRegDate + '"  class="sel">' + row.DocRegNo + '</a>';
+                        }
+                    },
+                    {
+                        "data": "DocRegDate", "width": "50px", "render": function (data) {
+                         return '<a href="#" id="' + data + '" class="sel">' + data + '</a>';
+                     }
+                 }
+                ]
+            });
+        }
+    });
+
+    $('#searchResultTable tbody').on('click', 'tr a.sel', function () {
+        $("#relatedDocNo").val($(this).attr('regNo'));
+        $("#relatedDocNospan").text($(this).attr('regNo'));
+        $("#relatedDocRegDate").val($(this).attr('regDate'));
+        $("#relatedDocRegDatespan").text($(this).attr('regDate'));
+        $("#myModalSearch").modal("hide");
+    });
+</script>

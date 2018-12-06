@@ -1,0 +1,50 @@
+﻿@model IDM.DTO.DocumentDTO
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div class="jarviswidget" id="wid-id-2">
+        <header>
+            <span class="widget-icon"> <i class="glyphicon glyphicon-file"></i> </span>
+        </header>
+
+        <!-- widget div-->
+        <!-- widget content -->
+        <div class="widget-body">
+
+            <fieldset>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="company">Sənədin nömrəsi </label>
+                        @Html.TextBoxFor(m => m.docRegNo, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="company">Sənədin tarixi</label>
+                        @Html.TextBoxFor(m => m.docRegDate, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="company">Sənədin növü</label>
+                        @Html.DropDownListFor(m => m.docType, new SelectList(ViewBag.DocTypes, "id", "title"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="company">Məzmun</label>
+                        @Html.TextAreaFor(m => m.docContent, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="company">Qeyd</label>
+                        @Html.TextAreaFor(m => m.docNote, new { @class = "form-control" })
+
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <!-- end widget content -->
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+<script>
+    $("#docRegNo").mask("99-99-99-999");
+    $("#docRegDate").datetimepicker();
+    $("#doc_selfDate").datetimepicker();
+
+</script>

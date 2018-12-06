@@ -1,0 +1,74 @@
+﻿@model IDM.DTO.ExtendedSearch_DTO
+<div class="row">
+    <div class="form-group col-md-6">
+        <label class="company">Daxil olan sənədin nömrəsi</label>
+        @Html.TextBoxFor(m => m.relatedDocNo, "", new { @class = "form-control search" })
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6">
+        <label class="company">İdarə</label>
+        @Html.DropDownListFor(m => m.officeID, new SelectList(ViewBag.Office, "id", "title"), "Seçin", new { @class = "form-control search" })
+    </div>
+    <div class="form-group col-md-6">
+        <label class="company">Təşkilat</label>
+        @Html.DropDownListFor(m => m.organID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control search" })
+    </div>
+</div>
+<div class="row"></div>
+<div class="row"></div>
+
+<script>
+    $("#officeID").change(function () {
+        if ($("#officeID").val() > 0) {
+            $("#organID").prop("disabled", false);
+            $.get("/ServDoc/FillOrganizations", { id: $("#officeID").val() }, function (data) {
+                $("#organID").empty();
+                $("#organID").append("<option value=''>Seçin</option>");
+                $.each(data, function (index, row) {
+                    $("#organID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                });
+            });
+        }
+        else {
+            $("#organID").empty();
+            $("#organID").prop("disabled", true);
+        }
+    });
+
+    $(".search").on("change keyup", function () {
+        $.ajax({
+            type: 'GET',
+            url: '/Search/SearchDocument',
+            data: $("#myform").serialize(),
+            dataType: 'json',
+            success: function (json) {
+
+                $('#searchResultTable').DataTable({
+                    destroy: true,
+                    data: json,
+                    searching: true,
+                    "columns": [
+                        {
+                            "data": "docRegNo"
+                        },
+                        {
+                            "data": "docRegDate"
+                        },
+                        {
+                            "data": "docFinishDate"
+                        },
+                        {
+                            "data": "dcontypeTitle"
+                        },
+                        {
+                            "data": "doctypeTitle"
+                        }
+                    ]
+                });
+            }
+        });
+    });
+
+</script>
+

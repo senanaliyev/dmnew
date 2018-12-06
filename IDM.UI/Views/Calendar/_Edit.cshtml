@@ -1,0 +1,68 @@
+﻿@model IDM.DTO.Calendar_DTO
+@*<div class="alert alert-warning fade in">
+        <i class="fa-fw fa fa-warning"></i>
+        <strong></strong> @Html.ValidationMessageFor(m => m.cal_title)
+    </div>*@
+<div class="smart-form client-form">
+    <fieldset>
+        <section>
+            <label class="input">
+                <i class="icon-append fa fa-tasks"></i>
+                @Html.HiddenFor(m => m.id)
+                @Html.TextBoxFor(m => m.cal_title, "", new { @placeholder = "Başlığı daxil edin" })
+                @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+            </label>
+        </section>
+        <section>
+            <label class="input">
+                <i class="icon-append fa fa-calendar"></i>
+                @Html.TextBoxFor(m => m.cal_date, "", new { @placeholder = "Başlanğıc tarixi seçin" })
+                @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+            </label>
+        </section>
+        <section>
+            <label class="input">
+                <i class="icon-append fa fa-calendar"></i>
+                @Html.TextBoxFor(m => m.cal_enddate, "", new { @placeholder = "Bitmə tarixini seçin" })
+                @*<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>*@
+            </label>
+        </section>
+    </fieldset>
+    <footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+        <button type="submit" id="btnSaveRecord" class="btn btn-primary">Yaddaşa ver</button>
+    </footer>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#cal_date").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#cal_enddate").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    })
+    $("#btnSaveRecord").click(function () {
+        var data = new FormData();
+        data.append("id", $("#id").val());
+        data.append("cal_title", $("#cal_title").val());
+        data.append("cal_date", $("#cal_date").val());
+        data.append("cal_enddate", $("#cal_enddate").val());
+        $.ajax({
+            type: "POST",
+            url: "/Calendar/SaveChanges",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                if (response.success) {
+                    loadTable();
+                    $("#myTableModal").modal('hide');
+                    alert(response.mesaj);
+                } else {
+                    alert(response.mesaj);
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,12 @@
+﻿@if (ViewBag.DocumentAbout != null)
+{
+    <ul class="list-group">
+        <li class="col-md-3 list-group-item"><p>@ViewBag.DocumentAbout.docRegNo</p></li>
+        <li class="col-md-3 list-group-item"><p>@ViewBag.DocumentAbout.docRegDate</p></li>
+        <li class="col-md-3 list-group-item"><p>@ViewBag.DocumentAbout.docContent</p></li>
+        <li class="col-md-3 list-group-item">
+            <a href="#" onclick="loadRegDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), ViewBag.DocumentAbout.docContentType)', @ViewBag.DocumentAbout.docID)" class="btn btn-default"><i class="fa fa-eye"></i></a>
+        </li>
+    </ul>
+}
+

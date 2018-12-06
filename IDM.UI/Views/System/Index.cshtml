@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "Cədvəllər";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="jarviswidget" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+            <header>
+                <ul class="nav nav-tabs pull-left in">
+                    <li class="active">
+                        <a data-toggle="tab" href="#hr1"> <i class="fa fa-fw fa-lg fa-keyboard-o"></i> <span class="hidden-mobile hidden-tablet"> @ViewBag.Title </span> </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-list-ul"></i> Cədvəli seçin<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" onclick='selectTable("tbl_Position", "Pozisiyalar")' class="link"> <i class="fa fa-angle-right"></i> Pozisiyalar</a>
+                                <a href="#" onclick='selectTable("tbl_Tematika", "Tematika")' class="link"> <i class="fa fa-angle-right"></i> Tematika</a>
+                                <a href="#" onclick='selectTable("tbl_Office", "İdarə")' class="link"> <i class="fa fa-angle-right"></i> İdarə</a>
+                                <a href="#" onclick='selectTable("tbl_Organization", "Təşkilat")' class="link"> <i class="fa fa-angle-right"></i> Təşkilat</a>
+                                <a href="#" onclick='selectTable("tbl_ActionType", "İcra növü")' class="link"> <i class="fa fa-angle-right"></i> İcra növü</a>
+                                <a href="#" onclick='selectTable("tbl_AppealType", "Müraciət forması")' class="link"> <i class="fa fa-angle-right"></i> Müraciət forması</a>
+                                <a href="#" onclick='selectTable("tbl_ContactType", "Təkrar/İlkin")' class="link"> <i class="fa fa-angle-right"></i> Təkrar/İlkin</a>
+                                <a href="#" onclick='selectTable("tbl_DocConTypeOperation", "Əməliyyatlar")' class="link"> <i class="fa fa-angle-right"></i> Əməliyyatlar</a>
+                                <a href="#" onclick='selectTable("tbl_OperationResponse", "Əməliyyat cavabları")' class="link"> <i class="fa fa-angle-right"></i> Əməliyyat cavabları</a>
+                                <a href="#" onclick='selectTable("tbl_DocType", "Müraciət növü")' class="link"> <i class="fa fa-angle-right"></i> Müraciət növü</a>
+                                <a href="#" onclick='selectTable("tbl_Role", "Rollar")' class="link"> <i class="fa fa-angle-right"></i> Rollar</a>
+                                <a href="#" onclick='selectTable("tbl_AttachFile", "Sənədlər")' class="link"> <i class="fa fa-angle-right"></i> Sənədlər</a>
+                                <a href="#" onclick='selectTable("tbl_Gender", "Cinsi")' class="link"> <i class="fa fa-angle-right"></i> Cins</a>
+                                <a href="#" onclick='selectTable("tbl_SocialStatus", "Sosial vəziyyət")' class="link"> <i class="fa fa-angle-right"></i> Sosial vəziyyət</a>
+                                <a href="#" onclick='selectTable("tbl_Category", "Kategoriya")' class="link"> <i class="fa fa-angle-right"></i> Kategoriya </a>
+                                <a href="#" onclick='selectTable("tbl_TemplateText", "Şablon mətnlər")' class="link"> <i class="fa fa-angle-right"></i> Şablon mətnlər </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </header>
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="hr1">
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li>
+                                    <a href="#s1" data-toggle="tab" id="s1tab"></a>
+                                </li>
+                                <li class="dropdown pull-right">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-gear"></i> Əməliyyatlar <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#" class="link" data-toggle="modal" data-target="#myTableModal" onclick="AddRecord()"> <i class="fa fa-plus"></i> Yeni sətir əlavə et</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div id="myTabContent1" class="tab-content">
+                                <div class="tab-pane fade in active" id="s1">
+                                    <hr />
+                                    <div class="table-responsive">
+                                        <table id="dt_basic" class="table table-bordered table-striped table-condensed table-hover smart-form">
+                                            <thead>
+                                                <tr>
+                                                    <th>Kod</th>
+                                                    <th>Başlıq</th>
+                                                    <th width='10%'></th>
+                                                    <th width='10%'></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="myTabContent2" class="tab-content" style="display:none">
+                                <div class="tab-pane fade in active" id="s1">
+                                    <hr />
+                                    <div class="table-responsive">
+                                        <table id="dt_basic_2" class="table table-bordered table-striped table-condensed table-hover smart-form">
+                                            <thead>
+                                                <tr>
+                                                    <th>Kod</th>
+                                                    <th>Başlıq</th>
+                                                    <th>Status</th>
+                                                    <th width='10%'></th>
+                                                    <th width='10%'></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="modal fade" id="myTableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-color-blue txt-color-white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="modalTitle"></h4>
+            </div>
+            <div class="modal-body" id="myTableModalBody">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var selTableName;
+    var selTableTitle;
+    var selectTable = function (tablename, tabletitle) {
+        selTableName = tablename;
+        selTableTitle = tabletitle;
+        $("#s1tab").empty();
+        $("#s1tab").append(selTableTitle);
+        if (tablename == "tbl_Position") {
+            $("#myTabContent2").show()
+            $("#myTabContent1").hide()
+        } else {
+            $("#myTabContent1").show()
+            $("#myTabContent2").hide()
+        }
+        loadTable(tablename);
+    };
+
+    var loadTable = function () {
+        if (selTableName == "tbl_Position") {
+            $("#dt_basic_2").DataTable({
+                "destroy": true,
+                "bDestroy": true,
+                "searching": true,
+                "paging": true,
+                "ajax": {
+                    "url": "/System/GetTableRows?str=" + selTableName,
+                    "type": "GET",
+                    "datatype": "json",
+                },
+                "columns": [
+                    { "data": "code" },
+                    { "data": "title" },
+                    { "data": "statusDesc" },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#"  id="' + data + '" class="edit"><i class="fa fa-edit"></i></a>';
+                        }
+                    },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                        }
+                    }
+                ]
+            })
+        } else {
+            $("#dt_basic").DataTable({
+                "destroy": true,
+                "bDestroy": true,
+                "searching": true,
+                "paging": true,
+                "ajax": {
+                    "url": "/System/GetTableRows?str=" + selTableName,
+                    "type": "GET",
+                    "datatype": "json",
+                },
+                "columns": [
+                    { "data": "code" },
+                    { "data": "title" },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#"  id="' + data + '" class="edit"><i class="fa fa-edit"></i></a>';
+                        }
+                    },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                        }
+                    }
+                ]
+            })
+        }
+    }
+
+    var AddRecord = function () {
+        var mymodal = $('#myTableModal');
+        mymodal.find('.modal-title').text(selTableTitle);
+        var url = "/System/Create";
+        $("#position_status").hide();
+        $("#myTableModalBody").load(url, function () {
+            $("#myTableModal").show();
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
+        });
+
+    };
+    var EditRecord = function (table, id) {
+        var mymodal = $('#myTableModal');
+        mymodal.find('.modal-title').text(selTableTitle);
+        var url = "/System/Edit";
+        $("#position_status").hide();
+        $("#myTableModalBody").load(url, function () {
+            $("#myTableModal").show();
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
+        });
+    };
+
+    $('#dt_basic tbody').on('click', 'tr a.edit', function () {
+        var mymodal = $('#myTableModal');
+        mymodal.find('.modal-title').text(selTableTitle);
+        var url = "/System/Edit?tableName=" + selTableName + "&id=" + $(this).attr('id');
+        $("#position_status").hide();
+        $("#myTableModalBody").load(url, function () {
+            $("#myTableModal").modal("show");
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
+        });
+
+    });
+
+    $('#dt_basic_2 tbody').on('click', 'tr a.edit', function () {
+        var mymodal = $('#myTableModal');
+        mymodal.find('.modal-title').text(selTableTitle);
+        var url = "/System/Edit?tableName=" + selTableName + "&id=" + $(this).attr('id');
+        $("#position_status").hide();
+        $("#myTableModalBody").load(url, function () {
+            $("#myTableModal").modal("show");
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
+        });
+
+    });
+</script>

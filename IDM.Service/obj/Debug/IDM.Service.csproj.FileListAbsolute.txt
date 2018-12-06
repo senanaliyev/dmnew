@@ -1,0 +1,86 @@
+C:\Projects\IUM\IUM.Service\bin\Debug\IUM.Service.dll
+C:\Projects\IUM\IUM.Service\bin\Debug\IUM.Service.pdb
+C:\Projects\IUM\IUM.Service\bin\Debug\IUM.DTO.dll
+C:\Projects\IUM\IUM.Service\bin\Debug\IUM.Repository.dll
+C:\Projects\IUM\IUM.Service\bin\Debug\IUM.DTO.pdb
+C:\Projects\IUM\IUM.Service\bin\Debug\IUM.Repository.pdb
+C:\Projects\IUM\IUM.Service\obj\Debug\IDM.Service.csprojResolveAssemblyReference.cache
+C:\Projects\IUM\IUM.Service\obj\Debug\IDM.Service.csproj.CoreCompileInputs.cache
+C:\Projects\IUM\IUM.Service\obj\Debug\IUM.Service.dll
+C:\Projects\IUM\IUM.Service\obj\Debug\IUM.Service.pdb
+C:\Projects\IUM\IDM.Service\obj\Debug\IDM.Service.csprojResolveAssemblyReference.cache
+C:\Projects\IUM\IDM.Service\obj\Debug\IDM.Service.csproj.CoreCompileInputs.cache
+C:\Projects\IUM\IDM.Service\obj\Debug\IUM.Service.dll
+C:\Projects\IUM\IDM.Service\obj\Debug\IUM.Service.pdb
+C:\Projects\IUM\IDM.Service\bin\Debug\IUM.Service.dll
+C:\Projects\IUM\IDM.Service\bin\Debug\IUM.Service.pdb
+C:\Projects\IUM\IDM.Service\bin\Debug\IUM.DTO.dll
+C:\Projects\IUM\IDM.Service\bin\Debug\IUM.Repository.dll
+C:\Projects\IUM\IDM.Service\bin\Debug\IUM.DTO.pdb
+C:\Projects\IUM\IDM.Service\bin\Debug\IUM.Repository.pdb
+C:\Projects\IDM\IDM.Service\obj\Debug\IDM.Service.csproj.CoreCompileInputs.cache
+C:\Projects\IDM\IDM.Service\bin\Debug\IDM.Service.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\IDM.Service.pdb
+C:\Projects\IDM\IDM.Service\bin\Debug\IDM.DTO.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\IDM.Repository.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\IDM.DTO.pdb
+C:\Projects\IDM\IDM.Service\bin\Debug\IDM.Repository.pdb
+C:\Projects\IDM\IDM.Service\obj\Debug\IDM.Service.dll
+C:\Projects\IDM\IDM.Service\obj\Debug\IDM.Service.pdb
+C:\Projects\IDM\IDM.Service\obj\Debug\IDM.Service.csprojAssemblyReference.cache
+C:\Projects\IDM\IDM.Service\obj\Debug\IDM.Service.csproj.CopyComplete
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.Mvc.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.Razor.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.WebPages.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.Mvc.xml
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.Razor.xml
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.WebPages.xml
+C:\Projects\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\IDM.Service.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\IDM.Service.pdb
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\IDM.DTO.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\IDM.Repository.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.Mvc.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.Razor.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.WebPages.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\IDM.DTO.pdb
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\IDM.Repository.pdb
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.Mvc.xml
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.Razor.xml
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.WebPages.xml
+C:\Users\Integration\Desktop\IDM\IDM.Service\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Integration\Desktop\IDM\IDM.Service\obj\Debug\IDM.Service.csprojAssemblyReference.cache
+C:\Users\Integration\Desktop\IDM\IDM.Service\obj\Debug\IDM.Service.csproj.CoreCompileInputs.cache
+C:\Users\Integration\Desktop\IDM\IDM.Service\obj\Debug\IDM.Service.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM\IDM.Service\obj\Debug\IDM.Service.dll
+C:\Users\Integration\Desktop\IDM\IDM.Service\obj\Debug\IDM.Service.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\IDM.Service.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\IDM.Service.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\IDM.DTO.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\IDM.Repository.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.Mvc.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.Razor.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.WebPages.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\IDM.DTO.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\IDM.Repository.pdb
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.Mvc.xml
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.Razor.xml
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.WebPages.xml
+C:\Users\Integration\Desktop\IDM main\IDM.Service\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Integration\Desktop\IDM main\IDM.Service\obj\Debug\IDM.Service.csprojAssemblyReference.cache
+C:\Users\Integration\Desktop\IDM main\IDM.Service\obj\Debug\IDM.Service.csproj.CoreCompileInputs.cache
+C:\Users\Integration\Desktop\IDM main\IDM.Service\obj\Debug\IDM.Service.csproj.CopyComplete
+C:\Users\Integration\Desktop\IDM main\IDM.Service\obj\Debug\IDM.Service.dll
+C:\Users\Integration\Desktop\IDM main\IDM.Service\obj\Debug\IDM.Service.pdb

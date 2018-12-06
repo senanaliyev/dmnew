@@ -1,0 +1,45 @@
+﻿@model IEnumerable<IDM.DTO.Report.rpt_daxilolansened_DTO>
+<div class="table-responsive">
+    <table id="dt_basic" class="table table-bordered table-striped table-condensed table-hover smart-form">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Daxil olma nömrəsi</th>
+                <th>Daxil olma tarixi</th>
+                <th>Aidiyyatı üzrə göndərib</th>
+                <th>Haradan və ya kimdən daxil olmuşdur</th>
+                <th>Sənədi göndərən təşkilatdan çıxış No-si</th>
+                <th>Sənədi göndərən təşkilatdan çıxış tarixi</th>
+                <th>Daxil olan sənədin qısa məzmunu</th>
+                <th>İcraçı</th>
+                <th>İcra müddəti</th>
+                <th>Sənədin layihə nömrəsi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 0;
+            }
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>@item.docRegNo</td>
+                    <td>@item.docRegDate</td>
+                    <td></td>
+                    <td>@item.DocCreatedBy</td>
+                    <td></td>
+                    <td></td>
+                    <td>@Html.Raw(item.docContent)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $("#dt_basic").DataTable();
+</script>

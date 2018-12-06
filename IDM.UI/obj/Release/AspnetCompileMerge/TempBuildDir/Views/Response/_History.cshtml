@@ -1,0 +1,24 @@
+﻿@model IEnumerable<IDM.DTO.OperationsHistory_DTO>
+<table class="table table-bordered table-striped responsive-utilities">
+    <thead>
+        <tr>
+            <th>Sənəd NO</th>
+            <th>Kimdən</th>
+            <th>Kimə</th>
+            <th>Əməliyyat</th>
+            <th>Tarix</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th><code>@item.docRegNo</code></th>
+                <td class="is-hidden">@item.FromUser</td>
+                <td class="is-hidden">@item.ToUser</td>
+                <td class="is-hidden">@item.Operation</td>
+                <td class="is-hidden">@item.doDate</td>
+            </tr>
+        }
+    </tbody>
+</table>

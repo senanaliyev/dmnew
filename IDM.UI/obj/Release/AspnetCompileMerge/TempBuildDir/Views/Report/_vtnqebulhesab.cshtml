@@ -1,0 +1,37 @@
+﻿@model IEnumerable<IDM.DTO.Report.rpt_ctzreports_DTO>
+<div class="table-responsive">
+    <table id="dt_basic" class="table table-bordered table-striped table-condensed table-hover smart-form">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Mövzu</th>
+                <th>Vətəndaşın adı</th>
+                <th>Tarix</th>
+                <th>Qəbul edən şəxs</th>
+                <th>Qəbul edən struktur</th>
+                <th>Müraciətin həlli</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 0;
+            }
+            @foreach (var item in Model)
+            {
+                i++;
+            <tr>
+                <td>@i</td>
+                <td>@Html.Raw(item.docContent)</td>
+                <td></td>
+                <td>@item.docRegDate</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $("#dt_basic").DataTable();
+</script>

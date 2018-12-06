@@ -1,0 +1,36 @@
+﻿@model IEnumerable<IDM.DTO.Custom_DocGetList_DTO>
+
+@{
+    ViewBag.Title = "Ətraflı axtarış";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">
+    <article class="col-sm-12 col-md-12 col-lg-12">
+        <div class="jarviswidget" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+            <header>
+                <ul class="nav nav-tabs pull-left in">
+                    <li class="active" id="homesearchtab">
+                        <a data-toggle="tab" href="#searchtab" id="hr2taba"> <i class="fa fa-lg fa-search"></i> Ətraflı axtarış</a>
+                    </li>
+                </ul>
+            </header>
+            <div>
+                <div class="jarviswidget-editbox">
+                </div>
+                <div class="widget-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="searchtab">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @Html.Action("Search", "Search")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>

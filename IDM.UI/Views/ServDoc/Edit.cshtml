@@ -1,0 +1,501 @@
+﻿@model IDM.DTO.Custom_DocServiceDTO
+@{
+    ViewBag.Title = "Xidməti sənəd [" + Model.docRegNo + "]";
+}
+<script src="~/MyJs/attachFileValidation.js"></script>
+<div class="alert alert-info alert-block">
+    <h4 class="alert-heading"><i class="fa-fw fa fa-edit"></i> @ViewBag.Title</h4>
+</div>
+@using (Html.BeginForm("Edit", "ServDoc", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="company">Sənədin nömrəsi</label>
+                        @Html.HiddenFor(m => m.docID)
+                        @Html.TextBoxFor(m => m.docRegNo, "", new { @class = "form-control", autocomplete = "off" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="company">Sənədin növü</label>
+                        @Html.DropDownListFor(m => m.docType, new SelectList(ViewBag.DocTypes, "id", "title"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin tarixi</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.docRegDate, "", new { @class = "form-control dateChange", autocomplete = "off" })
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin icra müddəti (iş günü)</label>
+                        @Html.TextBoxFor(m => m.docDayCount, "", new { @class = "form-control dateChange", autocomplete = "off" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin icrasının bitmə tarixi</label>
+                        @Html.HiddenFor(m => m.docFinishDate, new { @class = "form-control" })
+                        <div class="input-group">
+                            <span class="form-control" id="docFinishDatespan">@Model.docFinishDate</span>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Sənədin məzmunu</p>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.TextAreaFor(m => m.docContent, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Sənəd haqqında qeydlər</p>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.TextAreaFor(m => m.docNote, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin daxil olma nömrəsi</label>
+                        @Html.TextBoxFor(m => m.sdEntryNo, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Sənədin daxil olma tarixi</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.sdEntryDate, "", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Müraciət forması</label>
+                        @Html.DropDownListFor(m => m.appealTypeID, new SelectList(ViewBag.AppealType, "id", "title"), "Seçin", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="company">Kimə ünvanlanıb</label>
+                        @Html.DropDownListFor(m => m.userID, new SelectList(ViewBag.User, "usrID", "empFullName"), "Seçin", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Daxil olan sənədin nömrəsi</label>
+                        <div class="input-group input-group-md">
+                            <div class="addon-md">
+                                @Html.HiddenFor(m => m.relatedDocNo, new { @class = "form-control" })
+                                <span class="form-control" id="relatedDocNospan">@Model.relatedDocNo</span>
+                            </div>
+                            <span class="input-group-btn">
+                                <a href="#" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModalSearch" onclick="searchDocument()"> <i class="fa fa-search"></i></a>
+                            </span>
+                        </div>
+                        @*<p class="note" id="responseDocRegDate1"></p>*@
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Daxil olan sənədin tarixi</label>
+                        @Html.HiddenFor(m => m.relatedDocRegDate, new { @class = "form-control" })
+                        <div class="input-group">
+                            <span class="form-control" id="relatedDocRegDatespan">@Model.relatedDocRegDate</span>
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="company">İdarə</label>
+                        @Html.DropDownListFor(m => m.officeID, new SelectList(ViewBag.Office, "id", "title"), "Seçin", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="company">Təşkilat</label>
+                        @Html.DropDownListFor(m => m.organID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="company">Təkrar/ilkin (təkrardırsa əvvəlkə sənədin nömrəsi)</label>
+                        @Html.DropDownListFor(m => m.contactTypeID, new SelectList(ViewBag.ContactType, "id", "title"), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="company">Tematika</label>
+                        @Html.DropDownListFor(m => m.tematikaID, new SelectList(ViewBag.Tematika, "id", "title"), new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Sənədi göndərən şəxsin</p>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="label">Adı</label>
+                        @Html.TextBoxFor(m => m.senderName, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="label">Soyadı</label>
+                        @Html.TextBoxFor(m => m.senderSurname, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="label">Ata adı</label>
+                        @Html.TextBoxFor(m => m.senderMiddlename, "", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Göndərilmə ünvanı</p>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="company">Ölkə</label>
+                        @Html.DropDownListFor(m => m.countryID, new SelectList(ViewBag.Region, "id", "title"), "Ölkəni seçin", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="company">Şəhər/rayon</label>
+                        @Html.DropDownListFor(m => m.cityID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="company">Kənd/qəsəbə</label>
+                        @Html.DropDownListFor(m => m.townID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="company">Tam ünvan</label>
+                        @Html.TextBoxFor(m => m.adrFullAddress, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="company">FİN/VÖEN</label>
+                        @Html.TextBoxFor(m => m.adrFIN, "", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="well well-sm">
+                <p class="alert alert-warning">Elektron sənədlər</p>
+                <div class="col-md-12 text-align-right">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModalServAttachFile" onclick="AddFile()"> <i class="fa fa-plus"></i> Yeni sənəd </a>
+                    </div>
+                </div>
+                <table class="table" id="attachTable">
+                    <thead>
+                        <tr>
+                            <th>Sənədin adı</th>
+                            <th>Növü</th>
+                            <th>Vərəq sayı</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="form-actions">
+            <div class="form-group">
+                <button class="btn btn-danger btn-md">
+                    <i class="fa fa-save"></i>
+                    Yaddaşa ver
+                </button>
+            </div>
+        </div>
+    </footer>
+    <div class="modal fade" id="myModalServAttachFile" tabindex="-1" role="dialog" aria-labelledby="myModalServAttachFileLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-color-blue txt-color-white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalTitle"></h4>
+                </div>
+                <div class="modal-body" id="myModalBody">
+                    <div class="widget-body">
+                        <ul id="myTab1" class="nav nav-tabs bordered">
+                            <li class="active">
+                                <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-arrow-circle-right"></i> Əlavə olunan sənədin məlumatları</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent1" class="tab-content padding-10">
+                            <div class="tab-pane fade in active" id="s1">
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label for="company">Sənədin adı</label>
+                                        @Html.Hidden("dfGUID", (string)ViewBag.UnID, new { @class = "form-control" })
+                                        @Html.DropDownList("dfTitle", new SelectList(ViewBag.AttachDoc, "id", "title"), new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="company">Sənədin növü</label>
+                                        @Html.DropDownList("attFileTypeID", new SelectList(ViewBag.AttachFileTypes, "id", "title"), new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="company">Vərəq sayı</label>
+                                        @Html.TextBox("dfPageCount", "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="company">Sənədi seç </label>
+                                        @Html.TextBox("file", "", new { type = "file" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="company">Sənədin məzmunu</label>
+                                        @Html.TextArea("dfContent", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" id="btnAttachFile">Daxil et</a>
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Ləğv et</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalSearchLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-color-blue txt-color-white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalSearchTitle"></h4>
+                </div>
+                <div class="modal-body" id="myModalSearchBody">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(function () {
+        $("#docRegDate").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#sdEntryDate").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#docFinishDate").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    //$('#docDayCount').keyup(function () {
+    $('.dateChange').on("change keyup", function () {
+        if (( $('#docDayCount').val().length > 0) || $('#docDayCount').val()=="") {
+            $("#docFinishDate").val("");
+            $("#docFinishDatespan").text("");
+        }
+        $.ajax({
+            type: 'GET',
+            url: "/Document/CalculateEndDate",
+            datatype: JSON,
+            data: { 'date': $("#docRegDate").val(), 'daycount': $("#docDayCount").val() },
+            success: function (data) {
+                $("#docFinishDate").val(data.enddate);
+                $("#docFinishDatespan").text(data.enddate);
+            }
+        });
+    });
+
+    var searchDocument = function () {
+        var url = "/InternalDoc/Search";
+        var mymodal = $('#myModalSearch');
+        mymodal.find('.modal-title').text('Sənəd axtrışı');
+        $("#myModalSearchBody").load(url, function () {
+            $("#myModal").show();
+            //$('#usrName').trigger('focus')
+        });
+    };
+</script>
+<script>
+    $(document).ready(function () {
+        $.get("/ServDoc/FillCities", { id: @Model.countryID }, function (data) {
+            $("#cityID").append("<option value='0'>Seçin</option>");
+            $.each(data, function (index, row) {
+                $("#cityID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                $("#cityID").val(@Model.cityID);
+            });
+        });
+
+        $.get("/ServDoc/FillCities", { id: @Model.cityID }, function (data) {
+            $("#townID").append("<option value='0'>Seçin</option>");
+            $.each(data, function (index, row) {
+                $("#townID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                $("#townID").val(@Model.townID);
+            });
+        });
+
+        //--------begin new region selection------------------
+        $("#countryID").change(function () {
+            if ($("#countryID").val() > 0) {
+                $("#cityID").prop("disabled", false);
+                $.get("/ServDoc/FillCities", { id: $("#countryID").val() }, function (data) {
+                    $("#cityID").empty();
+                    $("#townID").empty();
+                    $("#cityID").append("<option value='0'>Seçin</option>");
+                    $.each(data, function (index, row) {
+                        $("#cityID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    });
+                });
+            }
+            else {
+                $("#cityID").empty();
+                $("#townID").empty();
+                $("#cityID").prop("disabled", true);
+                $("#townID").prop("disabled", true);
+            }
+        });
+
+        $("#cityID").change(function () {
+            if ($("#cityID").val() > 0) {
+                $("#townID").prop("disabled", false);
+                $.get("/ServDoc/FillCities", { id: $("#cityID").val() }, function (data) {
+                    $("#townID").empty();
+                    $("#townID").append("<option value='0'>Seçin</option>");
+                    $.each(data, function (index, row) {
+                        $("#townID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    });
+                });
+            }
+            else {
+                $("#townID").empty();
+                $("#townID").prop("disabled", true);
+            }
+        });
+        //--------end new region selection------------------
+
+        var FillSubNom = function () {
+            // $("#organID").prop("disabled", false);
+            $.get("/ServDoc/FillOrganizations", { id: $("#officeID").val() }, function (data) {
+                $("#organID").empty();
+                $.each(data, function (index, row) {
+                    $("#organID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    $("#organID").val(@Model.organID);
+                });
+            });
+        };
+
+        if($("#officeID").val()>0)
+        {
+            FillSubNom();
+        }
+        $("#organID").empty();
+        //$("#organID").prop("disabled", true);
+
+        $("#officeID").change(function () {
+            if ($("#officeID").val() > 0) {
+                FillSubNom();
+            }
+            else {
+                $("#organID").empty();
+                //$("#organID").prop("disabled", true);
+            }
+        });
+    });
+</script>
+<script>
+    var AddFile = function () {
+        //var url = "/InternalDoc/Attachment";
+        var mymodal = $('#myModalServAttachFile');
+        mymodal.find('.modal-title').text('Yeni sənəd əlavə et');
+        //$("#myModalBody").load(url, function () {
+        $("#myModalServAttachFile").show();
+        //});
+    };
+
+    $(document).ready(function () {
+        $('#docContent').summernote({
+            placeholder: 'Sənədin məzmununu daxil edin',
+            tabsize: 2,
+            height: 100
+        });
+        $('#docNote').summernote({
+            placeholder: 'Sənəd haqqında qeydlərinizi daxil edin',
+            tabsize: 2,
+            height: 100
+        });
+        $('#dfContent').summernote({
+            placeholder: 'Əlavə etdiyiniz sənəd haqqında qeydlərinizi daxil edin',
+            tabsize: 2,
+            height: 200
+        });
+        var oTable = $("#attachTable").DataTable({
+            destroy: true,
+            searching: false,
+            paging: false,
+            "ajax": {
+                "url": "/ServDoc/GetAttachedFilesByDocID?id=" + @Model.docID,
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                {
+                    "data": "dfTitleDesc", "render": function (data,type,row,meta) {
+                        return '<a href="/DocumentFiles/' + row.dfName + '" target="_blank">' + row.dfTitleDesc+'</a>';
+                    }
+                },
+                { "data": "attFileTypeTitle" },
+                { "data": "dfPageCount" },
+                {
+                    "data": "dfID", "width": "50px", "render": function (data) {
+                        return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                    }
+                }
+            ]
+        });
+
+        $('#attachTable tbody').on('click', 'tr a.delete', function () {
+            $.ajax({
+                type: "POST",
+                url: "/ServDoc/Delete",
+                data: { docid: $(this).attr('id') },
+                success: function (success) {
+                    oTable.ajax.reload();
+
+                }
+            });
+        });
+
+        $("#btnAttachFile").click(function () {
+            $('#myform').validate();
+            if ($('#myform').valid()){
+                var data = new FormData();
+                var file = $("#file").get(0).files;
+                data.append("Files", file[0]);
+                data.append("docID", @Model.docID);
+                data.append("dfTitle", $("#dfTitle").val());
+                data.append("attFileTypeID", $("#attFileTypeID").val());
+                data.append("dfPageCount", $("#dfPageCount").val());
+                data.append("dfContent", $("#dfContent").val());
+                $.ajax({
+                    type: "POST",
+                    url: "/ServDoc/SaveAttachmentByID",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (response) {
+                        $("#myModalServAttachFile").modal('hide');
+                        oTable.ajax.reload();
+                    }
+                });
+            }
+        });
+
+    });
+</script>
