@@ -3,6 +3,7 @@ using IDM.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,11 @@ namespace IDM.Service
             ctzDoc.AddInputParameters("@categoryID", entity.categoryID);
             ctzDoc.AddInputParameters("@genderID", entity.genderID);
             ctzDoc.AddInputParameters("@socialStatusID", entity.socialStatusID);
+            ctzDoc.AddInputParameters("@companyID", entity.companyID);
+            ctzDoc.AddInputParameters("@letterAuthor", entity.letterAuthor);
+            ctzDoc.AddInputParameters("@letterNo", entity.letterNo);
+            if (entity.letterDate == null) entity.letterDate = DateTime.Now.ToString("dd/MM/yyyy");
+            ctzDoc.AddInputParameters("@letterDate", DateTime.ParseExact(entity.letterDate, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture));
             return ctzDoc.IUD("sp_CitizenDocument_Insert", CommandType.StoredProcedure);
         }
 
@@ -60,6 +66,11 @@ namespace IDM.Service
             ctzDoc.AddInputParameters("@categoryID", entity.categoryID);
             ctzDoc.AddInputParameters("@genderID", entity.genderID);
             ctzDoc.AddInputParameters("@socialStatusID", entity.socialStatusID);
+            ctzDoc.AddInputParameters("@companyID", entity.companyID);
+            ctzDoc.AddInputParameters("@letterAuthor", entity.letterAuthor);
+            ctzDoc.AddInputParameters("@letterNo", entity.letterNo);
+            if (entity.letterDate == null) entity.letterDate = DateTime.Now.ToString("dd/MM/yyyy");
+            ctzDoc.AddInputParameters("@letterDate", DateTime.ParseExact(entity.letterDate, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture));
             return ctzDoc.IUD("sp_CitizenDocument_UpdateByDocID", CommandType.StoredProcedure);
         }
 
@@ -95,6 +106,10 @@ namespace IDM.Service
             doc.genderID= Convert.ToInt32(dt.Rows[0]["genderID"]);
             doc.socialStatusID= Convert.ToInt32(dt.Rows[0]["socialStatusID"]);
             doc.categoryID= Convert.ToInt32(dt.Rows[0]["categoryID"]);
+            doc.companyID = Convert.ToInt32(dt.Rows[0]["companyID"]);
+            doc.letterAuthor = dt.Rows[0]["letterAuthor"].ToString();
+            doc.letterNo = dt.Rows[0]["letterNo"].ToString();
+            doc.letterDate = Convert.ToDateTime(dt.Rows[0]["letterDate"]).ToString("dd/MM/yyyy");
             return doc;
         }
 
@@ -120,6 +135,10 @@ namespace IDM.Service
             doc.gender = dt.Rows[0]["gender"].ToString();
             doc.socialStatus = dt.Rows[0]["socialStatus"].ToString();
             doc.category = dt.Rows[0]["category"].ToString();
+            doc.letterAuthor = dt.Rows[0]["letterAuthor"].ToString();
+            doc.letterNo = dt.Rows[0]["letterNo"].ToString();
+            doc.letterDate = Convert.ToDateTime(dt.Rows[0]["letterDate"]).ToString("dd/MM/yyyy");
+            doc.companyName = dt.Rows[0]["companyName"].ToString();
             return doc;
         }
     }

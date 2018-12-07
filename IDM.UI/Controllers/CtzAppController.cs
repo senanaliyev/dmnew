@@ -23,6 +23,7 @@ namespace IDM.UI.Controllers
         Gender_Service genderServ = new Gender_Service();
         SocialStatus_Service socialStatusServ = new SocialStatus_Service();
         Category_Service categoryServ = new Category_Service();
+        Company_Service compServ = new Company_Service();
 
 
         public ActionResult RegViewDocument(long id)
@@ -71,6 +72,7 @@ namespace IDM.UI.Controllers
             ViewBag.Gender = genderServ.GetList();
             ViewBag.SocialStatus = socialStatusServ.GetList();
             ViewBag.Category = categoryServ.GetList();
+            ViewBag.Company = compServ.GetRows();
             //ViewBag.Employees = new SelectList((from e in emp.GetList()
             //                                    select new
             //                                    {
@@ -119,8 +121,8 @@ namespace IDM.UI.Controllers
                 opercode = optodocItem.opercode,
                 isActionConfirmed = 1,
                 doDate = DocEntity.docRegDate,
-                docDayCount=DocEntity.docDayCount,
-                docFinishDate=DocEntity.docFinishDate
+                docDayCount = DocEntity.docDayCount,
+                docFinishDate = DocEntity.docFinishDate
             });
 
             return RedirectToAction("Index", "Document");
@@ -140,6 +142,7 @@ namespace IDM.UI.Controllers
             ViewBag.Gender = genderServ.GetList();
             ViewBag.SocialStatus = socialStatusServ.GetList();
             ViewBag.Category = categoryServ.GetList();
+            ViewBag.Company = compServ.GetRows();
             return PartialView(ctzServ.GetDocumentByDocID(id));
         }
 
@@ -200,5 +203,17 @@ namespace IDM.UI.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetAuthorName(int? id)
+        {
+            if (id != null)
+            {
+                var data = compServ.GetSingleRecord((int)id);
+                if (data != null)
+                {
+                    return Json(new { success = true, author = data.director }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

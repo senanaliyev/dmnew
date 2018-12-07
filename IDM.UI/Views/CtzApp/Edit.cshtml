@@ -82,7 +82,7 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="company">Kimə ünvanlanıb</label>
-                        @Html.DropDownListFor(m => m.userID, new SelectList(ViewBag.User, "usrID", "empFullName"),"Seçin", new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.userID, new SelectList(ViewBag.User, "usrID", "empFullName"), "Seçin", new { @class = "form-control" })
                     </div>
                     <div class="form-group col-md-4">
                         <label class="company">Daxil olan sənədin nömrəsi</label>
@@ -105,10 +105,18 @@
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
+                    <div class="form-group col-md-4">
+                        <label class="company">Kimdən</label>
+                        <select id="fromCompanyOrPerson" class="form-control">
+                            <option value="0">Seçin</option>
+                            <option value="1">Şəxsdən</option>
+                            <option value="2">Təşkilatdan</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <br />
-            <div class="well well-sm">
+            <div id="fromPerson" class="well well-sm" hidden>
                 <p class="alert alert-warning">Müraciət edən şəxsin</p>
                 <div class="row">
                     <div class="form-group col-md-3">
@@ -176,6 +184,30 @@
                     <div class="form-group col-md-4">
                         <label for="company">Kategoriyası</label>
                         @Html.DropDownListFor(m => m.categoryID, new SelectList(ViewBag.Category, "id", "title"), "Seçin", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div id="fromCompany" class="well well-sm" hidden>
+                <p class="alert alert-warning">Müraciət edən təşkilat</p>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="company">Adı</label>
+                        @Html.DropDownListFor(m => m.companyID, new SelectList(ViewBag.Company, "id", "companyName"), "Seçin", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="company">Müəllifi</label>
+                        @Html.TextBoxFor(m => m.letterAuthor, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="company">Müraciət sənədinin nömrəsi</label>
+                        @Html.TextBoxFor(m => m.letterNo, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="company">Tarixi</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.letterDate, "", new { @class = "form-control", autocomplete = "off" })
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -280,11 +312,49 @@
     </div>
 }
 <script>
+    $("#fromCompanyOrPerson").change(function () {
+        var operation = parseInt($("#fromCompanyOrPerson").val());
+        switch (operation) {
+            case 1:
+                $("#fromCompany").hide();
+                $("#fromPerson").show();
+                break;
+            case 2:
+                $("#fromCompany").show();
+                $("#fromPerson").hide();
+                break;
+            default:
+                $("#fromCompany").hide();
+                $("#fromPerson").hide();
+                break;
+        }
+    })
+
+    $("#companyID").change(function () {
+        id = $("#companyID").val();
+        $.ajax({
+            url: "/CtzApp/GetAuthorName/" + id,
+            dataType: "json",
+            method: "get",
+            success: function (data) {
+                if (data.success) {
+                    $("#letterAuthor").val(data.author)
+                } else {
+                    alert("Xəta baş verdi")
+                }
+            }
+        })
+    })
+
     $(function () {
        $("#docRegDate").datepicker({
             dateFormat: 'dd/mm/yy'
         });
+
         $("#docFinishDate").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#letterDate").datepicker({
             dateFormat: 'dd/mm/yy'
         });
     });
@@ -460,5 +530,11 @@
             }
         });
 
+        var compId = $("#companyID").val();
+        if (compId == "") {
+            $("#fromCompanyOrPerson").val(1).change()
+        } else {
+            $("#fromCompanyOrPerson").val(2).change()
+        }
     });
 </script>

@@ -72,6 +72,7 @@
     <Compile Include="AssignmentDTO.cs" />
     <Compile Include="Calendar_DTO.cs" />
     <Compile Include="CitizenDoc_DTO.cs" />
+    <Compile Include="Company_DTO.cs" />
     <Compile Include="CtzRegFileDocument.cs" />
     <Compile Include="Custom_CtzDocument_DTO.cs" />
     <Compile Include="Custom_DocServiceDTO.cs" />
