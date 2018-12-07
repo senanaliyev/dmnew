@@ -20,6 +20,8 @@ namespace IDM.DTO
         public string docContent { get; set; }
         [AllowHtml]
         public string docNote { get; set; }
+        public long belongToDoc { get; set; }
+
         public bool docInCharge { get; set; }
 
         //----------------CitizenDoc_DTO

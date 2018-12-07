@@ -236,8 +236,7 @@
                             }
                             else {
                                 var url = "/General/" + action;
-                                $('#documentAbout').load("/Document/GetAboutDocument/" + getDocID);
-                                $("#").load()
+                                $('#documentAbout').load("/Document/GetAboutDocument/", { docID: getDocID });
                                 $("#myModalActionBody").load(url, { documid: getDocID, documtypeid: getDocTypeID, doid: getDoID, finishdate: finishDate, fromuser: fromUser }, function () {
                                     $("#myModalAction").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
                                     $("#myModalAction").modal('show');

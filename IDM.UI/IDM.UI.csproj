@@ -1342,6 +1342,7 @@
     <Content Include="Views\ServDoc\_RegViewDocument.cshtml" />
     <Content Include="Views\Document\_GetAboutDocument.cshtml" />
     <Content Include="Views\Document\_CreateFolder.cshtml" />
+    <Content Include="Views\OutDoc\_CreateAttachedDoc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

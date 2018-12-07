@@ -24,6 +24,20 @@ namespace IDM.UI.Controllers
         Region_Service regionServ = new Region_Service();
         OutDocToOrgan_Service ODTOServ = new OutDocToOrgan_Service();
 
+        public ActionResult CreateAttachedDoc(long docid)
+        {
+            ViewBag.DocTypes = docTypeServ.GetList();
+            ViewBag.Office = officeServ.GetList();
+            ViewBag.ContactType = conTypeServ.GetList();
+            ViewBag.AttachFileTypes = new AttachFileTypeService().GetList((int)Enums.ContentTypes.OutDoc);
+            ViewBag.UnID = Guid.NewGuid().ToString();
+            ViewBag.Region = regionServ.GetList(0);
+            ViewBag.Tematika = new Srv_Tematika().GetList();
+            ViewBag.AttachDoc = new AttachDoc().GetList();
+            ViewBag.DocID = docid;
+            return PartialView("_CreateAttachedDoc");
+        }
+
         public ActionResult RegViewDocument(long id)
         {
             var data = outDocServ.GetRegDocumentByDocID(id);
