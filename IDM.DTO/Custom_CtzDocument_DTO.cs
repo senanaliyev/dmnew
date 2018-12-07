@@ -37,6 +37,10 @@ namespace IDM.DTO
         public int genderID { get; set; }
         public int categoryID { get; set; }
         public int socialStatusID { get; set; }
+        public int companyID { get; set; }
+        public string letterNo { get; set; }
+        public string letterDate { get; set; }
+        public string letterAuthor { get; set; }
         public string fulladdress { get; set; }
         public string relatedDocNo { get; set; }
         public string relatedDocRegDate { get; set; }

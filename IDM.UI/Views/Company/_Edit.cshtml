@@ -1,0 +1,51 @@
+﻿@model IDM.DTO.Company_DTO
+<div class="smart-form client-form">
+    <fieldset>
+        <section>
+            <label class="input">
+                @Html.HiddenFor(m => m.id)
+                @Html.TextBoxFor(m => m.companyName, "", new { @placeholder = "Təşkilatın adını daxil edin" })
+            </label>
+        </section>
+        <section>
+            <label class="input">
+                @Html.TextBoxFor(m => m.director, "", new { @placeholder = "Rəhbəri daxil edin" })
+            </label>
+        </section>
+        <section>
+            <label class="input">
+                @Html.TextBoxFor(m => m.fulladdress, "", new { @placeholder = "Ünvanı daxil edin" })
+            </label>
+        </section>
+    </fieldset>
+    <footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ləğv et</button>
+        <button type="submit" id="btnSaveRecord" class="btn btn-primary">Yaddaşa ver</button>
+    </footer>
+</div>
+<script>
+    $("#btnSaveRecord").click(function () {
+        var data = new FormData();
+        data.append("id", $("#id").val());
+        data.append("companyName", $("#companyName").val());
+        data.append("director", $("#director").val());
+        data.append("fulladdress", $("#fulladdress").val());
+        $.ajax({
+            type: "POST",
+            url: "/Company/SaveChanges",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                if (response.success) {
+                    loadTable();
+                    $("#myTableModal").modal('hide');
+                    alert(response.mesaj);
+                } else {
+                    alert(response.mesaj);
+                }
+            }
+        });
+    });
+</script>
+

@@ -63,6 +63,7 @@
     <Compile Include="Calendar_Repository.cs" />
     <Compile Include="Category_Repository.cs" />
     <Compile Include="CitizenDoc_Repository.cs" />
+    <Compile Include="Company_Repository.cs" />
     <Compile Include="ContactTypeRepository.cs" />
     <Compile Include="CommonRepository.cs" />
     <Compile Include="Connect.cs" />

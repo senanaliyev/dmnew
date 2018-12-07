@@ -2,3 +2,7 @@
 .UsedInProject
 .packages
 .IDM.Entity
+.IDM.Service\bin
+.IDM.Service\obj
+.IDM.UI\bin
+.IDM.UI\obj

@@ -1208,6 +1208,7 @@
     <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CtzAppController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -1342,7 +1343,9 @@
     <Content Include="Views\ServDoc\_RegViewDocument.cshtml" />
     <Content Include="Views\Document\_GetAboutDocument.cshtml" />
     <Content Include="Views\Document\_CreateFolder.cshtml" />
-    <Content Include="Views\OutDoc\_CreateAttachedDoc.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Company\_Create.cshtml" />
+    <Content Include="Views\Company\_Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -46,6 +46,7 @@
     <Compile Include="AttachDoc.cs" />
     <Compile Include="AttachFileTypeService.cs" />
     <Compile Include="Category_Service.cs" />
+    <Compile Include="Company_Service.cs" />
     <Compile Include="Gender_Service.cs" />
     <Compile Include="rpt_Raporlar_Srv.cs" />
     <Compile Include="SocialStatus_Service.cs" />

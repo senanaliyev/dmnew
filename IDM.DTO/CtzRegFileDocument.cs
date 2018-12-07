@@ -34,6 +34,10 @@ namespace IDM.DTO
         public string gender { get; set; }
         public string socialStatus { get; set; }
         public string category { get; set; }
+        public string companyName { get; set; }
+        public string letterNo { get; set; }
+        public string letterDate { get; set; }
+        public string letterAuthor { get; set; }
         //public string fulladdress { get; set; }
     }
 }
