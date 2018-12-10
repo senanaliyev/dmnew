@@ -136,15 +136,17 @@
         </div>
     </div>
     <div class="row show-grid">
-        <div class="col-md-2 grid-description text-danger">
+        <div class="col-md-2 grid-description">
             Cinsi:
         </div>
         <div class="col-md-2">
+            @Model.gender
         </div>
-        <div class="col-md-3 grid-description text-danger">
+        <div class="col-md-3 grid-description">
             Sosial vəziyyəti:
         </div>
         <div class="col-md-5">
+            @Model.socialStatus
         </div>
         <div class="col-md-2 grid-description">
             Milliyyəti:
@@ -152,10 +154,11 @@
         <div class="col-md-2">
             @Model.nation
         </div>
-        <div class="col-md-3 grid-description text-danger">
+        <div class="col-md-3 grid-description">
             Kateqoriya:
         </div>
         <div class="col-md-5">
+            @Model.category
         </div>
     </div>
     <div class="row show-grid">
@@ -340,7 +343,7 @@
         {
             foreach (var attachfile in ViewBag.AttachFileList)
             {
-                <li><a href="#">@attachfile.dfTitle</a></li>
+                <li><a href="#">@attachfile.dfTitleDesc</a></li>
             }
         }
 

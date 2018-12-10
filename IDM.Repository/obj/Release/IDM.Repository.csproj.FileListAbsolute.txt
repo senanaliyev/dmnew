@@ -10,3 +10,15 @@ C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.csproj.CoreCompileInpu
 C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.csproj.CopyComplete
 C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.dll
 C:\Projects\IDM\IDM.Repository\obj\Release\IDM.Repository.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\bin\Release\IDM.Repository.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\bin\Release\IDM.Repository.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\bin\Release\IDM.Entity.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\bin\Release\EntityFramework.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\bin\Release\IDM.Entity.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\bin\Release\IDM.Entity.dll.config
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\bin\Release\EntityFramework.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\obj\Release\IDM.Repository.csprojAssemblyReference.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\obj\Release\IDM.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\obj\Release\IDM.Repository.csproj.CopyComplete
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\obj\Release\IDM.Repository.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Repository\obj\Release\IDM.Repository.pdb

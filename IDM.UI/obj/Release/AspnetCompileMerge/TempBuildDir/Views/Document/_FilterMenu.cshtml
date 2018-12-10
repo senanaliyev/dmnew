@@ -3,28 +3,42 @@
     <ul class="inbox-menu-lg">
         <li>
             <div class="form-group col-md-12">
-                @Html.TextBox("docRegNo", "", new { @class = "form-control input-sm filter", placeholder = "Sənədin nömrəsini daxil edin" })
+                @Html.TextBox("docRegNo", "", new { @class = "form-control input-sm filter", placeholder = "Sənədin nömrəsini daxil edin", autocomplete = "off" })
             </div>
         </li>
         <li>
             <div class="form-group col-md-12">
-                @Html.DropDownList("docContentType", new SelectList(ViewBag.DocContentType, "id", "title"), "Sənədin növünü seçin", new { @class = "form-control input-sm filter" })
+                @Html.DropDownList("docContentType", new SelectList(ViewBag.DocContentType, "id", "title"), "Sənədin növünü seçin", new { @class = "form-control input-sm filter", autocomplete = "off" })
             </div>
         </li>
         <li>
             <div class="form-group col-md-12">
-                @Html.DropDownList("docType", new SelectList(ViewBag.DocTypes, "id", "title"), "Sənədin tipini seçin", new { @class = "form-control input-sm filter" })
+                @Html.DropDownList("docType", new SelectList(ViewBag.DocTypes, "id", "title"), "Sənədin tipini seçin", new { @class = "form-control input-sm filter", autocomplete = "off" })
             </div>
         </li>
         <li>
             <div class="form-group col-md-12">
-                @Html.DropDownList("fromUserID", new SelectList(ViewBag.Users, "usrID", "empFullName"), "Kimdən", new { @class = "form-control input-sm filter" })
+                @Html.DropDownList("fromUserID", new SelectList(ViewBag.Users, "usrID", "empFullName"), "Kimdən", new { @class = "form-control input-sm filter", autocomplete = "off" })
+            </div>
+        </li>
+        <li>
+            <div class="form-group col-md-12">
+                <div class="input-group">
+                    @Html.TextBox("docRegDateFrom", "", new { @class = "form-control input-sm filter", placeholder = "tarixdən", autocomplete = "off" })
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group col-md-12">
+                <div class="input-group">
+                    @Html.TextBox("docRegDateTo", "", new { @class = "form-control input-sm filter", placeholder = "tarixədək", autocomplete = "off" })
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
             </div>
         </li>
     </ul>
-
-    <h6><i class="fa fa-folder-open"></i> Qovluqlar</h6>
-
+    <h6><i class="fa fa-folder-open"></i> Qovluqlar <a href="#" data-toggle="modal" data-target="#folderModal" onclick="AddNewFolder()" rel="tooltip" title="" data-placement="right" data-original-title="Yeni qovluq" class="pull-right txt-color-darken"><i class="fa fa-plus"></i></a></h6>
     <ul class="inbox-menu-sm">
         <li>
             <a href="#" onclick="loadDocsByOperCode('gnl_duv')"><i class="fa fa-folder-o"></i> Dərkənar</a>
@@ -32,11 +46,43 @@
         <li>
             <a href="#"><i class="fa fa-folder-o"></i> İmzalanacaqlar </a>
         </li>
+        @foreach (var item in ViewBag.Folders)
+        {
+            <li>
+                <a href="#"><i class="fa fa-folder-o"></i> @item.title </a>
+            </li>
+        }
+
     </ul>
 </div>
 
+<div class="modal fade" id="folderModal" tabindex="-1" role="dialog" aria-labelledby="folderLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-color-blue txt-color-white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="folderTitle"></h4>
+            </div>
+            <div class="modal-body" id="folderModalBody">
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
+    $(function () {
+        //$("#docRegNo").mask("99-99-99-999");
+        //$("#dfPageCount").mask("999");
+        $("#docRegDateFrom").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#docRegDateTo").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
     $(".filter").on("change keyup", function () {
         $("#docMainDiv").load(
             '@Url.Action("DocumentList","Document")',
@@ -44,7 +90,9 @@
                 docRegNo: $("#docRegNo").val(),
                 docContentType: $("#docContentType").val(),
                 docType: $("#docType").val(),
-                fromUserID: $("#fromUserID").val()
+                fromUserID: $("#fromUserID").val(),
+                docRegDateFrom: $("#docRegDateFrom").val(),
+                docRegDateTo: $("#docRegDateTo").val()
             }, function () { });
     });
 
@@ -54,5 +102,22 @@
             {
                 operationCode: operationcode
             }, function () { });
+    };
+    var AddNewFolder = function () {
+        var mymodal = $('#folderModal');
+        mymodal.find('.modal-title').text("Yeni qovluq əlavə et");
+        var url = "/Document/CreateFolder";
+        $("#folderModalBody").load(url, function () {
+            $("#folderModal").show();
+        });
+    };
+
+    var EditFolder = function (id) {
+        var mymodal = $('#folderModal');
+        mymodal.find('.modal-title').text(selTableTitle);
+        var url = "/Document/EditFolder";
+        $("#folderModalBody").load(url, function () {
+            $("#folderModal").show();
+        });
     };
 </script>

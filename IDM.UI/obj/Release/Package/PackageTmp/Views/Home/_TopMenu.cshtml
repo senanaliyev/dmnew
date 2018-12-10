@@ -57,6 +57,12 @@
                                 <a href="/Assignment">Təyin etmələr</a>
                             </li>
                         }
+                        @if (Model.SingleOrDefault(i => i.componentid == "companypagelink") != null)
+                        {
+                            <li id="companypagelink">
+                                <a href="/Company">Təşkilatlar</a>
+                            </li>
+                        }
                     </ul>
                 </li>
             }

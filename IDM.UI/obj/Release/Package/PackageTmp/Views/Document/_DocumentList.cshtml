@@ -17,6 +17,7 @@
             <th hidden></th>
             <th hidden></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -70,6 +71,9 @@
                 </td>
                 <td>
                     <a href="#" onclick="loadRegDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID)" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                </td>
+                <td>
+                    @Html.CheckBox((item.ID).ToString())
                 </td>
             </tr>
         }
@@ -232,6 +236,7 @@
                             }
                             else {
                                 var url = "/General/" + action;
+                                $('#documentAbout').load("/Document/GetAboutDocument/", { docID: getDocID });
                                 $("#myModalActionBody").load(url, { documid: getDocID, documtypeid: getDocTypeID, doid: getDoID, finishdate: finishDate, fromuser: fromUser }, function () {
                                     $("#myModalAction").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
                                     $("#myModalAction").modal('show');
@@ -246,6 +251,7 @@
                 else
                 {
                     var url = "/General/" + action;
+                    $('#documentAbout').load("/Document/GetAboutDocument/", { docID: getDocID });
                     $("#myModalActionBody").load(url, { documid: getDocID, documtypeid: getDocTypeID, doid: getDoID, finishdate: finishDate, fromuser: fromUser }, function () {
                         $("#myModalAction").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
                         $("#myModalAction").modal('show');
@@ -275,8 +281,8 @@
     });
 
     var loadRegDoc = function(d1, d2) {
-        $('#myModalActionBody').load("/" + d1 + "/RegViewDocument/" + d2);
-        $("#myModalAction").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
-        $("#myModalAction").modal('show');
+        $('#myModalActionBodyLook').load("/" + d1 + "/RegViewDocument/" + d2);
+        $("#myModalActionLook").find('.modal-title').html('<i class="fa fa-fw fa-lg fa-tasks"></i> ');
+        $("#myModalActionLook").modal('show');
     }
 </script>

@@ -26,6 +26,11 @@
                                 <a href="#" onclick='selectTable("tbl_OperationResponse", "Əməliyyat cavabları")' class="link"> <i class="fa fa-angle-right"></i> Əməliyyat cavabları</a>
                                 <a href="#" onclick='selectTable("tbl_DocType", "Müraciət növü")' class="link"> <i class="fa fa-angle-right"></i> Müraciət növü</a>
                                 <a href="#" onclick='selectTable("tbl_Role", "Rollar")' class="link"> <i class="fa fa-angle-right"></i> Rollar</a>
+                                <a href="#" onclick='selectTable("tbl_AttachFile", "Sənədlər")' class="link"> <i class="fa fa-angle-right"></i> Sənədlər</a>
+                                <a href="#" onclick='selectTable("tbl_Gender", "Cinsi")' class="link"> <i class="fa fa-angle-right"></i> Cins</a>
+                                <a href="#" onclick='selectTable("tbl_SocialStatus", "Sosial vəziyyət")' class="link"> <i class="fa fa-angle-right"></i> Sosial vəziyyət</a>
+                                <a href="#" onclick='selectTable("tbl_Category", "Kategoriya")' class="link"> <i class="fa fa-angle-right"></i> Kategoriya </a>
+                                <a href="#" onclick='selectTable("tbl_TemplateText", "Şablon mətnlər")' class="link"> <i class="fa fa-angle-right"></i> Şablon mətnlər </a>
                             </li>
                         </ul>
                     </li>
@@ -60,8 +65,27 @@
                                                 <tr>
                                                     <th>Kod</th>
                                                     <th>Başlıq</th>
-                                                    <th width="10%"></th>
-                                                    <th width="10%"></th>
+                                                    <th width='10%'></th>
+                                                    <th width='10%'></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="myTabContent2" class="tab-content" style="display:none">
+                                <div class="tab-pane fade in active" id="s1">
+                                    <hr />
+                                    <div class="table-responsive">
+                                        <table id="dt_basic_2" class="table table-bordered table-striped table-condensed table-hover smart-form">
+                                            <thead>
+                                                <tr>
+                                                    <th>Kod</th>
+                                                    <th>Başlıq</th>
+                                                    <th>Status</th>
+                                                    <th width='10%'></th>
+                                                    <th width='10%'></th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -92,7 +116,6 @@
     </div>
 </div>
 <script>
-
     var selTableName;
     var selTableTitle;
     var selectTable = function (tablename, tabletitle) {
@@ -100,50 +123,96 @@
         selTableTitle = tabletitle;
         $("#s1tab").empty();
         $("#s1tab").append(selTableTitle);
-        loadTable();
+        if (tablename == "tbl_Position") {
+            $("#myTabContent2").show()
+            $("#myTabContent1").hide()
+        } else {
+            $("#myTabContent1").show()
+            $("#myTabContent2").hide()
+        }
+        loadTable(tablename);
     };
 
     var loadTable = function () {
-        $("#dt_basic").DataTable({
-            destroy: true,
-            searching: true,
-            paging: true,
-            "ajax": {
-                "url": "/System/GetTableRows?str=" + selTableName,
-                "type": "GET",
-                "datatype": "json"
-            },
-            "columns": [
-                { "data": "code" },
-                { "data": "title" },
-                {
-                    "data": "id", "width": "50px", "render": function (data) {
-                        return '<a href="#"  id="' + data + '" class="edit"><i class="fa fa-edit"></i></a>';
-                    }
+        if (selTableName == "tbl_Position") {
+            $("#dt_basic_2").DataTable({
+                "destroy": true,
+                "bDestroy": true,
+                "searching": true,
+                "paging": true,
+                "ajax": {
+                    "url": "/System/GetTableRows?str=" + selTableName,
+                    "type": "GET",
+                    "datatype": "json",
                 },
-                {
-                    "data": "id", "width": "50px", "render": function (data) {
-                        return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                "columns": [
+                    { "data": "code" },
+                    { "data": "title" },
+                    { "data": "statusDesc" },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#"  id="' + data + '" class="edit"><i class="fa fa-edit"></i></a>';
+                        }
+                    },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                        }
                     }
-                }
-            ]
-        });
-    };
+                ]
+            })
+        } else {
+            $("#dt_basic").DataTable({
+                "destroy": true,
+                "bDestroy": true,
+                "searching": true,
+                "paging": true,
+                "ajax": {
+                    "url": "/System/GetTableRows?str=" + selTableName,
+                    "type": "GET",
+                    "datatype": "json",
+                },
+                "columns": [
+                    { "data": "code" },
+                    { "data": "title" },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#"  id="' + data + '" class="edit"><i class="fa fa-edit"></i></a>';
+                        }
+                    },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a href="#" id="' + data + '" class="delete"><i class="fa fa-trash-o"></i></a>';
+                        }
+                    }
+                ]
+            })
+        }
+    }
 
     var AddRecord = function () {
         var mymodal = $('#myTableModal');
         mymodal.find('.modal-title').text(selTableTitle);
         var url = "/System/Create";
+        $("#position_status").hide();
         $("#myTableModalBody").load(url, function () {
             $("#myTableModal").show();
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
         });
+
     };
     var EditRecord = function (table, id) {
         var mymodal = $('#myTableModal');
         mymodal.find('.modal-title').text(selTableTitle);
         var url = "/System/Edit";
+        $("#position_status").hide();
         $("#myTableModalBody").load(url, function () {
             $("#myTableModal").show();
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
         });
     };
 
@@ -151,8 +220,26 @@
         var mymodal = $('#myTableModal');
         mymodal.find('.modal-title').text(selTableTitle);
         var url = "/System/Edit?tableName=" + selTableName + "&id=" + $(this).attr('id');
+        $("#position_status").hide();
         $("#myTableModalBody").load(url, function () {
             $("#myTableModal").modal("show");
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
+        });
+
+    });
+
+    $('#dt_basic_2 tbody').on('click', 'tr a.edit', function () {
+        var mymodal = $('#myTableModal');
+        mymodal.find('.modal-title').text(selTableTitle);
+        var url = "/System/Edit?tableName=" + selTableName + "&id=" + $(this).attr('id');
+        $("#position_status").hide();
+        $("#myTableModalBody").load(url, function () {
+            $("#myTableModal").modal("show");
+            if (selTableTitle == "Pozisiyalar") {
+                $("#position_status").show();
+            }
         });
 
     });

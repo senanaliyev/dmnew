@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Xaric olan sənəd [" + Model.docRegNo + "]";
 }
+<script src="~/MyJs/attachFileValidation.js"></script>
 <div class="alert alert-info alert-block">
     <h4 class="alert-heading"><i class="fa-fw fa fa-edit"></i> @ViewBag.Title</h4>
 </div>
@@ -228,32 +229,37 @@
                 </div>
                 <div class="modal-body" id="myModalServAttachFileBody">
                     <div class="widget-body">
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label for="company">Sənədin adı</label>
-                                @Html.TextBox("dfTitle", "", new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label for="company">Sənədin növü</label>
-                                @Html.DropDownList("attFileTypeID", new SelectList(ViewBag.AttachFileTypes, "id", "title"), new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="company">Vərəq sayı</label>
-                                @Html.TextBox("dfPageCount", "", new { @class = "form-control" })
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="company">Sənədi seç </label>
-                                @Html.TextBox("file", "", new { type = "file" })
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label for="company">Sənədin məzmunu</label>
-                                @Html.TextArea("dfContent", new { @class = "form-control" })
+                        <ul id="myTab1" class="nav nav-tabs bordered">
+                            <li class="active">
+                                <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-arrow-circle-right"></i> Əlavə olunan sənədin məlumatları</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent1" class="tab-content padding-10">
+                            <div class="tab-pane fade in active" id="s1">
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label for="company">Sənədin adı</label>
+                                        @Html.DropDownList("dfTitle", new SelectList(ViewBag.AttachDoc, "id", "title"), new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="company">Sənədin növü</label>
+                                        @Html.DropDownList("attFileTypeID", new SelectList(ViewBag.AttachFileTypes, "id", "title"), new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="company">Vərəq sayı</label>
+                                        @Html.TextBox("dfPageCount", "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="company">Sənədi seç </label>
+                                        @Html.TextBox("file", "", new { type = "file" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="company">Sənədin məzmunu</label>
+                                        @Html.TextArea("dfContent", new { @class = "form-control" })
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -285,7 +291,6 @@
 
 <script>
     $(function () {
-        $("#docRegNo").mask("99-99-99-999");
         $("#docRegDate").datepicker({
             dateFormat: 'dd/mm/yy'
         });
@@ -453,6 +458,11 @@
             tabsize: 2,
             height: 100
         });
+        $('#dfContent').summernote({
+            placeholder: 'Əlavə etdiyiniz sənəd haqqında qeydlərinizi daxil edin',
+            tabsize: 2,
+            height: 200
+        });
         var oTable = $("#attachTable").DataTable({
             destroy: true,
             searching: false,
@@ -464,8 +474,8 @@
             },
             "columns": [
                 {
-                    "data": "dfTitle", "render": function (data, type, row, meta) {
-                        return '<a href="/DocumentFiles/' + row.dfName + '" target="_blank">' + row.dfTitle + '</a>';
+                    "data": "dfTitleDesc", "render": function (data, type, row, meta) {
+                        return '<a href="/DocumentFiles/' + row.dfName + '" target="_blank">' + row.dfTitleDesc + '</a>';
                     }
                 },
                 { "data": "attFileTypeTitle" },
@@ -491,25 +501,28 @@
         });
 
         $("#btnAttachFile").click(function () {
-            var data = new FormData();
-            var file = $("#file").get(0).files;
-            data.append("Files", file[0]);
-            data.append("docID", @Model.docID);
-            data.append("dfTitle", $("#dfTitle").val());
-            data.append("attFileTypeID", $("#attFileTypeID").val());
-            data.append("dfPageCount", $("#dfPageCount").val());
-            data.append("dfContent", $("#dfContent").val());
-            $.ajax({
-                type: "POST",
-                url: "/OutDoc/SaveAttachmentByID",
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (response) {
-                    $("#myModalServAttachFile").modal('hide');
-                    oTable.ajax.reload();
-                }
-            });
+            $('#myform').validate();
+            if ($('#myform').valid()){
+                var data = new FormData();
+                var file = $("#file").get(0).files;
+                data.append("Files", file[0]);
+                data.append("docID", @Model.docID);
+                data.append("dfTitle", $("#dfTitle").val());
+                data.append("attFileTypeID", $("#attFileTypeID").val());
+                data.append("dfPageCount", $("#dfPageCount").val());
+                data.append("dfContent", $("#dfContent").val());
+                $.ajax({
+                    type: "POST",
+                    url: "/OutDoc/SaveAttachmentByID",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (response) {
+                        $("#myModalServAttachFile").modal('hide');
+                        oTable.ajax.reload();
+                    }
+                });
+            }
         });
 
 
@@ -546,25 +559,25 @@
 
 
         $("#btnAddOrgan").click(function () {
-            var data = new FormData();
-            data.append("docID", @Model.docID);
-            data.append("orgID", $("#organID").val());
-            if ($('#incharge').is(':checked')) {
-                data.append("incharge", 1);
-            }
-            else {
-                data.append("incharge", 0);
-            }
-            $.ajax({
-                type: "POST",
-                url: "/OutDoc/AddOrganization",
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (response) {
-                    organTable.ajax.reload();
+                var data = new FormData();
+                data.append("docID", @Model.docID);
+                data.append("orgID", $("#organID").val());
+                if ($('#incharge').is(':checked')) {
+                    data.append("incharge", 1);
                 }
+                else {
+                    data.append("incharge", 0);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/OutDoc/AddOrganization",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (response) {
+                        organTable.ajax.reload();
+                    }
+                });
             });
-        });
     });
 </script>

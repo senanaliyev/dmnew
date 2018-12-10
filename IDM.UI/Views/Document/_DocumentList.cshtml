@@ -73,7 +73,7 @@
                     <a href="#" onclick="loadRegDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID)" class="btn btn-default"><i class="fa fa-eye"></i></a>
                 </td>
                 <td>
-                    @Html.CheckBox((item.ID).ToString())
+                    @Html.CheckBox((item.ID).ToString(), new { @class = "checkID" })
                 </td>
             </tr>
         }
@@ -81,6 +81,7 @@
 </table>
 
 <script>
+
     //var operationsTable = function (id) {
     //    $("#opTable").DataTable({
     //        destroy: true,
@@ -165,6 +166,17 @@
     //        }
     //    });
     //});
+
+    $(".checkID").change(function () {
+        //var ischecked = $(this).is(':checked');
+        //var str = "aa";
+        //str += $(this).attr("name");
+        var sThisVal="";
+        $('input:checkbox.checkID').each(function () {
+            sThisVal += (this.checked ? $(this).attr("name") + "," : "");
+        });
+        alert(sThisVal);
+    });
 
     $(document).ready(function () {
         //---begin load operation types of documents

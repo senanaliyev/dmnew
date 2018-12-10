@@ -12,7 +12,7 @@
         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-lg fa-plus-circle"></i><b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="#" onclick='attachNewDoc("/InternalDoc/CreateAttachedDoc")'> <i class="fa fa-circle-thin"> </i> Daxili sənəd</a></li>
-            @*<li><a href="#" onclick='attachNewDoc("/OutDoc/Create")'> <i class="fa fa-circle-thin"> </i> Xaric olan sənəd</a></li>*@
+            <li><a href="#" onclick='attachNewDoc("/OutDoc/CreateAttachedDoc")'> <i class="fa fa-circle-thin"> </i> Xaric olan sənəd</a></li>
         </ul>
     </li>
 </ul>
@@ -29,12 +29,12 @@
                         @Html.Hidden("docContentType", "", new { @class = "form-control", Value = @Model.DocTypeID })
                     </div>
                     @*<div class="form-group col-md-6">
-                        <label for="company">Yeni sənəd</label>
-                        @Html.DropDownList("attachNewDoc", new List<SelectListItem>{
-                       new SelectListItem {Text = "Sənəd növünü seçin", Value="0"  },
-                       new SelectListItem {Text = "Daxili sənəd", Value="/InternalDoc/Create"  },
-                       new SelectListItem {Text = "Xaric olan sənəd", Value="/OutDoc/Create"}}, new { @class = "form-control" })
-                    </div>*@
+                            <label for="company">Yeni sənəd</label>
+                            @Html.DropDownList("attachNewDoc", new List<SelectListItem>{
+                           new SelectListItem {Text = "Sənəd növünü seçin", Value="0"  },
+                           new SelectListItem {Text = "Daxili sənəd", Value="/InternalDoc/Create"  },
+                           new SelectListItem {Text = "Xaric olan sənəd", Value="/OutDoc/Create"}}, new { @class = "form-control" })
+                        </div>*@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">

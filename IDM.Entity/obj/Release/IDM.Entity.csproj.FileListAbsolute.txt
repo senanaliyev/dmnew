@@ -10,3 +10,15 @@ C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.csproj.CoreCompileInputs.cache
 C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.csproj.CopyComplete
 C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.dll
 C:\Projects\IDM\IDM.Entity\obj\Release\IDM.Entity.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Release\IDM.Entity.dll.config
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Release\IDM.Entity.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Release\IDM.Entity.pdb
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Release\EntityFramework.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Release\EntityFramework.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Release\IDM.Entity.csprojAssemblyReference.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Release\IDM.Entity.csproj.CoreCompileInputs.cache
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Release\IDM.Entity.csproj.CopyComplete
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Release\IDM.Entity.dll
+C:\Users\Senan\Desktop\dmnew\dmnew\IDM.Entity\obj\Release\IDM.Entity.pdb
