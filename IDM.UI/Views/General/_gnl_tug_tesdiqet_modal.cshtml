@@ -152,6 +152,12 @@
             data: { doid: $(this).attr('id') },
             success: function (success) {
                 operationsTable($("#docID").val());
+                 $("#operationID").html("");
+                    $.get("/Document/FillOperationDDL", { id: @Model.DocTypeID, doid:@Model.DoID@*, docid:@Model.DocID*@  }, function (data) {
+                        $.each(data, function (index, row) {
+                            $("#operationID").append("<option value='" + row.id + "'>" + row.title + "</option>");
+                    });
+                });
             }
         });
     });
