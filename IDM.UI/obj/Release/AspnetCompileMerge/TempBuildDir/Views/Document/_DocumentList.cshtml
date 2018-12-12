@@ -73,7 +73,7 @@
                     <a href="#" onclick="loadRegDoc('@Enum.GetName(typeof(IDM.Service.Enums.ContentTypes), item.DocContentTypeID)', @item.ID)" class="btn btn-default"><i class="fa fa-eye"></i></a>
                 </td>
                 <td>
-                    @Html.CheckBox((item.ID).ToString())
+                    @Html.CheckBox((item.ID).ToString(), new { @class = "checkID" })
                 </td>
             </tr>
         }
@@ -81,6 +81,39 @@
 </table>
 
 <script>
+    var docIDs = "";
+    $(".checkID").change(function () {
+        //var ischecked = $(this).is(':checked');
+        //var str = "aa";
+        //str += $(this).attr("name");
+        docIDs = "";
+        $('input:checkbox.checkID').each(function () {
+            docIDs += (this.checked ? $(this).attr("name") + "," : "");
+        });
+        //alert(sThisVal);
+    });
+    var MoveToFolder = function (id) {
+        //var data = new FormData();
+        //data.append("documents", docIDs);
+        //data.append("folderid", id);
+        $.ajax({
+            type: "GET",
+            url: "/Document/MoveToFolder?documents=" + docIDs + "&folderid=" + id,
+            "datatype": "json",
+            //contentType: false,
+            //processData: false,
+            //data: { 'documents': docIDs, 'folderid': id },
+            success: function (response) {
+                if (response.result == 'Redirect')
+                    window.location = response.url;
+              //  loadTable();
+                //$("#myTableModal").modal('hide');
+               //window.location.href = response;
+                //alert("deyiwdi");
+            }
+        });
+    };
+
     //var operationsTable = function (id) {
     //    $("#opTable").DataTable({
     //        destroy: true,
@@ -165,6 +198,8 @@
     //        }
     //    });
     //});
+
+
 
     $(document).ready(function () {
         //---begin load operation types of documents

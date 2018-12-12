@@ -89,6 +89,7 @@
     <Compile Include="Rpst_Archive.cs" />
     <Compile Include="Rpst_AttachDoc.cs" />
     <Compile Include="Rpst_CheckOperation.cs" />
+    <Compile Include="RPST_Common.cs" />
     <Compile Include="Rpst_DocContentType.cs" />
     <Compile Include="Rpst_DocumentFolder.cs" />
     <Compile Include="Rpst_ExtendedSearch.cs" />

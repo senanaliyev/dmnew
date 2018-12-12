@@ -81,6 +81,38 @@
 </table>
 
 <script>
+    var docIDs = "";
+    $(".checkID").change(function () {
+        //var ischecked = $(this).is(':checked');
+        //var str = "aa";
+        //str += $(this).attr("name");
+        docIDs = "";
+        $('input:checkbox.checkID').each(function () {
+            docIDs += (this.checked ? $(this).attr("name") + "," : "");
+        });
+        //alert(sThisVal);
+    });
+    var MoveToFolder = function (id) {
+        //var data = new FormData();
+        //data.append("documents", docIDs);
+        //data.append("folderid", id);
+        $.ajax({
+            type: "GET",
+            url: "/Document/MoveToFolder?documents=" + docIDs + "&folderid=" + id,
+            "datatype": "json",
+            //contentType: false,
+            //processData: false,
+            //data: { 'documents': docIDs, 'folderid': id },
+            success: function (response) {
+                if (response.result == 'Redirect')
+                    window.location = response.url;
+              //  loadTable();
+                //$("#myTableModal").modal('hide');
+               //window.location.href = response;
+                //alert("deyiwdi");
+            }
+        });
+    };
 
     //var operationsTable = function (id) {
     //    $("#opTable").DataTable({
@@ -167,16 +199,7 @@
     //    });
     //});
 
-    $(".checkID").change(function () {
-        //var ischecked = $(this).is(':checked');
-        //var str = "aa";
-        //str += $(this).attr("name");
-        var sThisVal="";
-        $('input:checkbox.checkID').each(function () {
-            sThisVal += (this.checked ? $(this).attr("name") + "," : "");
-        });
-        alert(sThisVal);
-    });
+
 
     $(document).ready(function () {
         //---begin load operation types of documents

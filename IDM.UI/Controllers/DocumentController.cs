@@ -21,6 +21,17 @@ namespace IDM.UI.Controllers
         Office_Service nmc = new Office_Service();
         DocOperationService docOpServ = new DocOperationService();
 
+        public ActionResult MoveToFolder(string documents, int folderid)
+        {
+            documents = documents.Substring(0, documents.Length - 1);
+            var result = documents.Split(',');
+            foreach (var docid in result)
+            {
+                new Srv_DocumentFolder().MoveToFolder(Convert.ToInt64(docid), folderid);
+            }
+            return Json(new { result = "Redirect", url = Url.Action("Index", "Document") }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult CreateFolder()
         {
             return PartialView("_CreateFolder");
@@ -43,22 +54,23 @@ namespace IDM.UI.Controllers
         public ActionResult Index()
         {
             ViewBag.Folders = new Srv_DocumentFolder().GetList(Convert.ToInt32(Session["userID"]));
-            return View(document.GetList(Convert.ToInt32(Session["userID"])));
+            return View();
+            //return View(document.GetList(Convert.ToInt32(Session["userID"])));
         }
 
-        public ActionResult Inbox(int id)
-        {
-            return PartialView("_Inbox", document.GetListByTypeID(id, Convert.ToInt32(Session["userID"])));
-        }
-        public ActionResult OperationInbox(int id)
-        {
-            return PartialView("_Inbox", document.GetListByOperationID(id, Convert.ToInt32(Session["userID"])));
-        }
+        //public ActionResult Inbox(int id)
+        //{
+        //    return PartialView("_Inbox", document.GetListByTypeID(id, Convert.ToInt32(Session["userID"])));
+        //}
+        //public ActionResult OperationInbox(int id)
+        //{
+        //    return PartialView("_Inbox", document.GetListByOperationID(id, Convert.ToInt32(Session["userID"])));
+        //}
 
-        public ActionResult InboxMenu()
-        {
-            return PartialView("_InboxMenu", ViewBag.OperationsMenu = docOpServ.OperationList());
-        }
+        //public ActionResult InboxMenu()
+        //{
+        //    return PartialView("_InboxMenu", ViewBag.OperationsMenu = docOpServ.OperationList());
+        //}
 
         public ActionResult FilterMenu()
         {
@@ -68,15 +80,25 @@ namespace IDM.UI.Controllers
             ViewBag.Folders = new Srv_DocumentFolder().GetList(Convert.ToInt32(Session["userID"]));
             return PartialView("_FilterMenu");
         }
-        public ActionResult DocumentListByFolderName(string operationCode)
+        public ActionResult DocumentListByFolderName(int folderid)
         {
-            return PartialView("_DocumentList", document.FilterByFolderName(operationCode, Convert.ToInt32(Session["userID"])));
+            return PartialView("_DocumentList", new Srv_DocFolder().FilterByFolderId(folderid, Convert.ToInt32(Session["userID"])));
             //document.GetList(Convert.ToInt32(Session["userID"])));
         }
 
-        public ActionResult DocumentList(ExtendedSearch_DTO entity)
+        public ActionResult DocumentListByOperCode(string operationCode)
+        {
+            return PartialView("_DocumentList", new Srv_DocFolder().FilterByOperCode(operationCode, Convert.ToInt32(Session["userID"])));
+        }
+
+        public ActionResult FilteredList(ExtendedSearch_DTO entity)
         {
             return PartialView("_DocumentList", document.FilterDocumentList(entity, Convert.ToInt32(Session["userID"])));
+            //document.GetList(Convert.ToInt32(Session["userID"])));
+        }
+        public ActionResult DocumentList(ExtendedSearch_DTO entity)
+        {
+            return PartialView("_DocumentList", document.DocumentFirstLoad(entity, Convert.ToInt32(Session["userID"])));
             //document.GetList(Convert.ToInt32(Session["userID"])));
         }
 

@@ -13,6 +13,13 @@ namespace IDM.Service
     {
         Rpst_DocumentFolder docFolderRep = new Rpst_DocumentFolder();
 
+        public int MoveToFolder(long docID, int folderid)
+        {
+            docFolderRep.AddInputParameters("@docID", docID);
+            docFolderRep.AddInputParameters("@folderid", folderid);
+            return docFolderRep.IUD("sp_DocumentFolder_MoveTo", CommandType.StoredProcedure);
+        }
+
         public List<DocumentFolder_DTO> GetList(int usrID)
         {
             docFolderRep.AddInputParameters("@usrID", usrID);
@@ -25,7 +32,7 @@ namespace IDM.Service
                     new DocumentFolder_DTO
                     {
                         id = Convert.ToInt32(dr["id"]),
-                        title = dr["title"].ToString(),
+                        title = dr["title"].ToString()+" ("+ dr["doccount"].ToString() + ")",
                     });
             }
             return tableRows;

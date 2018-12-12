@@ -75,6 +75,7 @@
     <Compile Include="ServiceDocSender_Service.cs" />
     <Compile Include="Srv_CheckOperation.cs" />
     <Compile Include="Srv_DocContentType.cs" />
+    <Compile Include="Srv_DocFolder.cs" />
     <Compile Include="Srv_DocumentFolder.cs" />
     <Compile Include="Srv_ExtendedSearch.cs" />
     <Compile Include="Srv_OperationToDoc.cs" />

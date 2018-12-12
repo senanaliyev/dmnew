@@ -14,38 +14,6 @@ namespace IDM.Service
     {
         DocumentRepository document = new DocumentRepository();
 
-        public List<Custom_DocGetList_DTO> FilterByFolderName(string operationCode, int usrID)
-        {
-            document.AddInputParameters("@usrID", usrID);
-            document.AddInputParameters("@operationCode", operationCode);
-            DataTable dt = document.GetList("sp_Document_FilterByFolderName", CommandType.StoredProcedure);
-            List<Custom_DocGetList_DTO> docList = new List<Custom_DocGetList_DTO>();
-            foreach (DataRow dr in dt.Rows)
-            {
-                docList.Add(new Custom_DocGetList_DTO
-                {
-                    ID = Convert.ToInt64(dr["docID"]),
-                    DocContentTypeID = Convert.ToInt32(dr["DocContentTypeID"]),
-                    DocRegNo = dr["docRegNo"].ToString(),
-                    DocRegDate = Convert.ToDateTime(dr["docRegDate"]).ToString("dd/MM/yyyy"),
-                    DocFinishDate = Convert.ToDateTime(dr["docFinishDate"]).ToString("dd/MM/yyyy"),
-                    DocContentTypeTitle = dr["DocContentType"].ToString(),
-                    DocTypeTitle = dr["DocType"].ToString(),
-                    //fromUser = dr["fromUser"].ToString(),
-                    operationTitle = dr["operationTitle"].ToString(), //(Convert.ToInt32(dr["operationID"]) != 0 ? dr["operationTitle"].ToString() : "Yeni"),
-                    operationID = Convert.ToInt32(dr["operationID"]),
-                    operationPos = Convert.ToInt32(dr["operationPos"]),
-                    doID = Convert.ToInt64(dr["doID"]),
-                    doNote = dr["doNote"].ToString(),
-                    doDate = Convert.ToDateTime(dr["doDate"]).ToString("dd/MM/yyyy"),
-                    fromUserID = Convert.ToInt32(dr["fromUserID"]),
-                    fromEmployee = dr["fromEmployee"].ToString(),
-                    EditRead = (int.Parse(dr["EditRead"].ToString()) == 1 ? "Edit" : "Read")
-                });
-            }
-            return docList;
-        }
-
         public List<Custom_DocGetList_DTO> GetList(int usrID)
         {
             document.AddInputParameters("@usrID", usrID);
@@ -153,6 +121,41 @@ namespace IDM.Service
             }
             return resultList;
         }
+        public List<Custom_DocGetList_DTO> DocumentFirstLoad(ExtendedSearch_DTO entity, int usrID)
+        {
+            document.AddInputParameters("@usrID", usrID);
+            document.AddInputParameters("@docRegNo", entity.docRegNo);
+            document.AddInputParameters("@docContentType", entity.docContentType);
+            document.AddInputParameters("@docType", entity.docType);
+            document.AddInputParameters("@fromUserID", entity.fromUserID);
+            DataTable dt = document.GetList("sp_Document_FirstLoad", CommandType.StoredProcedure);
+            List<Custom_DocGetList_DTO> docList = new List<Custom_DocGetList_DTO>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                docList.Add(new Custom_DocGetList_DTO
+                {
+                    ID = Convert.ToInt64(dr["docID"]),
+                    DocContentTypeID = Convert.ToInt32(dr["DocContentTypeID"]),
+                    DocRegNo = dr["docRegNo"].ToString(),
+                    DocRegDate = Convert.ToDateTime(dr["docRegDate"]).ToString("dd/MM/yyyy"),
+                    DocFinishDate = Convert.ToDateTime(dr["docFinishDate"]).ToString("dd/MM/yyyy"),
+                    DocContentTypeTitle = dr["DocContentType"].ToString(),
+                    DocTypeTitle = dr["DocType"].ToString(),
+                    //fromUser = dr["fromUser"].ToString(),
+                    operationTitle = dr["operationTitle"].ToString(), //(Convert.ToInt32(dr["operationID"]) != 0 ? dr["operationTitle"].ToString() : "Yeni"),
+                    operationID = Convert.ToInt32(dr["operationID"]),
+                    operationPos = Convert.ToInt32(dr["operationPos"]),
+                    doID = Convert.ToInt64(dr["doID"]),
+                    doNote = dr["doNote"].ToString(),
+                    doDate = Convert.ToDateTime(dr["doDate"]).ToString("dd/MM/yyyy"),
+                    fromUserID = Convert.ToInt32(dr["fromUserID"]),
+                    fromEmployee = dr["fromEmployee"].ToString(),
+                    EditRead = (int.Parse(dr["EditRead"].ToString()) == 1 ? "Edit" : "Read")
+                });
+            }
+            return docList;
+        }
+
         public List<Custom_DocGetList_DTO> FilterDocumentList(ExtendedSearch_DTO entity, int usrID)
         {
             document.AddInputParameters("@usrID", usrID);

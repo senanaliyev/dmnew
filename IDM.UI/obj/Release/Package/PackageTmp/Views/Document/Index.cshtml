@@ -117,7 +117,7 @@
                                             @foreach (var item in ViewBag.Folders)
                                             {
                                                 <li>
-                                                    <a href="#"><i class="fa fa-folder-open-o fa-lg"></i> @item.title </a>
+                                                    <a href="#" onclick='MoveToFolder(@item.id)'><i class="fa fa-folder-open-o fa-lg"></i> @item.title </a>
                                                 </li>
                                             }
                                         </ul>

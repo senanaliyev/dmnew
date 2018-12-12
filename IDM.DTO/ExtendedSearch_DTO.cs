@@ -18,6 +18,7 @@ namespace IDM.DTO
         public string docRegNo { get; set; }
         public string docContent { get; set; }
         public string docNote { get; set; }
+        public int folderid { get; set; }
         public string tematikaID { get; set; }
         public string fromUserID { get; set; }
         public string actionTypeID { get; set; }
