@@ -76,7 +76,7 @@ namespace IDM.UI.Controllers
         {
             ViewBag.DocContentType = new Srv_DocContentType().GetList();
             ViewBag.DocTypes = new DocTypeService().GetList();
-            ViewBag.Users = new EmployeeService().GetList();
+            ViewBag.Users = new EmployeeService().GetList().GroupBy(p => p.usrID).Select(g => g.FirstOrDefault()).ToList();
             ViewBag.Folders = new Srv_DocumentFolder().GetList(Convert.ToInt32(Session["userID"]));
             return PartialView("_FilterMenu");
         }

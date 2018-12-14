@@ -49,7 +49,7 @@
         @foreach (var item in ViewBag.Folders)
         {
             <li>
-                <a href="#"><i class="fa fa-folder-o"></i> @item.title </a>
+                <a href="#"  onclick="loadDocsByFolderName(@item.id)"><i class="fa fa-folder-o"></i> @item.title </a>
             </li>
         }
 
@@ -85,7 +85,7 @@
 
     $(".filter").on("change keyup", function () {
         $("#docMainDiv").load(
-            '@Url.Action("DocumentList","Document")',
+            '@Url.Action("FilteredList","Document")',
             {
                 docRegNo: $("#docRegNo").val(),
                 docContentType: $("#docContentType").val(),
@@ -98,9 +98,16 @@
 
     var loadDocsByOperCode = function (operationcode) {
         $("#docMainDiv").load(
-            '@Url.Action("DocumentListByFolderName","Document")',
+            '@Url.Action("DocumentListByOperCode","Document")',
             {
                 operationCode: operationcode
+            }, function () { });
+    };
+    var loadDocsByFolderName= function (fid) {
+        $("#docMainDiv").load(
+            '@Url.Action("DocumentListByFolderName","Document")',
+            {
+                folderid: fid
             }, function () { });
     };
     var AddNewFolder = function () {
