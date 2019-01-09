@@ -10,10 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>12/12/2018 16:40:05</publishTime>
+      <publishTime>12/14/2018 17:02:27</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>12/12/2018 16:40:05</publishTime>
+      <publishTime>12/14/2018 17:02:27</publishTime>
     </File>
     <File Include="bin/IDM.DTO.dll">
       <publishTime>12/12/2018 16:39:35</publishTime>
@@ -34,10 +34,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/12/2018 16:39:36</publishTime>
     </File>
     <File Include="bin/IDM.UI.dll">
-      <publishTime>12/12/2018 16:39:50</publishTime>
+      <publishTime>12/14/2018 17:01:46</publishTime>
     </File>
     <File Include="bin/IDM.UI.pdb">
-      <publishTime>12/12/2018 16:39:50</publishTime>
+      <publishTime>12/14/2018 17:01:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>12/06/2018 10:21:01</publishTime>
@@ -3052,7 +3052,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/06/2018 10:19:47</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>12/12/2018 16:40:02</publishTime>
+      <publishTime>12/14/2018 17:02:24</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>12/06/2018 10:19:50</publishTime>
@@ -3526,7 +3526,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/06/2018 10:19:52</publishTime>
     </File>
     <File Include="Views/General/_gnl_duv_derkenarver_modal.cshtml">
-      <publishTime>12/06/2018 10:19:52</publishTime>
+      <publishTime>12/14/2018 13:27:58</publishTime>
     </File>
     <File Include="Views/General/_gnl_duv_geriqaytar_modal.cshtml">
       <publishTime>12/06/2018 10:19:52</publishTime>
@@ -3556,13 +3556,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/06/2018 10:19:52</publishTime>
     </File>
     <File Include="Views/General/_gnl_qeyd_modal.cshtml">
-      <publishTime>12/06/2018 10:19:52</publishTime>
+      <publishTime>12/14/2018 13:27:58</publishTime>
     </File>
     <File Include="Views/General/_gnl_tug_geriqaytar_modal.cshtml">
       <publishTime>12/06/2018 10:19:52</publishTime>
     </File>
     <File Include="Views/General/_gnl_tug_tesdiqet_modal.cshtml">
-      <publishTime>12/06/2018 10:19:52</publishTime>
+      <publishTime>12/14/2018 13:27:58</publishTime>
     </File>
     <File Include="Views/General/_gnl_vuv_imtina_modal.cshtml">
       <publishTime>12/06/2018 10:19:52</publishTime>
