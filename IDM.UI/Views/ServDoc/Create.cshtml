@@ -9,175 +9,100 @@
 @using (Html.BeginForm("Create", "ServDoc", FormMethod.Post, new { @id = "myform", enctype = "multipart/form-data" }))
 {
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-12">
             <div class="well well-sm">
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="company">Sənədin nömrəsi</label>
+                    <div class="form-group col-md-3">
+                        <label class="company">Qeydiyyat nömrəsi</label>
                         @Html.TextBoxFor(m => m.docRegNo, "", new { @class = "form-control", autocomplete = "off" })
                     </div>
-                    <div class="form-group col-md-6">
-                        <label class="company">Sənədin növü</label>
-                        @Html.DropDownListFor(m => m.docType, new SelectList(ViewBag.DocTypes, "id", "title"), new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label class="company">Sənədin tarixi</label>
+                    <div class="form-group col-md-3">
+                        <label class="company">Qeydiyyat tarixi</label>
                         <div class="input-group">
                             @Html.TextBoxFor(m => m.docRegDate, "", new { @class = "form-control dateChange", autocomplete = "off" })
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="company">Sənədin icra müddəti (iş günü)</label>
-                        @Html.TextBoxFor(m => m.docDayCount, "", new { @class = "form-control dateChange", autocomplete = "off" })
+                    <div class="form-group col-md-3">
+                        <label class="company">Sənədin daxil olma forması</label>
+                        @Html.DropDownList("appealTypeID", new SelectList(ViewBag.AppealType, "id", "title"), new { @class = "form-control" })
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="company">Sənədin icrasının bitmə tarixi</label>
+                    <div class="form-group col-md-3">
+                        <label class="company">Daxil olan sənədin nömrəsi</label>
+                        @Html.TextBox("sdEntryNo", "", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label class="company">Daxil olan sənədin tarixi</label>
+                        <div class="input-group">
+                            @Html.TextBox("sdEntryDate", "", new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="company">Vərəq sayı</label>
+                        @Html.TextBox("sdPageCount", "", new { @class = "form-control", type = "number", min = "0" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="company">Təşkilat</label>
+                        @Html.DropDownList("organID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="company">Kimdən gəlib</label>
+                        @Html.DropDownList("fromUserID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label class="company">Sənədin statusu</label>
+                        @Html.DropDownList("docStatusID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+
+                    @******Buraya gunu avtomatik qos******@
+
+                    <div class="form-group col-md-3">
+                        <label class="company">Sənədin icra olunma tarixi</label>
                         @Html.Hidden("docFinishDate", "", new { @class = "form-control" })
                         <div class="input-group">
                             <span class="form-control" id="docFinishDatespan"></span>
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Sənədin məzmunu</p>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        @Html.TextAreaFor(m => m.docContent, new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Sənəd haqqında qeydlər</p>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        @Html.TextAreaFor(m => m.docNote, new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-7">
-            <div class="well well-sm">
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label class="company">Sənədin daxil olma nömrəsi</label>
-                        @Html.TextBox("sdEntryNo", "", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label class="company">Sənədin daxil olma tarixi</label>
-                        <div class="input-group">
-                            @Html.TextBox("sdEntryDate", "", new { @class = "form-control" })
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label class="company">Müraciət forması</label>
-                        @Html.DropDownList("appealTypeID", new SelectList(ViewBag.AppealType, "id", "title"), new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label class="company">Kimə ünvanlanıb</label>
-                        @Html.DropDownList("userID", new SelectList(ViewBag.User, "usrID", "empFullName"),"Seçin", new { @class = "form-control" })
+                        @Html.DropDownList("toUserID", new SelectList(ViewBag.User, "usrID", "empFullName"), "Seçin", new { @class = "form-control" })
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="company">Daxil olan sənədin nömrəsi</label>
-                        <div class="input-group input-group-md">
-                            <div class="addon-md">
-                                @Html.Hidden("relatedDocNo", "", new { @class = "form-control" })
-                                <span class="form-control" id="relatedDocNospan"></span>
-                            </div>
-                            <span class="input-group-btn">
-                                <a href="#" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModalSearch" onclick="searchDocument()"> <i class="fa fa-search"></i></a>
-                            </span>
-                        </div>
-                        @*<p class="note" id="responseDocRegDate1"></p>*@
+
+                    @*****Attach File gelecek bura*****@
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label class="company">Mövzu</label>
+                        @Html.DropDownList("docSubjectID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="company">Daxil olan sənədin tarixi</label>
-                        @Html.Hidden("relatedDocRegDate", "", new { @class = "form-control" })
+                    <div class="form-group col-md-3">
+                        <label class="company">Alt mövzu</label>
+                        @Html.DropDownList("docSubSubjectID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="company">Qısa məzmun</label>
                         <div class="input-group">
-                            <span class="form-control" id="relatedDocRegDatespan"></span>
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            @Html.TextAreaFor(m => m.docContent, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="company">Qeyd</label>
+                        <div class="input-group">
+                            @Html.TextAreaFor(m => m.docNote, new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="company">İdarə</label>
-                        @Html.DropDownList("officeID", new SelectList(ViewBag.Office, "id", "title"), "Seçin", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="company">Təşkilat</label>
-                        @Html.DropDownList("organID", Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="company">Təkrar/ilkin (təkrardırsa əvvəlkə sənədin nömrəsi)</label>
-                        @Html.DropDownList("contactTypeID", new SelectList(ViewBag.ContactType, "id", "title"), new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="company">Tematika</label>
-                        @Html.DropDownList("tematikaID", new SelectList(ViewBag.Tematika, "id", "title"), new { @class = "form-control" })
-                    </div>
-                </div>
             </div>
             <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Sənədi göndərən şəxsin</p>
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="label">Adı</label>
-                        @Html.TextBoxFor(m => m.senderName, "", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="label">Soyadı</label>
-                        @Html.TextBoxFor(m => m.senderSurname, "", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="label">Ata adı</label>
-                        @Html.TextBoxFor(m => m.senderMiddlename, "", new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Göndərilmə ünvanı</p>
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="company">Ölkə</label>
-                        @Html.DropDownListFor(m => m.countryID, new SelectList(ViewBag.Region, "id", "title"), "Ölkəni seçin", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="company">Şəhər/rayon</label>
-                        @Html.DropDownListFor(m => m.cityID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="company">Kənd/qəsəbə</label>
-                        @Html.DropDownListFor(m => m.townID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-8">
-                        <label for="company">Tam ünvan</label>
-                        @Html.TextBoxFor(m => m.adrFullAddress, "", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="company">FİN/VÖEN</label>
-                        @Html.TextBoxFor(m => m.adrFIN, "", new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
+            @*<div class="well well-sm">
                 <p class="alert alert-warning">Elektron sənədlər</p>
 
                 <div class="col-md-12 text-align-right">
@@ -196,7 +121,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-            </div>
+            </div>*@
         </div>
     </div>
 
@@ -209,7 +134,7 @@
             </button>
         </div>
     </footer>
-    <div class="modal fade" id="myModalServAttachFile" tabindex="-1" role="dialog" aria-labelledby="myModalServAttachFileLabel" aria-hidden="true">
+    @*<div class="modal fade" id="myModalServAttachFile" tabindex="-1" role="dialog" aria-labelledby="myModalServAttachFileLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-color-blue txt-color-white">
@@ -277,7 +202,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 }
 
 <script>
@@ -364,8 +289,8 @@
             }
         });
         //--------end new region selection------------------
-        $("#organID").empty();
-        $("#organID").prop("disabled", true);
+        //$("#organID").empty();
+        //$("#organID").prop("disabled", true);
 
         $("#officeID").change(function () {
             if ($("#officeID").val() > 0) {
@@ -397,13 +322,13 @@
     $(document).ready(function () {
         $('#docContent').summernote({
             placeholder: 'Sənədin məzmununu daxil edin',
-            tabsize: 2,
-            height: 100
+            //tabsize: 2,
+            //height: 100
         });
         $('#docNote').summernote({
             placeholder: 'Sənəd haqqında qeydlərinizi daxil edin',
-            tabsize: 2,
-            height: 100
+            //tabsize: 2,
+            //height: 100
         });
         $('#dfContent').summernote({
             placeholder: 'Əlavə etdiyiniz sənəd haqqında qeydlərinizi daxil edin',

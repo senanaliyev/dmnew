@@ -21,8 +21,6 @@
                         <label class="company">Sənədin növü</label>
                         @Html.DropDownListFor(m => m.docType, new SelectList(ViewBag.DocTypes, "id", "title"), new { @class = "form-control" })
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-4">
                         <label class="company">Sənədin tarixi</label>
                         <div class="input-group">
@@ -42,30 +40,12 @@
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Sənədin məzmunu</p>
-                <div class="row">
                     <div class="form-group col-md-12">
                         @Html.TextAreaFor(m => m.docContent, new { @class = "form-control" })
                     </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Sənəd haqqında qeydlər</p>
-                <div class="row">
                     <div class="form-group col-md-12">
                         @Html.TextAreaFor(m => m.docNote, new { @class = "form-control" })
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-7">
-            <div class="well well-sm">
-                <div class="row">
                     <div class="form-group col-md-4">
                         <label class="company">Sənədin daxil olma nömrəsi</label>
                         @Html.TextBoxFor(m => m.sdEntryNo, "", new { @class = "form-control" })
@@ -81,8 +61,6 @@
                         <label class="company">Müraciət forması</label>
                         @Html.DropDownListFor(m => m.appealTypeID, new SelectList(ViewBag.AppealType, "id", "title"), "Seçin", new { @class = "form-control" })
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-4">
                         <label class="company">Kimə ünvanlanıb</label>
                         @Html.DropDownListFor(m => m.userID, new SelectList(ViewBag.User, "usrID", "empFullName"), "Seçin", new { @class = "form-control" })
@@ -108,8 +86,6 @@
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-6">
                         <label class="company">İdarə</label>
                         @Html.DropDownListFor(m => m.officeID, new SelectList(ViewBag.Office, "id", "title"), "Seçin", new { @class = "form-control" })
@@ -118,8 +94,6 @@
                         <label class="company">Təşkilat</label>
                         @Html.DropDownListFor(m => m.organID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-6">
                         <label class="company">Təkrar/ilkin (təkrardırsa əvvəlkə sənədin nömrəsi)</label>
                         @Html.DropDownListFor(m => m.contactTypeID, new SelectList(ViewBag.ContactType, "id", "title"), new { @class = "form-control" })
@@ -128,12 +102,6 @@
                         <label for="company">Tematika</label>
                         @Html.DropDownListFor(m => m.tematikaID, new SelectList(ViewBag.Tematika, "id", "title"), new { @class = "form-control" })
                     </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Sənədi göndərən şəxsin</p>
-                <div class="row">
                     <div class="form-group col-md-4">
                         <label for="label">Adı</label>
                         @Html.TextBoxFor(m => m.senderName, "", new { @class = "form-control" })
@@ -146,12 +114,6 @@
                         <label for="label">Ata adı</label>
                         @Html.TextBoxFor(m => m.senderMiddlename, "", new { @class = "form-control" })
                     </div>
-                </div>
-            </div>
-            <br />
-            <div class="well well-sm">
-                <p class="alert alert-warning">Göndərilmə ünvanı</p>
-                <div class="row">
                     <div class="form-group col-md-4">
                         <label for="company">Ölkə</label>
                         @Html.DropDownListFor(m => m.countryID, new SelectList(ViewBag.Region, "id", "title"), "Ölkəni seçin", new { @class = "form-control" })
@@ -164,8 +126,6 @@
                         <label for="company">Kənd/qəsəbə</label>
                         @Html.DropDownListFor(m => m.townID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-8">
                         <label for="company">Tam ünvan</label>
                         @Html.TextBoxFor(m => m.adrFullAddress, "", new { @class = "form-control" })
